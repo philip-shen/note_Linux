@@ -1,6 +1,11 @@
 # Purpose
 Take note of Linux CLI
 
+# Table of Content
+[ps command](https://github.com/philip-shen/note_Linux#ps-command)
+[top command](https://github.com/philip-shen/note_Linux#top-command)
+[du df command](https://github.com/philip-shen/note_Linux#what-is-the-difference-between-du-and-df-in-linux)
+
 # List CPU and MEM resouce occupation rate ranking
 * [Linux 用 ps 與 top 指令找出最耗費 CPU 與記憶體資源的程式 2016/12/22](https://blog.gtwang.org/linux/ps-top-find-processes-by-cpu-memory-usage/)
 
