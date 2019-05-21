@@ -3,7 +3,7 @@ Take note of Linux on VMware
 
 # Table of Content
 [Install SSH Server](#install-ssh-server)  
-[How to connect wireless network adapter to VMWare workstation?]()  
+[How to connect wireless network adapter to VMWare workstation?](#how-to-connect-wireless-network-adapter-to-vmware-workstation)  
 [Configure networks](#configure-networks)  
 []()  
 []()  
@@ -47,26 +47,23 @@ sudo /etc/init.d/ssh restart
 
 ## Configure bridged networking  
 * [Configure bridged networking ](https://geek-university.com/vmware-player/configure-bridged-networking/)  
-```
-If you use the virtual machine on a laptop, check the Replicate physical network connection state checkbox. This option causes the IP address to be renewed when you move from one wired or wireless network to another.
-```  
+If you use the virtual machine on a laptop, check the Replicate physical network connection state checkbox. This option causes the IP address to be renewed when you move from one wired or wireless network to another.  
 ![alt tag](https://geek-university.com/wp-content/images/vmware-player/bridged_networking_configuration.jpg?x66712)
 
 ## Configure NAT networking  
 * [Configure NAT networking ](https://geek-university.com/vmware-player/configure-nat-networking/)  
-```
-In NAT (Network Address Translation) networking, a virtual machine does not have its own IP address on the external network. Instead, a separate private network is set up on the host system and a virtual machine gets its IP address on this private network from the virtual DHCP server. The virtual machine and the host system share a single network identity that is not visible on the external network. When the virtual machine sends a request to access a network resource, it appears to the network resource as if the request is coming from the host system.
+
+In NAT (Network Address Translation) networking, a virtual machine does not have its own IP address on the external network. Instead, a separate private network is set up on the host system and a virtual machine gets its IP address on this private network from the virtual DHCP server. The virtual machine and the host system share a single network identity that is not visible on the external network. When the virtual machine sends a request to access a network resource, it appears to the network resource as if the request is coming from the host system.  
 A NAT network (VMnet8) is set up for you when you install VMware Player. The host system has a virtual network adapter on the NAT network that enables the host system and virtual machines to communicate. The NAT device passes network data between virtual machines and the external network, identifies incoming data packets intended for each virtual machine, and sends them to the appropriate destination.  
-```  
+
 ![alt tag](https://geek-university.com/wp-content/images/vmware-player/nat_configuration.jpg?x66712)
 
 ## Configure host-only networking  
 * [Configure host-only networking ](https://geek-university.com/vmware-player/configure-host-only-networking/)  
-```
-In host-only networking, a network completely contained within the host computer is created. This networking configuration provides a network connection between the virtual machine and the host system by using a virtual network adapter that is visible on the host operating system. The virtual DHCP server provides IP addresses on the host-only network.
 
-A host-only network (VMnet1) is set up for you when you install VMware Player. In the default configuration, a virtual machine is isolated and cannot connect to the Internet.
-```  
+In host-only networking, a network completely contained within the host computer is created. This networking configuration provides a network connection between the virtual machine and the host system by using a virtual network adapter that is visible on the host operating system. The virtual DHCP server provides IP addresses on the host-only network.  
+A host-only network (VMnet1) is set up for you when you install VMware Player. In the default configuration, a virtual machine is isolated and cannot connect to the Internet.  
+
 ![alt tag](https://geek-university.com/wp-content/images/vmware-player/host_only_networking_configuration.jpg?x66712)
 
 # How to connect wireless network adapter to VMWare workstation?  
