@@ -4,10 +4,14 @@ Take note of Linux on VMware
 # Table of Content
 [Install SSH Server](#install-ssh-server)  
 [How to connect wireless network adapter to VMWare workstation?](#how-to-connect-wireless-network-adapter-to-vmware-workstation)  
+
 [Configure networks](#configure-networks)  
+[Add a virtual network adapter](#add-a-virtual-network-adapter)  
+[Configure bridged networking](#configure-bridged-networking)  
+[Configure NAT networking](#configure-nat-networking)  
+[Configure host-only networking](https://github.com/philip-shen/note_Linux/tree/master/VMware#configure-host-only-networking)  
 []()  
-[]()  
-[]()  
+
 
 # VMware related stuffs  
 
@@ -68,11 +72,11 @@ A host-only network (VMnet1) is set up for you when you install VMware Player. I
 
 # How to connect wireless network adapter to VMWare workstation?  
 * [How to connect wireless network adapter to VMWare workstation? Nov 13, 2011](https://stackoverflow.com/questions/4601762/how-to-connect-wireless-network-adapter-to-vmware-workstation) 
-```
+
 Workstation doesn't have a wireless NIC type, so direct wireless hardware access is out. If you just want to access through the extant host wireless connection, bridging is your answer.
 
 I think the only way to get a wireless NIC dedicated to the VM would be using a USB wireless NIC as a USB-passthrough device on the VM. When you have Workstation running and a USB device plugged in, it should give you an option to change whether that device is connected to the host or to the VM.
-```
+
 
 # Reference
 * [VMware Workstation 12 Player安裝Ubuntu 15.04 (一) 20150909](https://blog.xuite.net/yh96301/blog/341981056-VMware+Workstation+12+Player%E5%AE%89%E8%A3%9DUbuntu+15.04+%28%E4%B8%80%29)  
