@@ -70,6 +70,8 @@ A host-only network (VMnet1) is set up for you when you install VMware Player. I
 
 ![alt tag](https://geek-university.com/wp-content/images/vmware-player/host_only_networking_configuration.jpg?x66712)
 
+# Ethernet device not managed 
+
 # How to connect wireless network adapter to VMWare workstation?  
 * [How to connect wireless network adapter to VMWare workstation? Nov 13, 2011](https://stackoverflow.com/questions/4601762/how-to-connect-wireless-network-adapter-to-vmware-workstation) 
 
@@ -84,8 +86,8 @@ I think the only way to get a wireless NIC dedicated to the VM would be using a 
 * [ Ubuntu 安裝與設定 ssh server 6月 26, 2012 ](https://www.ewdna.com/2012/06/ubuntu-ssh-server.html)  
 * [Ubuntu 安裝和啟用 SSH 登入 2010-08-22 ](https://www.arthurtoday.com/2010/08/ubuntu-ssh.html)  
 * [Ubuntu 用 SSH + 憑證登入遠端主機  2009-11-01](https://www.arthurtoday.com/2009/11/ssh-linux-client.html)  
-* []()  
-* []()  
+* [Ethernet device not managed ](https://askubuntu.com/questions/882806/ethernet-device-not-managed)  
+* [Error editing connection Unable to find a connection with UUID ('null') Feb 16, 2017](https://askubuntu.com/questions/688556/error-editing-connection-unable-to-find-a-connection-with-uuid-null)  
 
 
 * []()  
