@@ -79,6 +79,7 @@ Workstation doesn't have a wireless NIC type, so direct wireless hardware access
 
 I think the only way to get a wireless NIC dedicated to the VM would be using a USB wireless NIC as a USB-passthrough device on the VM. When you have Workstation running and a USB device plugged in, it should give you an option to change whether that device is connected to the host or to the VM.
 
+# 
 
 # Reference
 * [VMware Workstation 12 Player安裝Ubuntu 15.04 (一) 20150909](https://blog.xuite.net/yh96301/blog/341981056-VMware+Workstation+12+Player%E5%AE%89%E8%A3%9DUbuntu+15.04+%28%E4%B8%80%29)  
