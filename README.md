@@ -5,8 +5,8 @@ Take note of Linux CLI
 [ps command](#ps-command)  
 [top command](#top-command)  
 [du df command](#what-is-the-difference-between-du-and-df-in-linux)  
-[IP/default gateway/DNS Setting]()  
-[Ubunut 如何使用 tracert ?]()  
+[IP/default gateway/DNS Setting](#ipdefault-gatewaydns-setting)  
+[Ubunut 如何使用 tracert ?](#ubunut-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-tracert-)  
 
 # List CPU and MEM resouce occupation rate ranking
 * [Linux 用 ps 與 top 指令找出最耗費 CPU 與記憶體資源的程式 2016/12/22](https://blog.gtwang.org/linux/ps-top-find-processes-by-cpu-memory-usage/)
@@ -49,7 +49,7 @@ top -b -o +%MEM | head -n 17
 ![alt tag](https://i.imgur.com/Sd3Icdm.jpg)
 
 # IP/default gateway/DNS Setting
-* 1. 修改 IP address
+* 1 修改 IP address
 ```
 (先用
 # ifconfig -a⋯⋯
@@ -67,7 +67,7 @@ NETMASK=255.255.255.0 <== 改為新的 netmask
 GATEWAY=192.168.0.254 <== 改為新的 gateway
 ```
 
-* 2. 修改 default gateway
+* 2 修改 default gateway
 ```
 及時生效
 # route add default gw 192.168.0.1
@@ -76,7 +76,7 @@ GATEWAY=192.168.0.254 <== 改為新的 gateway
 GATEWAY=192.168.0.254
 ```
 
-* 3. 修改 DNS
+* 3 修改 DNS
 ```
 
 # vi /etc/resolv.conf (修改後可及時生效, 重新啟動也有效)
@@ -84,7 +84,7 @@ search
 nameserver 168.95.1.1
 ```  
 
-* 4. 重新啟動網路服務
+* 4 重新啟動網路服務
 ```
 # /etc/init.d/network restart
 ```
