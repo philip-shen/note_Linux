@@ -1,5 +1,9 @@
 # Purpose
 Take note of WSL from VSCode.
+# Table of Contents  
+[Linux GUI on WSL](#linux-gui-on-wsl)  
+[How to mount USB disk on WSL](#how-to-mount-usb-disk-on-wsl)  
+[]()  
 
 # Linux GUI on WSL  
 * [GitHub - QMonkey/wsl-tutorial: A tutorial about how to run desktop ... ](https://github.com/QMonkey/wsl-tutorial)  
@@ -7,6 +11,18 @@ Take note of WSL from VSCode.
 * [Run Linux GUI apps on Windows 10 Oct 23, 2018](https://dev.to/david_j_eddy/run-linux-gui-applications-on-windows-10-3130)  
 * [Setting up Ubuntu (WSL) for Linux GUI Apps - Choung Networks](https://token2shell.com/howto/x410/customizing-xfce-desktop-for-ubuntu-wsl/)  
 * [Customizing Xfce Desktop for Ubuntu (WSL) - Choung Networks](https://token2shell.com/howto/x410/customizing-xfce-desktop-for-ubuntu-wsl/)  
+
+# How to mount USB disk on WSL
+[wsl上でbashコマンドでUSBドライブをマウントしアクセスする方法 2018-11-12](https://qiita.com/pokobur/items/3d9214fe1810d5d63044)  
+```
+sudo mkdir /mnt/d
+sudo mount -t drvfs D: /mnt/d
+```
+-  /mnt配下にｄディレクトリを作成するよ。
+-  マウントコマンドでファイルシステムのタイプを指定するよ。drvfs
+-  マウントしたいドライブを指定するよ。 D:
+-  あらかじめ作成したディレクトの場所を指定するよ。　/mnt/d
+
 
 # Reference
 * [Windows Bash won't open in 10 Anniversary Update](https://superuser.com/questions/1112429/windows-bash-wont-open-in-10-anniversary-update)
