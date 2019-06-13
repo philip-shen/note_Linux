@@ -95,8 +95,29 @@ nameserver 168.95.1.1
 
 sudo apt-get install traceroute 
 ```
+# WIFI 固定IP 參數設定  
+[[linux] WIFI 固定IP 參數設定 9月 15, 2013](http://timfan1121.blogspot.com/2013/09/linux-wifi-ip.html)  
+```
+以下是我的WIFI設定方式路徑是/etc/network/interfaces
+
+auto lo
+
+iface lo inet loopback
+iface eth0 inet dhcp
+
+auto wlan0
+iface wlan0 inet static
+address 192.168.20.186
+netmask 255.255.255.0
+getway 192.168.20.1
+wpa-ssid "you ssid"
+wpa-psk "87654321"
+
+iface default inet dhcp
+```
 
 # Reference
+* [ROS 軟路由PPPOE設置 2018-11-17](https://kknews.cc/other/p9pyov8.html)
 
 
 * []()
