@@ -40,7 +40,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 # VMware Workstation 12.x + ubuntu 16.04 + NAT 不 work   
 [VMware Workstation 12.x + ubuntu 16.04 + NAT 不 work 九月 8, 2017](https://andersonwang.wordpress.com/2017/09/08/vmware-workstation-12-x-ubuntu-16-04-nat-%E4%B8%8D-work/)  
 
-#  
+# 
 []()  
 #  
 []()  
