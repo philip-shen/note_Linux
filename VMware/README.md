@@ -90,6 +90,7 @@ I think the only way to get a wireless NIC dedicated to the VM would be using a 
 * [Ethernet device not managed ](https://askubuntu.com/questions/882806/ethernet-device-not-managed)  
 * [Error editing connection Unable to find a connection with UUID ('null') Feb 16, 2017](https://askubuntu.com/questions/688556/error-editing-connection-unable-to-find-a-connection-with-uuid-null)  
 
+* [VMwareのIPv6 NATを使ってみたら、IPv4 onlyホストにつながらなくなる(from Windows 10 VM) 2016-12-19](https://qiita.com/ip6/items/af4677e9afe9661b521d)  
 
 * []()  
 ![alt tag]()
