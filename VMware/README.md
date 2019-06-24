@@ -11,8 +11,9 @@ Take note of Linux on VMware
 [Configure NAT networking](#configure-nat-networking)  
 [Configure host-only networking](https://github.com/philip-shen/note_Linux/tree/master/VMware#configure-host-only-networking)  
 
-[VMware網路連線]()
+[VMware網路連線](#vmware%E7%B6%B2%E8%B7%AF%E9%80%A3%E7%B7%9A)  
 
+[Reference](#reference)  
 
 # VMware related stuffs  
 
