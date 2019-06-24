@@ -83,6 +83,8 @@ I think the only way to get a wireless NIC dedicated to the VM would be using a 
 
 # VMware網路連線
 [VMware網路連線](http://oblivious9.pixnet.net/blog/post/177362092-vmware%E7%B6%B2%E8%B7%AF%E9%80%A3%E7%B7%9A)
+![alt tag](https://pic.pimg.tw/oblivious9/1447998264-2950343439.png)  
+![alt tag](https://pic.pimg.tw/oblivious9/1447998264-794726665.png)  
 
 
 # Reference
@@ -97,7 +99,7 @@ I think the only way to get a wireless NIC dedicated to the VM would be using a 
 * [VMwareのIPv6 NATを使ってみたら、IPv4 onlyホストにつながらなくなる(from Windows 10 VM) 2016-12-19](https://qiita.com/ip6/items/af4677e9afe9661b521d)  
 
 * []()  
-![alt tag]()
+![alt tag]()  
 
 # h1 size
 
