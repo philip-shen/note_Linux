@@ -6,6 +6,7 @@ Take note of Ubuntu stuffs
 [網卡改名為 eth0](#%E7%B6%B2%E5%8D%A1%E6%94%B9%E5%90%8D%E7%82%BA-eth0)  
 [Ubuntu IPv6網路設定](#ubuntu-ipv6%E7%B6%B2%E8%B7%AF%E8%A8%AD%E5%AE%9A)  
 [VMware Workstation 12.x + ubuntu 16.04 + NAT 不 work](#vmware-workstation-12x--ubuntu-1604--nat-%E4%B8%8D-work)  
+[Ubuntu 16.04開機直接進入文字模式 ]()  
 
 # ubuntu 16.04 Networking Setting  
 [ubuntu 12.04 LTS desktop 64位元版本 – 網路設定  一月 9, 2014](https://andersonwang.wordpress.com/2014/01/09/ubuntu-12-04-lts-desktop-64%E4%BD%8D%E5%85%83%E7%89%88%E6%9C%AC-%E7%B6%B2%E8%B7%AF%E8%A8%AD%E5%AE%9A/)  
@@ -108,8 +109,66 @@ Address: 163.23.115.xx#53
 # VMware Workstation 12.x + ubuntu 16.04 + NAT 不 work   
 [VMware Workstation 12.x + ubuntu 16.04 + NAT 不 work 九月 8, 2017](https://andersonwang.wordpress.com/2017/09/08/vmware-workstation-12-x-ubuntu-16-04-nat-%E4%B8%8D-work/)  
 
-# 
-[]()  
+# Ubuntu 16.04開機直接進入文字模式  
+[Ubuntu 16.04開機直接進入文字模式 Jun 24, 2017](https://2formosa.blogspot.com/2017/06/ubuntu-disable-GUI-login.html)
+* [how to disable lightdm(display manager) on Ubuntu 16.0.4 LTS](https://askubuntu.com/questions/800239/how-to-disable-lightdmdisplay-manager-on-ubuntu-16-0-4-lts)  
+* [How can I show or hide boot messages when Ubuntu starts?](https://askubuntu.com/questions/248/how-can-i-show-or-hide-boot-messages-when-ubuntu-starts)  
+```
+在Ubuntu 16.04 Desktop版本裝好後想要關閉圖形登入介面
+若僅僅用只想要用文字模式，那就直接用下面指令後重開機：
+    sudo systemctl set-default multi-user.target
+
+若是希望又回到圖形模式，那就是下指令後重開機：
+    sudo systemctl set-default graphical.target
+
+
+但當進入文字模式的開機狀態，卻又希望可以看到開機訊息，首先要修改 /etc/default/grub 這個檔案裡面的 GRUB_CMDLINE_LINUX_DEFAULT：
+    * 1 GRUB_CMDLINE_LINUX_DEFAULT="quiet splash" 
+    * 2 GRUB_CMDLINE_LINUX_DEFAULT=
+    * 3 GRUB_CMDLINE_LINUX_DEFAULT="splash"
+    * 4 GRUB_CMDLINE_LINUX_DEFAULT=quiet
+        GRUB_CMDLINE_LINUX="console=tty12"
+
+以上選項的意思是：
+    * 1 隱藏開機文字訊息，應該是出現圖形介面Ubuntu那幾個點
+    * 2 標準的文字開機模式，螢幕不出現圖形介面開機
+    * 3 螢幕出現開機圖形介面，但是按Esc就可以看到開機訊息
+    * 4 開機只會出現黑色畫面（不建議這樣做...）
+
+通通都完成後，下這個指令更新GRUB：
+
+    sudo update-grub
+```
+
+# Ubuntu關閉自動更新和GUI圖形界面 
+[Ubuntu關閉自動更新和GUI圖形界面  2019-06-18](https://www.twblogs.net/a/5d08e154bd9eee1e5c812d96)  
+```
+一、關閉自動更新
+
+臨時關閉
+sudo systemctl stop snapd.service
+
+持久關閉
+sudo systemctl stop snapd.service
+sudo systemctl disable snapd.service
+
+重新開啓
+sudo systemctl reenable snapd.service
+sudo systemctl start snapd.service
+
+二、關閉GUI
+
+臨時關閉
+sudo service lightdm stop
+
+持久關閉
+sudo systemctl set-default multi-user.target
+
+持久開啓（通過Ctrl+Alt+F7快捷鍵進入GUI界面）
+sudo systemctl set-default graphical.target
+```
+
+
 #  
 []()  
 
