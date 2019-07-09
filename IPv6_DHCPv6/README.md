@@ -8,7 +8,42 @@ Take note of IPv6 DHCPv6
 ![alt tag](https://i.imgur.com/HgmemW6.jpg)
 
 # Reference
-* []()  
+* [Chapter 06 - DHCP Server: Dibbler ](https://zzzaaa12.pixnet.net/blog/post/24783496-chapter-06---dhcp-server%3A-dibbler)
+
+```
+之後再安裝 Dibbler 即可
+#rpm -ivh dibbler-0.4.1-1.i386.rpm
+
+接下來設定 Dibbler-Server
+
+#vim /etc/dibbler/server.conf 
+
+設定完存檔離開，然後建立Dibbler在/var/lib下的目錄
+
+
+#mkdir /var/lib/dibbler
+之後就可以下 dibbler-server start 啟動 Server 
+```
+![alt tag](https://pic.pimg.tw/zzzaaa12/4a798098b2c1d.png)  
+
+```
+使用 netstat 指令查看 dhcpv6 的 port 有沒有進入listen 狀態
+
+#netstat -antl | grep ::
+
+從圖我們看到 port 547 正在被監聽中，到這邊 Server 已經架設完成了！
+```
+![alt tag](https://pic.pimg.tw/zzzaaa12/4a79809954572.png)  
+  
+
+* [[IPv6] dibbler server generates different PD to the same client @ Kai-Cho  Oct 26, 2018](https://kevin0304.pixnet.net/blog/post/226373864)  
+* [DHCPv6-PD - Nano雞排 Sep 7, 2013](http://nano-chicken.blogspot.com/2013/09/dhcpv6-pd.html)  
+* [[IPv6] dibbler server config file @ Kai-Cho Feb 2, 2018]()  
+* [[IPv6] odhcpd @ Kai-Cho 的環遊世界 Mar 26, 2019](https://kevin0304.pixnet.net/blog/post/227287940)  
+```
+啟動後，就有v4,v6 DHCP Server及 RADVA Server
+```
+
 * [IPv6 only ネットワーク を作ってみる 2017/5/5](https://blog.techlab-xe.net/archives/5269)  
 VMware Workstaion 12.5 を使って、複数の仮想マシンで構成されるネットワークを作っていきます。このネットワークは今流行の IPv6 only のネットワークにしてみたいと思います。この過程で NAT64/DNS64 をセットアップしていきます。    
 ```
@@ -253,7 +288,7 @@ wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
 
 
 * []()  
-![alt tag]()
+![alt tag]()  
 
 # h1 size
 
