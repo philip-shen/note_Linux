@@ -6,9 +6,9 @@ Take note of IPv6 DHCPv6
 
 [IPv6位址配發技術介紹](http://www.myhome.net.tw/2012_09/p03.htm)  
 ![alt tag](https://i.imgur.com/HgmemW6.jpg)
-
-# Reference
-* [Chapter 06 - DHCP Server: Dibbler ](https://zzzaaa12.pixnet.net/blog/post/24783496-chapter-06---dhcp-server%3A-dibbler)
+[Dibbler Configure and Start]()  
+# Dibbler Configure and Start 
+[Chapter 06 - DHCP Server: Dibbler Aug 11, 2009](https://zzzaaa12.pixnet.net/blog/post/24783496-chapter-06---dhcp-server%3A-dibbler)
 
 ```
 之後再安裝 Dibbler 即可
@@ -34,6 +34,9 @@ Take note of IPv6 DHCPv6
 從圖我們看到 port 547 正在被監聽中，到這邊 Server 已經架設完成了！
 ```
 ![alt tag](https://pic.pimg.tw/zzzaaa12/4a79809954572.png)  
+
+# Reference
+
   
 
 * [[IPv6] dibbler server generates different PD to the same client @ Kai-Cho  Oct 26, 2018](https://kevin0304.pixnet.net/blog/post/226373864)  
