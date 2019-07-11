@@ -7,7 +7,7 @@ Take note of Ubuntu stuffs
 [Ubuntu IPv6網路設定](#ubuntu-ipv6%E7%B6%B2%E8%B7%AF%E8%A8%AD%E5%AE%9A)  
 [VMware Workstation 12.x + ubuntu 16.04 + NAT 不 work](#vmware-workstation-12x--ubuntu-1604--nat-%E4%B8%8D-work)  
 [Ubuntu 16.04開機直接進入文字模式 ](#ubuntu-1604%E9%96%8B%E6%A9%9F%E7%9B%B4%E6%8E%A5%E9%80%B2%E5%85%A5%E6%96%87%E5%AD%97%E6%A8%A1%E5%BC%8F)  
-[]()  
+[How to increase SSH Connection timeout?]()  
 
 # ubuntu 16.04 Networking Setting  
 [ubuntu 12.04 LTS desktop 64位元版本 – 網路設定  一月 9, 2014](https://andersonwang.wordpress.com/2014/01/09/ubuntu-12-04-lts-desktop-64%E4%BD%8D%E5%85%83%E7%89%88%E6%9C%AC-%E7%B6%B2%E8%B7%AF%E8%A8%AD%E5%AE%9A/)  
@@ -171,8 +171,60 @@ sudo systemctl set-default graphical.target
 ```
 
 
-#  
-[]()  
+# How to increase SSH Connection timeout?  
+[How to increase SSH Connection timeout? May 27, 2017](https://www.digitalocean.com/community/questions/how-to-increase-ssh-connection-timeout)  
+```
+/etc/ssh_config is the client side configuration file not the server side config file.
+
+To prevent all your clients from timing out you need to edit /etc/sshd_config which is the server side configuration file add these two options:
+
+ClientAliveInterval 120
+ClientAliveCountMax 720
+
+The first one configures the server to send null packets to clients each 120 seconds and the second one configures the server to close the connection if the client has been inactive for 720 intervals that is 720*120 = 86400 seconds = 24 hours
+```
+[CentOS / RHEL : How to setup session idle timeout (inactivity timeout) for ssh auto logout ](https://www.thegeekdiary.com/centos-rhel-how-to-setup-session-idle-timeout-inactivity-timeout-for-ssh-auto-logout/)  
+```
+There are two options related to ssh inactivity in /etc/ssh/sshd_config file:
+
+ClientAliveInterval
+ClientAliveCountMax
+
+So the timeout value is calculated by multiplying ClientAliveInterval with ClientAliveCountMax.
+
+timeout interval = ClientAliveInterval * ClientAliveCountMax
+
+The meaning of the two parameters can be found in the man page of sshd_config:
+
+There are 2 methods to configure the inactivity timeout. For example in this post we will configure an auto logout interval of 10 mins.
+
+Method 1
+1.Configure the timeout value in the /etc/ssh/sshd_config file with below parameter values.
+
+# vi /etc/ssh/sshd_config
+ClientAliveInterval 5m          # 5 minutes
+ClientAliveCountMax 2           # 2 times
+
+2. Restart the ssh service after setting the values.
+# service sshd restart
+
+This would make the session timeout in 10 minutes as the ClientAliveCountMax value is multiplied by the ClientAliveInterval value.
+
+Method 2
+1. You can set the ClientAliveCountMax value to 0 and ClientAliveInterval value to 10m to achieve the same thing.
+
+# vi /etc/ssh/sshd_config
+ClientAliveInterval 10m          # 10 minutes
+ClientAliveCountMax 0            # 0 times
+
+2. Restart the ssh service after setting the values.
+# service sshd restart
+
+***Difference between method 1 and method 2***
+There’s a little difference between these two methods. For the first method, sshd will send messages, called Client Alive Messages here, through the encrypted channel to request a response from client if client is inactive for five minutes. The sshd daemon will send these messages max two times. If this threshold is reached while Client Alive Messages are being sent, sshd will disconnect the client.
+
+But for the second method, sshd will not send client alive messages and terminate the session directly if client is inactive for 10 minutes.
+```
 
 # Reference
 * [[ubuntu]關閉ipv6，增進網路效能 Sep 16 Wed 2009](https://liuchiu.pixnet.net/blog/post/25080360-%5Bubuntu%5D%E9%97%9C%E9%96%89ipv6%EF%BC%8C%E5%A2%9E%E9%80%B2%E7%B6%B2%E8%B7%AF%E6%95%88%E8%83%BD)  
