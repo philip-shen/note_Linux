@@ -9,8 +9,10 @@ Take note of IPv6 PPPoE
 []()  
 []()  
 []()  
+
 [Troubleshooting](#troubleshooting)  
 [エラー解決：Mac os X で (sh: sysctl: command not found)などコマンドが見つからないエラー  20161012]()  
+[How to increase SSH Connection timeout?](#how-to-increase-ssh-connection-timeout)  
 
 # Setup Procedure
 ## sudo sysctl -w net.ipv6.conf.all.forwarding=1  
@@ -78,7 +80,60 @@ usage:  sysctl [-n] [-e] variable ...
         sysctl [-n] [-e] [-q] -p <file>   (default /etc/sysctl.conf)
         sysctl [-n] [-e] -A
 ```
+# How to increase SSH Connection timeout?  
+[How to increase SSH Connection timeout? May 27, 2017](https://www.digitalocean.com/community/questions/how-to-increase-ssh-connection-timeout)  
+```
+/etc/ssh_config is the client side configuration file not the server side config file.
 
+To prevent all your clients from timing out you need to edit /etc/sshd_config which is the server side configuration file add these two options:
+
+ClientAliveInterval 120
+ClientAliveCountMax 720
+
+The first one configures the server to send null packets to clients each 120 seconds and the second one configures the server to close the connection if the client has been inactive for 720 intervals that is 720*120 = 86400 seconds = 24 hours
+```
+[CentOS / RHEL : How to setup session idle timeout (inactivity timeout) for ssh auto logout ](https://www.thegeekdiary.com/centos-rhel-how-to-setup-session-idle-timeout-inactivity-timeout-for-ssh-auto-logout/)  
+```
+There are two options related to ssh inactivity in /etc/ssh/sshd_config file:
+
+ClientAliveInterval
+ClientAliveCountMax
+
+So the timeout value is calculated by multiplying ClientAliveInterval with ClientAliveCountMax.
+
+timeout interval = ClientAliveInterval * ClientAliveCountMax
+
+The meaning of the two parameters can be found in the man page of sshd_config:
+
+There are 2 methods to configure the inactivity timeout. For example in this post we will configure an auto logout interval of 10 mins.
+
+Method 1
+1.Configure the timeout value in the /etc/ssh/sshd_config file with below parameter values.
+
+# vi /etc/ssh/sshd_config
+ClientAliveInterval 5m          # 5 minutes
+ClientAliveCountMax 2           # 2 times
+
+2. Restart the ssh service after setting the values.
+# service sshd restart
+
+This would make the session timeout in 10 minutes as the ClientAliveCountMax value is multiplied by the ClientAliveInterval value.
+
+Method 2
+1. You can set the ClientAliveCountMax value to 0 and ClientAliveInterval value to 10m to achieve the same thing.
+
+# vi /etc/ssh/sshd_config
+ClientAliveInterval 10m          # 10 minutes
+ClientAliveCountMax 0            # 0 times
+
+2. Restart the ssh service after setting the values.
+# service sshd restart
+
+***Difference between method 1 and method 2***
+There’s a little difference between these two methods. For the first method, sshd will send messages, called Client Alive Messages here, through the encrypted channel to request a response from client if client is inactive for five minutes. The sshd daemon will send these messages max two times. If this threshold is reached while Client Alive Messages are being sent, sshd will disconnect the client.
+
+But for the second method, sshd will not send client alive messages and terminate the session directly if client is inactive for 10 minutes.
+```
 
 # Reference
 
