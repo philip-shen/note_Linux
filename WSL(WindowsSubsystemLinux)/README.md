@@ -3,7 +3,8 @@ Take note of WSL from VSCode.
 # Table of Contents  
 [Linux GUI on WSL](#linux-gui-on-wsl)  
 [How to mount USB disk on WSL](#how-to-mount-usb-disk-on-wsl)  
-[]()  
+[Windows 10 - Bash (Ubuntu) SU (Root Password)]()  
+[Reset Password for WSL Linux Distro in Windows 10]()  
 
 # Linux GUI on WSL  
 * [GitHub - QMonkey/wsl-tutorial: A tutorial about how to run desktop ... ](https://github.com/QMonkey/wsl-tutorial)  
@@ -22,6 +23,24 @@ sudo mount -t drvfs D: /mnt/d
 -  マウントコマンドでファイルシステムのタイプを指定するよ。drvfs
 -  マウントしたいドライブを指定するよ。 D:
 -  あらかじめ作成したディレクトの場所を指定するよ。　/mnt/d
+
+# Windows 10 - Bash (Ubuntu) SU (Root Password)  
+[Windows 10 - Bash (Ubuntu) SU (Root Password) Jun 3, 2016](https://stackoverflow.com/questions/37609356/windows-10-bash-ubuntu-su-root-password)  
+```
+as far as i know you'll have to type "sudo su"
+```
+# Reset Password for WSL Linux Distro in Windows 10
+[Reset Password for WSL Linux Distro in Windows 10](https://winaero.com/blog/reset-password-wsl-linux-distro-windows-10/)  
+## Change the default user name for your WSL distro to root. Use the following command: ubuntu config --default-user root. For other distros, see Note below.
+![alt tag](https://winaero.com/blog/wp-content/uploads/2019/02/Windows-10-WSL-set-default-password-to-root.png)  
+## Launch your Linux distribution, e.g. type ubuntu, or wsl if you are working with your default WSL distro.  
+![alt tag](https://winaero.com/blog/wp-content/uploads/2019/02/Windows-10-WSL-run-distro-as-root.png)  
+## Reset your password using the passwd command: passwd <username>. Substitute the <username> portion with the actual user name you want to reset the password for, e.g. #passwd winaero.  
+![alt tag](https://winaero.com/blog/wp-content/uploads/2019/02/Windows-10-WSL-reset-user-password.png)  
+## Leave your WSL session and set the default user of the WSL distro back to your user account, e.g. ubuntu config --default-user winaero.  
+![alt tag](https://winaero.com/blog/wp-content/uploads/2019/02/Windows-10-WSL-restore-default-user-account.png)   Note: Use the following commands to change your default user to root in a WSL distro. By replacing 'root' with another user account name, you'll set it as your default user account for the distro.
+
+
 
 
 # Reference
@@ -46,9 +65,19 @@ curl.exe -L -o ubuntu-1604.appx https://aka.ms/wsl-ubuntu-1604
 Local launch and activation permissions on the Linux Subsystem / LXSS (as it’s referenced internally) DCOM configuration object.
 Registry permissions which prevent you from modifying the above.
 * [Can't install apps from Store, error 0x80070005 3/30/2018](https://answers.microsoft.com/en-us/windows/forum/windows_8-windows_store/cant-install-apps-from-store-error-0x80070005/1da61861-26ee-41b4-ada9-8ac516b0107a?page=3)
+* [Reset root user password on WSL Sep 10, 2017](https://medium.com/@elvis.pestana/reset-root-user-password-on-wsl-aa3ecf82fbd6)  
+```
+lxrun /setdefaultuser root
 
-* []()
-![alt tag]()
+passwd default_username
+
+lxrun /setdefaultuser default_username
+```
+
+
+* []()  
+![alt tag]()  
+![alt tag]()  
 
 # h1 size
 
