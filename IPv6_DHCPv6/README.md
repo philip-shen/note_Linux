@@ -46,6 +46,19 @@ Take note of IPv6 DHCPv6
 ```
 啟動後，就有v4,v6 DHCP Server及 RADVA Server
 ```
+* [DHCP / IPv4LL / IPv6RA / DHCPv6 client](https://github.com/rsmarples/dhcpcd)  
+```
+dhcpcd is a DHCP and a DHCPv6 client. It's also an IPv4LL (aka ZeroConf) client. In layman's terms, dhcpcd runs on your machine and silently configures your computer to work on the attached networks without trouble and mostly without configuration.
+
+If you're a desktop user then you may also be interested in Network Configurator (dhcpcd-ui) which sits in the notification area and monitors the state of the network via dhcpcd. It also has a nice configuration dialog and the ability to enter a pass phrase for wireless networks.
+
+dhcpcd may not be the only daemon running that wants to configure DNS on the host, so it uses openresolv to ensure they can co-exist.
+
+See BUILDING.md for how to build dhcpcd.
+
+If you wish to file a support ticket or help out with development, please visit the Development Area or join the mailing list below.
+```
+
 
 * [IPv6 only ネットワーク を作ってみる 2017/5/5](https://blog.techlab-xe.net/archives/5269)  
 VMware Workstaion 12.5 を使って、複数の仮想マシンで構成されるネットワークを作っていきます。このネットワークは今流行の IPv6 only のネットワークにしてみたいと思います。この過程で NAT64/DNS64 をセットアップしていきます。    
