@@ -2,13 +2,16 @@
 Take note of IPv6 PPPoE
 
 # Table of Content
-[Setup Procedure]()  
-[sudo sysctl -w net.ipv6.conf.all.forwarding=1]()  
+* [Setup Procedure](#setup-procedure)  
+
+[sudo sysctl -w net.ipv6.conf.all.forwarding=1](#sudo-sysctl--w-netipv6confallforwarding1)  
 []()  
 []()  
 []()  
 []()  
-[]()  
+
+* [Accel-ppp installation](#accel-ppp-installation)  
+
 
 [Troubleshooting](#troubleshooting)  
 [エラー解決：Mac os X で (sh: sysctl: command not found)などコマンドが見つからないエラー  20161012]()  
@@ -49,12 +52,12 @@ local_ipv4=172.21.33.97
 local_ipv6=2001::97/64
 ```
 
-##stepup sit1  
+## stepup sit1  
 ```
 ip tunnel add sit1 remote $remote_ipv4 local $local_ipv4 ttl 64 ip link set dev sit1 up
 ```
 
-##add local ipv6 address in sit1  
+## add local ipv6 address in sit1  
 ```
 ip -6 addr add $local_ipv6 dev sit1
 ```
@@ -62,6 +65,11 @@ ip -6 addr add $local_ipv6 dev sit1
 ## add default route to remote ipv6 address  
 ```
 route -A inet6 add ::/0 gw $remote_ipv6 dev sit1 metric 256 
+```
+# Accel-ppp installation  
+[Accel-ppp installation 06.07.2018](https://ixnfo.com/en/accel-ppp-installation.html)  
+```
+In this article, I’ll give an example of how to build and install accel-ppp in Ubuntu Server.
 ```
 
 # Troubleshooting  
