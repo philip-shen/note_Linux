@@ -12,6 +12,8 @@ Take note of IPv6 PPPoE
 
 * [Accel-ppp installation](#accel-ppp-installation)  
 
+[Setup accel-ppp PPTP / L2TP / PPPoE server](#setup-accel-ppp-pptp--l2tp--pppoe-server)  
+
 
 [Troubleshooting](#troubleshooting)  
 [エラー解決：Mac os X で (sh: sysctl: command not found)などコマンドが見つからないエラー  20161012]()  
