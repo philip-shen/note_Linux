@@ -71,6 +71,97 @@ route -A inet6 add ::/0 gw $remote_ipv6 dev sit1 metric 256
 ```
 In this article, I’ll give an example of how to build and install accel-ppp in Ubuntu Server.
 ```
+## Setup accel-ppp PPTP / L2TP / PPPoE server  
+```
+From: Ted Chen(陳明德) 
+Sent: Thursday, August 8, 2019 4:16 PM
+To: Richard Tu(涂振彬); Philip Shen(沈宣佑); Monica Su(蘇郁鈞)
+Cc: Jimmy Pan(潘信嘉)
+Subject: Setup accel-ppp PPTP / L2TP / PPPoE server
+
+Dear All,
+
+FYI,
+
+以下方式可以簡單架設自己的PPTP/L2TP/PPPoE server
+
+如果只是要測試連線，server只要一張網卡就可以，但如果要測throughput則要兩張網卡會獲得比較好的performance result。
+
+架構:
+
+DUT WAN------------------Ubuntu(accel-ppp server)
+             |
+             |
+      Gateway Router LAN
+      Gateway Router WAN
+             |
+             |
+          Internet
+
+
+Ubuntu 版本:
+16.04-2 
+或
+14.04.1 TLS
+
+安裝:
+1.	先將ubuntu連上Internet
+2.	安裝必要的套件:
+#apt-get install cmake 
+    
+#apt-get install build-essential
+
+#apt-get install libpcre3-dev
+
+#apt-get install libssl-dev
+
+3.	將config檔 (accel-ppp.conf.dist) 複製到 / 根目錄底下
+4.	將accel-ppp程式也複製到 / 根目錄底下
+5.	開始安裝:
+a.	#mkdir /home/accel
+b.	#cd /home/accel
+c.	#tar xvf /accel-ppp-1.7.4.tar.bz2
+d.	#cd /accel-ppp-1.7.4
+e.	#mkdir build
+f.	#cd build
+g.	#cmake ..   (注意，camake後面空一格還有兩個點，一定要加!)
+h.	#make
+i.	#make install
+6.	安裝完成
+7.	將Ubuntu與DUT WAN連接好，確認Ubuntu的網卡(server IP)與DUT WAN可以相通
+8.	修改連線用的帳號密碼:
+#vi /etc/ppp/chap-secrets
+```
+![alt tag](https://i.imgur.com/RgsioiL.png)  
+``` 
+第一個test是帳號
+第二個test是密碼
+如果要建立多個，就新增在下一行，格式要一樣:  [帳號]   *   [密碼]   *
+改完存檔
+9.	修改VPN IP address(DUT WAN會拿到的IP):
+#vi /accel-ppp.conf.dist
+ 
+以上的範例，DUT會拿到192.168.200.2的IP，Gateway是192.168.200.1
+10.	啟動accel-ppp server:
+#accel-pppd -d -c /accel-ppp.conf.dist
+11.	完工!
+
+以上，DUT可以建立PPTP/L2TP/PPPoE連線，可作簡易連線測試，包括可自訂DUT WAN會拿到的IP，
+或是特殊字元的帳號密碼。  
+
+如果要可以上網(要先確認Ubuntu本身可以上網)，可以在DUT已經建立連線之後用以下iptable指令
+
+#iptables –t nat –A POSTROUTING –s 192.168.200.0/24 –o eth0 –j MASQUERADE
+
+[192.168.200.0/24]這是在accel-ppp.conf.dist裡面指定給DUT WAN的IP
+Eth0是Ubuntu的網卡代號
+
+
+
+With regards,
+TED CHEN - 陳明德
+```
+
 
 # Troubleshooting  
 * [ssh 互動模式終端機可以執行的指令，透過 ssh 直接下指令卻找不到，竟然是因為這個原因？ Dec 11, 2018](https://medium.com/@hau_hsu/ssh-%E4%BA%92%E5%8B%95%E6%A8%A1%E5%BC%8F%E7%B5%82%E7%AB%AF%E6%A9%9F%E5%8F%AF%E4%BB%A5%E5%9F%B7%E8%A1%8C%E7%9A%84%E6%8C%87%E4%BB%A4-%E9%80%8F%E9%81%8E-ssh-%E7%9B%B4%E6%8E%A5%E4%B8%8B%E6%8C%87%E4%BB%A4%E5%8D%BB%E6%89%BE%E4%B8%8D%E5%88%B0%E4%BA%86-%E7%AB%9F%E7%84%B6%E6%98%AF%E5%9B%A0%E7%82%BA%E9%80%99%E5%80%8B%E5%8E%9F%E5%9B%A0-e252ef6f19d0)  
