@@ -263,6 +263,36 @@ If your router is multi honed and has two interfaces with
 IPv6 addresses you will be able to route between the two networks. 
 You will need to setup two static IPv6 addresses in /etc/network/interfaces.
 ```
+* 3 Set Up a Stateful ULA IPV6 LAN with DHCP & DNS Services  
+```
+Sadly the router advertisement service can only provide a network prefix, 
+default route and dns server address and not much else.  
+To provide the required service we need to use a DHCP server.  
+To get the node to use a DHCP server we need to configure the radvd service to tell nodes 
+to contact a DHCP server for additional configuration information.
+
+You can configure radvd to tell the nodes to contact the DHCP server for
+
+    configuration info only (stateless) or
+    for configuration information and its IP address (stateful)
+```
+```
+ So a DHCP server can be used in a stateless and stateful IPv6 setup. We will use DHCP to send configuration information such as DNS servers and to assign IP addresses since we want to assign fixed IP to well known hosts. 
+
+Edit the /etc/radvd.conf file
+	
+interface eth0
+{
+     AdvSendAdvert on;
+     AdvManagedFlag on; # get a full IP address from the DHCP server
+     AdvOtherConfigFlag on; # get other configuration info from the DHCP server
+     prefix fd5d:12c9:2201:1::1/64 {
+        AdvOnLink on;
+        AdvAutonomous on;
+        
+    };
+};
+```
 
 # VMware Workstation 12.x + ubuntu 16.04 + NAT 不 work   
 [VMware Workstation 12.x + ubuntu 16.04 + NAT 不 work 九月 8, 2017](https://andersonwang.wordpress.com/2017/09/08/vmware-workstation-12-x-ubuntu-16-04-nat-%E4%B8%8D-work/)  
