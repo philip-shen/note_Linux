@@ -200,7 +200,8 @@ Hence the stateless in the term stateless automatic address configuration (SLAAC
 ```
 Steps to Configure the Router Advertisement Service 
 
-The advertisement service can run on any Linux box, but that box will become the default route for IPv6 traffic. 
+The advertisement service can run on any Linux box, but that box will become 
+the default route for IPv6 traffic. 
 In future your ADSL router will provide router advertisement services. 
 First assign the Linux box a static IPv6 address from the ULA network: 
 (In the examples that follow I use the fd5f:12c9:2201::/48 ULA routing prefix and 
@@ -241,17 +242,20 @@ interface eth0
 	
 
 
-Restart the service and then on a client restart the network. You should see two IPv6 address on your network card.
+Restart the service and then on a client restart the network. 
+You should see two IPv6 address on your network card.
 
  
 ip -6 address list
 
 You can ping the router with the ping6 utility:
 
-"ping6 fd5d:12c9:2201:1::1" if this doesn't work try "ping6 fd5d:12c9:2201:1::1 -I eth0" -> Use the interface with 
+"ping6 fd5d:12c9:2201:1::1" if this doesn't work try 
+"ping6 fd5d:12c9:2201:1::1 -I eth0" -> Use the interface with 
 the assigned IPv6 address. We will cover DNS and IPv6 in the net section.
 
-Congratulations you have an IPv6 network up and running! If your router is multi honed and has two interfaces with 
+Congratulations you have an IPv6 network up and running! 
+If your router is multi honed and has two interfaces with 
 IPv6 addresses you will be able to route between the two networks. 
 You will need to setup two static IPv6 addresses in /etc/network/interfaces.
 ```
