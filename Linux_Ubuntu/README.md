@@ -124,16 +124,20 @@ In fact every host on an IPv6 network must have an link local address (fe80::/64
 ```
 **Why do you need a Link Local Address?** 
 ```
-IPv6 configuration is done using layer 3 (network layer) protocols and not layer 2 (media layer eg. Ethernet) as with IPv4; 
+IPv6 configuration is done using layer 3 (network layer) protocols and 
+not layer 2 (media layer eg. Ethernet) as with IPv4; 
 so a valid IPv6 address is required before any additional configuration can be done. 
 Of couese it also allows for zero config simple networks.
 ```
 **Pros and Cons of Link Local Network**  
 ```
-With a link local address you can communicate with other IPv6 hosts on the local network segment or broadcast domain. 
-i.e the same switch or shared media network. So for a home LAN not connected to the internet this is all that is required. 
-You can connect to your printer, Smart TV, PlayStation etc automatically using protocols such as UPnP and multicast DNS (ZeroConf).  
-Connecting to the internet, or a network in a different physical network or logical network, will require a bit more work.
+With a link local address you can communicate with other IPv6 hosts 
+on the local network segment or broadcast domain. i.e the same switch or 
+shared media network. So for a home LAN not connected to the internet this is all that is required. 
+You can connect to your printer, Smart TV, PlayStation etc automatically 
+using protocols such as UPnP and multicast DNS (ZeroConf).  
+Connecting to the internet, or a network in a different physical network 
+or logical network, will require a bit more work.
 ```
 
 * 2 Set Up A Stateless Routable IPv6 Network  
