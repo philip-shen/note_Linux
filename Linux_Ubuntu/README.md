@@ -106,24 +106,83 @@ Default server: 163.23.115.xx
 Address: 163.23.115.xx#53 
 ```
 
+## IPv6 - Set Up An IPv6 LAN with Linux  
 [IPv6 - Set Up An IPv6 LAN with Linux Apr 5, 2015](https://www.jumpingbean.co.za/blogs/mark/set-up-ipv6-lan-with-linux)  
-* 1) Set Up an Link Local Only IPv6 LAN with Linux  
+* 1 Set Up an Link Local Only IPv6 LAN with Linux  
 ```
 ```
-* 2) Set Up A Stateless Routable IPv6 Network  
+* 2 Set Up A Stateless Routable IPv6 Network  
+
+**What is the difference between a ULA and a Global address?**
 ```
-So a node now has an ULA IPv6 address and a default gateway and all should be good. This is known as stateless address assignment. The router does not assign an address per se. It has no idea what IPv6 address the hosts ends up using, only that it is in the provided network. Hence the stateless in the term stateless automatic address configuration (SLAAC).
+By convention a ULA is not routed over the public internet. Routers on the public IPv6 network 
+should refuse to route such traffic in a similar manner to private IPv4 addresses. 
+Essentially there should be no routing entries in the routers responsible for internet traffic, 
+making them unreachable from outside an organisation.
+
+If you are going to start experimenting with IPv6 there are two reasons to use a ULA
+```
+  * you should start with a ULA address to avoid any mis-configuration disasters.  
+  * It might be hard to get a global IPv6 address assigned to you. There are very few ISP handing out IPv6 network addresses currently so in some cases its the only choice available to you.  
+
+**Unique Local Addresses**
+```
+One feature of unique local addresses is that they should be different for every network you see. 
+Unlike IPv4 where private addresses (196.128/16, 10/8 and 172.16/16) meant there are often networks 
+with the same network mask - eg nearly every home and office has a  network with the network mask of 
+192.168.1.0/24 address or 10.0.0.0/24 range; you might never see a duplicate IPv6 ULA network address. 
+This is because only the first 8 bits of the network prefix are fixed at "fd". 
+The remaining 56 bits of the netowrk prefix, the subnet id, can be randomly selected. 
+System administrators are meant to create the subnet id themselves. A handy way to generate the subnet id 
+for the ULA is to use a site like 
+```
+[unique-local-ipv6.com](http://unique-local-ipv6.com/). 
+```
+From here you will get a /48 address range meaning you can have up to 65356 private networks!
+
+Its generally a good idea to use a random subnet id rather than generate one like fd01:1:1:1::0/64 
+as this increase your chance of a conflict. 
+Why would you be worried about a conflict if these are not routable?
+Have you ever had to merge two network that had the same IPv4 address range? 
+Have you ever tried to setup a VPN between two network with the same IP network range?
+```
+**Global Addresses**
+```
+Global address will be assigned to you by an ISP unless you get your own block and tell your ISP to route it to you. 
+So much like you get a public IP address from your ISP for IPv4 you will in future, 
+get an IPv6 network address range when you dial up. 
+
+Note: not a single IP address but a whole block of IPv6 addresses. 
+Depending on your ISP you may get only one network or be assigned a block with multiple networks. 
+In this case the router will received the network address prefix to use on your network. 
+It will work the same as for the steps below except instead of a ULA network it will be a global address. 
+Note you don't get assigned a full IPv6 address. You get the network prefix.
+
+So to summarise. You will need at least two  IPv6 addresses for each interface if you want to do normal networkng tasks 
+like route between network. 
+A link local which is always present and at least one ULA or global address or perhaps all three!
+
+For our exercise we will use ULA addresses to setup an IPv6 only LAN.
+```
+
+```
+So a node now has an ULA IPv6 address and a default gateway and all should be good. 
+This is known as stateless address assignment. The router does not assign an address per se. 
+It has no idea what IPv6 address the hosts ends up using, only that it is in the provided network. 
+Hence the stateless in the term stateless automatic address configuration (SLAAC).
 ```
 
 ```
 Steps to Configure the Router Advertisement Service 
 
-The advertisement service can run on any Linux box, but that box will become the default route for IPv6 traffic. In future your ADSL router will provide router advertisement services. First assign the Linux box a static IPv6 address from the ULA network: (In the examples that follow I use the fd5f:12c9:2201::/48 ULA routing prefix and I have chosen fd5f:12c9:2201:1::/64 as the network prefix. (ie :1 is the subnet id).
+The advertisement service can run on any Linux box, but that box will become the default route 
+for IPv6 traffic. In future your ADSL router will provide router advertisement services. 
+First assign the Linux box a static IPv6 address from the ULA network: 
+(In the examples that follow I use the fd5f:12c9:2201::/48 ULA routing prefix and 
+I have chosen fd5f:12c9:2201:1::/64 as the network prefix. (ie :1 is the subnet id).
 
 Configure a static IPv6 on Ubuntu
 
- 
-1
 	
 sudo vi /etc/network/interfaces
  
