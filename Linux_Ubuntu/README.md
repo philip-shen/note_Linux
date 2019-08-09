@@ -5,6 +5,7 @@ Take note of Ubuntu stuffs
 [ubuntu 16.04 Networking Setting](#ubuntu-1604-networking-setting)  
 [網卡改名為 eth0](#%E7%B6%B2%E5%8D%A1%E6%94%B9%E5%90%8D%E7%82%BA-eth0)  
 [Ubuntu IPv6網路設定](#ubuntu-ipv6%E7%B6%B2%E8%B7%AF%E8%A8%AD%E5%AE%9A)  
+[IPv6 - Set Up An IPv6 LAN with Linux](#ipv6---set-up-an-ipv6-lan-with-linux)
 [VMware Workstation 12.x + ubuntu 16.04 + NAT 不 work](#vmware-workstation-12x--ubuntu-1604--nat-%E4%B8%8D-work)  
 [Ubuntu 16.04開機直接進入文字模式 ](#ubuntu-1604%E9%96%8B%E6%A9%9F%E7%9B%B4%E6%8E%A5%E9%80%B2%E5%85%A5%E6%96%87%E5%AD%97%E6%A8%A1%E5%BC%8F)  
 
@@ -110,7 +111,31 @@ Address: 163.23.115.xx#53
 [IPv6 - Set Up An IPv6 LAN with Linux Apr 5, 2015](https://www.jumpingbean.co.za/blogs/mark/set-up-ipv6-lan-with-linux)  
 * 1 Set Up an Link Local Only IPv6 LAN with Linux  
 ```
+IPv6 link local addresses have been assigned automatically to any interfaces that you have. 
+The IPv6 localhost address (IPv4 127.0.0.1) is ::1/128. 
+You can do the same on another host to gets it IPv6 link local address and then 
+do a IPv6 ping with "ping6" - note the 6.
+	
+ping6 fe80::922b:34ff:fe7b:6ff1
+
+The fe80::/64 network prefix is the link local network as explained in the table above. 
+It should be the only IPv6 network address you will see across different physical networks. 
+In fact every host on an IPv6 network must have an link local address (fe80::/64).
 ```
+**Why do you need a Link Local Address?** 
+```
+IPv6 configuration is done using layer 3 (network layer) protocols and not layer 2 (media layer eg. Ethernet) as with IPv4; 
+so a valid IPv6 address is required before any additional configuration can be done. 
+Of couese it also allows for zero config simple networks.
+```
+**Pros and Cons of Link Local Network**  
+```
+With a link local address you can communicate with other IPv6 hosts on the local network segment or broadcast domain. 
+i.e the same switch or shared media network. So for a home LAN not connected to the internet this is all that is required. 
+You can connect to your printer, Smart TV, PlayStation etc automatically using protocols such as UPnP and multicast DNS (ZeroConf).  
+Connecting to the internet, or a network in a different physical network or logical network, will require a bit more work.
+```
+
 * 2 Set Up A Stateless Routable IPv6 Network  
 
 **What is the difference between a ULA and a Global address?**
@@ -175,8 +200,8 @@ Hence the stateless in the term stateless automatic address configuration (SLAAC
 ```
 Steps to Configure the Router Advertisement Service 
 
-The advertisement service can run on any Linux box, but that box will become the default route 
-for IPv6 traffic. In future your ADSL router will provide router advertisement services. 
+The advertisement service can run on any Linux box, but that box will become the default route for IPv6 traffic. 
+In future your ADSL router will provide router advertisement services. 
 First assign the Linux box a static IPv6 address from the ULA network: 
 (In the examples that follow I use the fd5f:12c9:2201::/48 ULA routing prefix and 
 I have chosen fd5f:12c9:2201:1::/64 as the network prefix. (ie :1 is the subnet id).
@@ -193,8 +218,6 @@ iface eth0 inet6 static
   autoconf 0
   dad-attempts 0
   accept_ra 0
-	
-
 
 Now we need to install the router advertisement service:
 
@@ -225,11 +248,13 @@ ip -6 address list
 
 You can ping the router with the ping6 utility:
 
-"ping6 fd5d:12c9:2201:1::1" if this doesn't work try "ping6 fd5d:12c9:2201:1::1 -I eth0" -> Use the interface with the assigned IPv6 address. We will cover DNS and IPv6 in the net section.
+"ping6 fd5d:12c9:2201:1::1" if this doesn't work try "ping6 fd5d:12c9:2201:1::1 -I eth0" -> Use the interface with 
+the assigned IPv6 address. We will cover DNS and IPv6 in the net section.
 
-Congratulations you have an IPv6 network up and running! If your router is multi honed and has two interfaces with IPv6 addresses you will be able to route between the two networks. You will need to setup two static IPv6 addresses in /etc/network/interfaces.
+Congratulations you have an IPv6 network up and running! If your router is multi honed and has two interfaces with 
+IPv6 addresses you will be able to route between the two networks. 
+You will need to setup two static IPv6 addresses in /etc/network/interfaces.
 ```
-
 
 # VMware Workstation 12.x + ubuntu 16.04 + NAT 不 work   
 [VMware Workstation 12.x + ubuntu 16.04 + NAT 不 work 九月 8, 2017](https://andersonwang.wordpress.com/2017/09/08/vmware-workstation-12-x-ubuntu-16-04-nat-%E4%B8%8D-work/)  
