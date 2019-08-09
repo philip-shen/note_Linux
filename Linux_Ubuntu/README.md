@@ -106,6 +106,72 @@ Default server: 163.23.115.xx
 Address: 163.23.115.xx#53 
 ```
 
+[IPv6 - Set Up An IPv6 LAN with Linux Apr 5, 2015](https://www.jumpingbean.co.za/blogs/mark/set-up-ipv6-lan-with-linux)  
+* 1) Set Up an Link Local Only IPv6 LAN with Linux  
+```
+```
+* 2) Set Up A Stateless Routable IPv6 Network  
+```
+So a node now has an ULA IPv6 address and a default gateway and all should be good. This is known as stateless address assignment. The router does not assign an address per se. It has no idea what IPv6 address the hosts ends up using, only that it is in the provided network. Hence the stateless in the term stateless automatic address configuration (SLAAC).
+```
+
+```
+Steps to Configure the Router Advertisement Service 
+
+The advertisement service can run on any Linux box, but that box will become the default route for IPv6 traffic. In future your ADSL router will provide router advertisement services. First assign the Linux box a static IPv6 address from the ULA network: (In the examples that follow I use the fd5f:12c9:2201::/48 ULA routing prefix and I have chosen fd5f:12c9:2201:1::/64 as the network prefix. (ie :1 is the subnet id).
+
+Configure a static IPv6 on Ubuntu
+
+ 
+1
+	
+sudo vi /etc/network/interfaces
+ 
+auto eth0
+iface eth0 inet6 static
+  address fd5d:12c9:2201:1::1
+  netmask 64
+  autoconf 0
+  dad-attempts 0
+  accept_ra 0
+	
+
+
+Now we need to install the router advertisement service:
+
+Router Advertisement Daemon Configuration
+
+sudo apt-get install radvd
+
+vi /etc/radvd.conf
+
+interface eth0
+{
+    AdvSendAdvert on;
+    prefix fd5d:12c9:2201:1::1/64 {
+        AdvOnLink on;
+        AdvAutonomous on;
+    };
+    #Send DNS Server setting - assumes there is a DNS server setup at the address below
+    RDNSS fd5d:12c9:2201:1::2{
+    };
+};
+	
+
+
+Restart the service and then on a client restart the network. You should see two IPv6 address on your network card.
+
+ 
+ip -6 address list
+
+You can ping the router with the ping6 utility:
+
+"ping6 fd5d:12c9:2201:1::1" if this doesn't work try "ping6 fd5d:12c9:2201:1::1 -I eth0" -> Use the interface with the assigned IPv6 address. We will cover DNS and IPv6 in the net section.
+
+Congratulations you have an IPv6 network up and running! If your router is multi honed and has two interfaces with IPv6 addresses you will be able to route between the two networks. You will need to setup two static IPv6 addresses in /etc/network/interfaces.
+```
+
+
 # VMware Workstation 12.x + ubuntu 16.04 + NAT 不 work   
 [VMware Workstation 12.x + ubuntu 16.04 + NAT 不 work 九月 8, 2017](https://andersonwang.wordpress.com/2017/09/08/vmware-workstation-12-x-ubuntu-16-04-nat-%E4%B8%8D-work/)  
 
