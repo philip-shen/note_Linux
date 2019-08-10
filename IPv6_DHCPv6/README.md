@@ -6,7 +6,9 @@ Take note of IPv6 DHCPv6
 
 [IPv6位址配發技術介紹](http://www.myhome.net.tw/2012_09/p03.htm)  
 ![alt tag](https://i.imgur.com/HgmemW6.jpg)
-[Dibbler Configure and Start]()  
+[Dibbler Configure and Start](#dibbler-configure-and-start)  
+[在Linux上設定IPv6]()  
+
 # Dibbler Configure and Start 
 [Chapter 06 - DHCP Server: Dibbler Aug 11, 2009](https://zzzaaa12.pixnet.net/blog/post/24783496-chapter-06---dhcp-server%3A-dibbler)
 
@@ -34,6 +36,9 @@ Take note of IPv6 DHCPv6
 從圖我們看到 port 547 正在被監聽中，到這邊 Server 已經架設完成了！
 ```
 ![alt tag](https://pic.pimg.tw/zzzaaa12/4a79809954572.png)  
+
+# 在Linux上設定IPv6  
+[在Linux上設定IPv6](http://www.ipv6lab.edu.mo/linux_setting.html)  
 
 # Reference
 
