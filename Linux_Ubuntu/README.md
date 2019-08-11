@@ -5,7 +5,7 @@ Take note of Ubuntu stuffs
 [ubuntu 16.04 Networking Setting](#ubuntu-1604-networking-setting)  
 [網卡改名為 eth0](#%E7%B6%B2%E5%8D%A1%E6%94%B9%E5%90%8D%E7%82%BA-eth0)  
 [Ubuntu IPv6網路設定](#ubuntu-ipv6%E7%B6%B2%E8%B7%AF%E8%A8%AD%E5%AE%9A)  
-[IPv6 Setting SLAAC DHCPv6](#ipv6-setting-slaac-dhcpv6)
+[IPv6 Setting SLAAC DHCPv6](#ipv6-setting-slaac-dhcpv6)  
 [IPv6 - Set Up An IPv6 LAN with Linux](#ipv6---set-up-an-ipv6-lan-with-linux)
 
 [VMware Workstation 12.x + ubuntu 16.04 + NAT 不 work](#vmware-workstation-12x--ubuntu-1604--nat-%E4%B8%8D-work)  
