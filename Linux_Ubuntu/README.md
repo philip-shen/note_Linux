@@ -5,7 +5,9 @@ Take note of Ubuntu stuffs
 [ubuntu 16.04 Networking Setting](#ubuntu-1604-networking-setting)  
 [網卡改名為 eth0](#%E7%B6%B2%E5%8D%A1%E6%94%B9%E5%90%8D%E7%82%BA-eth0)  
 [Ubuntu IPv6網路設定](#ubuntu-ipv6%E7%B6%B2%E8%B7%AF%E8%A8%AD%E5%AE%9A)  
+[IPv6 Setting SLAAC DHCPv6](#ipv6-setting-slaac-dhcpv6)
 [IPv6 - Set Up An IPv6 LAN with Linux](#ipv6---set-up-an-ipv6-lan-with-linux)
+
 [VMware Workstation 12.x + ubuntu 16.04 + NAT 不 work](#vmware-workstation-12x--ubuntu-1604--nat-%E4%B8%8D-work)  
 [Ubuntu 16.04開機直接進入文字模式 ](#ubuntu-1604%E9%96%8B%E6%A9%9F%E7%9B%B4%E6%8E%A5%E9%80%B2%E5%85%A5%E6%96%87%E5%AD%97%E6%A8%A1%E5%BC%8F)  
 
@@ -105,6 +107,165 @@ nslookup
 > server 163.23.115.xx
 Default server: 163.23.115.xx
 Address: 163.23.115.xx#53 
+```
+
+## IPv6 Setting SLAAC DHCPv6 
+[IPv6 and Junos – Stateless Address Autoconfiguration (SLAAC) Dec 2, 2015](https://blog.marquis.co/ipv6-and-junos-stateless-address-autoconfiguration-slaac/) 
+```
+Configuring SLAAC
+
+Enabling SLAAC with Junos is pretty straightforward. For my example, I’ve got an EX4200 connected to an Ubuntu 14.04LTS ESXi host in Vlan 200.
+
+Before enabling the switch, the host’s interface has to be set to auto
+```
+```
+marquk01@km-vm1:~$ cat /etc/network/interfaces
+{...}
+# This is an autoconfigured IPv6 interface
+iface eth0 inet6 auto
+
+auto eth1
+iface eth1 inet6 auto
+```
+```
+IPv6 Neighbors
+marquk01@EX4200-A> show ipv6 neighbors 
+IPv6 Address                 Linklayer Address  State       Exp Rtr Secure Interface
+2001:192:168:2:20c:29ff:fe4f:26c5
+                             00:0c:29:4f:26:c5  stale       1110 no no      vlan.200    
+fe80::20c:29ff:fe4f:26c5     00:0c:29:4f:26:c5  stale       1039 no no      vlan.200
+```
+```
+Router Advertisements
+marquk01@EX4200-A> show ipv6 router-advertisement 
+Interface: vlan.200
+  Advertisements sent: 4, last sent 00:04:45 ago
+  Solicits received: 2, last received 00:04:46 ago
+  Advertisements received: 0
+```
+
+[Configuring a Dual Stacked DHCP Server Dec 22, 2015](https://blog.marquis.co/configuring-a-dual-stacked-dhcp-server/)  
+```
+
+```
+
+[/etc/network/interface での IPv6  Mar 29, 2017](https://qiita.com/kwi/items/1dd8ed8f89255956d7a9)
+```
+Ubuntu で NetworkManager off 設定なマシンで、IPv6 の付け方を調べたメモ。詳しくは man ページ参照のこと。
+
+/etc/network/interface で設定する。dual stack 環境なので iface を複数書くべし。
+
+inet6 auto というのは、SLAAC なアドレス自動設定を指している。「RAを元によろしく全部やる」という意味ではないことに注意。DNS 設定などは、まだまだDHCPv6で配布するケースが多いと思うので wide-dhcpv6-client パッケージをインストールして、auto にさらに dhcp 1 オプションを追加する。
+
+inet dhcp というのは DHCPv6 でアドレス設定とその他の設定をすることを指している。
+
+まとめると例えばこうなる。IPv6 で auto と dhcp 両方設定して構わない。
+```
+```
+auto br0
+iface br0 inet dhcp
+ bridge_ports eth0 eth1
+
+iface br0 inet6 auto
+ dhcp 1
+
+iface br0 inet6 dhcp
+```
+[ISC Kea DHCPv6 server 08/02/2016](https://blog.widodh.nl/2016/02/isc-kea-dhcpv6-server/)
+```
+Ubuntu client
+
+The client was a simple Ubuntu 14.04 client with this network configuration:
+
+auto eth0
+iface eth0 inet dhcp
+iface eth0 inet6 dhcp
+
+And indeed, it obtained the correct address:
+
+root@ubuntu1404:~# ip addr show dev eth0
+2: eth0:  mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 52:54:00:d6:c2:a9 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.100.100/24 brd 192.168.100.255 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 2001:db8::5054:ff:fed6:c2a9/64 scope global deprecated dynamic 
+       valid_lft 62sec preferred_lft 0sec
+    inet6 fe80::5054:ff:fed6:c2a9/64 scope link 
+       valid_lft forever preferred_lft forever
+root@ubuntu1404:~#
+```
+
+[Ubuntu16.04 インストール後の初期設定メモ 2019-07-03](https://qiita.com/hatayan1126/items/8555333fac205d782aa1)  
+```
+ipv6無効化
+
+~#
+~# cat <<EOF >> /etc/sysctl.conf
+
+# Disable IPv6
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+
+EOF
+~# 
+~# sysctl -p
+```
+[Ubuntu18.04 インストール後の初期設定メモ 2019-07-02](https://qiita.com/hatayan1126/items/c67f87a86f1538bb86af)  
+```
+ipv6無効化
+
+GRUBの設定変更で対応する。
+sysctl.conf で設定しても無効化できないようです。
+
+~#
+~# vi /etc/default/grub
+　：
+GRUB_CMDLINE_LINUX="ipv6.disable=1"
+　：
+~# 
+~# update-grub
+```
+```
+cf. Ubuntu18.04に移行 SSHと静的IPアドレス、IPv6無効化、タイムゾーン設定
+```
+[Ubuntu18.04に移行 SSHと静的IPアドレス、IPv6無効化、タイムゾーン設定 投稿日: 2018年6月9日(2019年6月16日)](https://rohhie.net/migrate-to-ubuntu-18-04-ssh-and-static-ip-address-ipv6-disablement-time-zone-setting/)
+
+[aptがIPv6で繋ぎにいってしまう問題の対処 2018-09-01](https://qiita.com/sinsi404/items/55c43b8b199eb8e9dd58)  
+```
+方法3: ネットワークの設定を変更する(失敗)
+
+この方法では再起動後有効にならなかった。
+
+3行追加
+/etc/sysctl.conf
+
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+net.ipv6.conf.lo.disable_ipv6 = 1
+
+起動時に設定を有効化するスクリプトを作成する。
+/etc/init.d/sysctlp
+
+#!/bin/sh
+sysctl -p
+exit 0
+
+起動時に自動実行されるように設定する。
+
+$ sudo chmod +x /etc/init.d/sysctlp 
+$ sudo update-rc.d sysctlp defaults 
+```
+[IPv4を無効化する (FreeBSD, Ubuntu 16.04/Linux, Windows 10) 2017-01-12](https://qiita.com/ip6/items/4bf9579acab48670e387)  
+```
+Ubuntu 16.04 LTS (Linuxカーネル3.3.0)
+ちなみにIPv6の無効化は
+echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
+echo 1 > /proc/sys/net/ipv6/conf/default/disable_ipv6
+```
+
+```
+Windows 10
+C:\>netsh interface ipv4 uninstall
 ```
 
 ## IPv6 - Set Up An IPv6 LAN with Linux  
