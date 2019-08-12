@@ -148,6 +148,14 @@ Interface: vlan.200
 ```
 
 ```
+[Why is a /128 IPv6 address assigned via DHCPv6 in Ubuntu? Jun 27 '18](https://serverfault.com/questions/918472/why-is-a-128-ipv6-address-assigned-via-dhcpv6-in-ubuntu)  
+```
+Yes, this is the normal behaviour. DHCPv6 servers give out addresses (with the IA_NA option) but don't tell the client anything about the subnet. The client therefore just configures the separate address on the interface. Any routes to the subnet are provided by RA. If the RA would announce the prefix without the auto-configure option then the client wouldn't configure an address automatically, but it would add the route for the local subnet.
+
+This separation of responsibilities is intentional. DHCPv6 servers have the authority to assign addresses (amongst other things) but don't have the authority to speak about the network status. Often DHCPv6 servers are not even on the local subnet and communicate with the client via relays. The devices that the client does talk directly to are the routers. Therefore in IPv6 the routers tell clients about the status of the network (prefix, default gateway, routes etc) using RA. Extra configuration options and optionally address assignments are done form the DHCP server.
+
+That way the client can respond quickly to changes in the network, while still receiving more long-lived information from DHCPv6.
+```
 
 [/etc/network/interface での IPv6  Mar 29, 2017](https://qiita.com/kwi/items/1dd8ed8f89255956d7a9)
 ```
