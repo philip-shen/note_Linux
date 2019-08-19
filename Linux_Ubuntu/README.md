@@ -10,6 +10,8 @@ Take note of Ubuntu stuffs
 
 [VMware Workstation 12.x + ubuntu 16.04 + NAT 不 work](#vmware-workstation-12x--ubuntu-1604--nat-%E4%B8%8D-work)  
 [Ubuntu 16.04開機直接進入文字模式 ](#ubuntu-1604%E9%96%8B%E6%A9%9F%E7%9B%B4%E6%8E%A5%E9%80%B2%E5%85%A5%E6%96%87%E5%AD%97%E6%A8%A1%E5%BC%8F)  
+[Ubuntu關閉自動更新和GUI圖形界面](#ubuntu%E9%97%9C%E9%96%89%E8%87%AA%E5%8B%95%E6%9B%B4%E6%96%B0%E5%92%8Cgui%E5%9C%96%E5%BD%A2%E7%95%8C%E9%9D%A2)  
+[How to Enable SSH on Ubuntu 16.04 LTS (Install openssh-server)]()  
 
 # ubuntu 16.04 Networking Setting  
 [ubuntu 12.04 LTS desktop 64位元版本 – 網路設定  一月 9, 2014](https://andersonwang.wordpress.com/2014/01/09/ubuntu-12-04-lts-desktop-64%E4%BD%8D%E5%85%83%E7%89%88%E6%9C%AC-%E7%B6%B2%E8%B7%AF%E8%A8%AD%E5%AE%9A/)  
@@ -526,6 +528,29 @@ sudo systemctl set-default multi-user.target
 sudo systemctl set-default graphical.target
 ```
 
+# How to Enable SSH on Ubuntu 16.04 LTS (Install openssh-server)  
+[How to Enable SSH on Ubuntu 16.04 LTS (Install openssh-server) ](http://www.codebind.com/linux-tutorials/enable-ssh-ubuntu-16-04-lts-install-openssh-server/)  
+
+## Step 1. Open terminal (Ctrl+Alt+T) and run following command:  
+```
+sudo apt-get install openssh-server
+```
+![alt tag](http://www.codebind.com/wp-content/uploads/2017/12/sudo-apt-get-install-openssh-server.png)
+
+## Step 2. The above command will enable SSH service  in your system, you may check openssh service status by running command:  
+```
+sudo service ssh status
+```
+![alt tag](http://www.codebind.com/wp-content/uploads/2017/12/sudo-service-ssh-status.png)
+## Step 3 .  Now sometime we may want to change some settings (for example, the port, and root login permission) . This can be done by editing the configuration file via command:  
+```
+sudo nano /etc/ssh/sshd_config
+```
+![alt tag](http://www.codebind.com/wp-content/uploads/2017/12/sudo-nano-sshd_config.png)
+## Step 4. Lastly to apply the changes just restart  SSH server using following command:  
+```
+sudo service ssh restart
+```
 
 
 # Reference
@@ -565,7 +590,6 @@ net.ipv6.conf.lo.disable_ipv6 = 1
 
 
 * []()  
-![alt tag]()
 ![alt tag]()
 
 # h1 size
