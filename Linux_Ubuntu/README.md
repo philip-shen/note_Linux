@@ -12,6 +12,7 @@ Take note of Ubuntu stuffs
 [Ubuntu 16.04開機直接進入文字模式 ](#ubuntu-1604%E9%96%8B%E6%A9%9F%E7%9B%B4%E6%8E%A5%E9%80%B2%E5%85%A5%E6%96%87%E5%AD%97%E6%A8%A1%E5%BC%8F)  
 [Ubuntu關閉自動更新和GUI圖形界面](#ubuntu%E9%97%9C%E9%96%89%E8%87%AA%E5%8B%95%E6%9B%B4%E6%96%B0%E5%92%8Cgui%E5%9C%96%E5%BD%A2%E7%95%8C%E9%9D%A2)  
 [How to Enable SSH on Ubuntu 16.04 LTS (Install openssh-server)](#how-to-enable-ssh-on-ubuntu-1604-lts-install-openssh-server)  
+[Get current DNS server on 16.04-server](#get-current-dns-server-on-1604-server)  
 
 # ubuntu 16.04 Networking Setting  
 [ubuntu 12.04 LTS desktop 64位元版本 – 網路設定  一月 9, 2014](https://andersonwang.wordpress.com/2014/01/09/ubuntu-12-04-lts-desktop-64%E4%BD%8D%E5%85%83%E7%89%88%E6%9C%AC-%E7%B6%B2%E8%B7%AF%E8%A8%AD%E5%AE%9A/)  
