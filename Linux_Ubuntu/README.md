@@ -552,6 +552,21 @@ sudo nano /etc/ssh/sshd_config
 sudo service ssh restart
 ```
 
+# Get current DNS server on 16.04-server  
+[Get current DNS server on 16.04-server Jun 2, 2016](https://askubuntu.com/questions/780558/get-current-dns-server-on-16-04-server)  
+```
+$ nslookup www.google.com
+Server:     10.0.0.1     <--This is the DNS server address.
+Address:    10.0.0.1#53
+
+Non-authoritative answer:
+Name:   www.google.com
+Address: 216.58.217.36
+```
+```
+less /etc/resolv.conf
+```
+
 
 # Reference
 * [[ubuntu]關閉ipv6，增進網路效能 Sep 16 Wed 2009](https://liuchiu.pixnet.net/blog/post/25080360-%5Bubuntu%5D%E9%97%9C%E9%96%89ipv6%EF%BC%8C%E5%A2%9E%E9%80%B2%E7%B6%B2%E8%B7%AF%E6%95%88%E8%83%BD)  
