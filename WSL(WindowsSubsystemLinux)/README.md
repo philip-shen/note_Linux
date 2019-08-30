@@ -3,8 +3,9 @@ Take note of WSL from VSCode.
 # Table of Contents  
 [Linux GUI on WSL](#linux-gui-on-wsl)  
 [How to mount USB disk on WSL](#how-to-mount-usb-disk-on-wsl)  
-[Windows 10 - Bash (Ubuntu) SU (Root Password)]()  
-[Reset Password for WSL Linux Distro in Windows 10]()  
+[Windows 10 - Bash (Ubuntu) SU (Root Password)](#windows-10---bash-ubuntu-su-root-password)  
+[Reset Password for WSL Linux Distro in Windows 10](#reset-password-for-wsl-linux-distro-in-windows-10)  
+[How can I install Python on Bash on Ubuntu on Windows?](#how-can-i-install-python-on-bash-on-ubuntu-on-windows?)  
 
 # Linux GUI on WSL  
 * [GitHub - QMonkey/wsl-tutorial: A tutorial about how to run desktop ... ](https://github.com/QMonkey/wsl-tutorial)  
@@ -40,8 +41,17 @@ as far as i know you'll have to type "sudo su"
 ## Leave your WSL session and set the default user of the WSL distro back to your user account, e.g. ubuntu config --default-user winaero.  
 ![alt tag](https://winaero.com/blog/wp-content/uploads/2019/02/Windows-10-WSL-restore-default-user-account.png)   Note: Use the following commands to change your default user to root in a WSL distro. By replacing 'root' with another user account name, you'll set it as your default user account for the distro.
 
-
-
+# How can I install Python on Bash on Ubuntu on Windows?  
+[How can I install Python on Bash on Ubuntu on Windows? ](https://www.quora.com/How-can-I-install-Python-on-Bash-on-Ubuntu-on-Windows)  
+```
+sudo apt-get install python
+```
+which should install Python 2.7.  
+Alternately, you could run  
+```
+sudo apt-get install python3
+```
+which should install Python 3.5.  
 
 # Reference
 * [Windows Bash won't open in 10 Anniversary Update](https://superuser.com/questions/1112429/windows-bash-wont-open-in-10-anniversary-update)
