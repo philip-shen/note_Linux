@@ -7,7 +7,7 @@ Take note of IPv6 DHCPv6
 [IPv6位址配發技術介紹](http://www.myhome.net.tw/2012_09/p03.htm)  
 ![alt tag](https://i.imgur.com/HgmemW6.jpg)
 [Dibbler Configure and Start](#dibbler-configure-and-start)  
-[在Linux上設定IPv6]()  
+[在Linux上設定IPv6](#%E5%9C%A8linux%E4%B8%8A%E8%A8%AD%E5%AE%9Aipv6)  
 
 # Dibbler Configure and Start 
 [Chapter 06 - DHCP Server: Dibbler Aug 11, 2009](https://zzzaaa12.pixnet.net/blog/post/24783496-chapter-06---dhcp-server%3A-dibbler)
@@ -39,6 +39,32 @@ Take note of IPv6 DHCPv6
 
 # 在Linux上設定IPv6  
 [在Linux上設定IPv6](http://www.ipv6lab.edu.mo/linux_setting.html)  
+
+# Linux IPv6 関連コマンドメモ  
+[Linux IPv6 関連コマンドメモ 2019-07-29](https://qiita.com/skubota/items/a8eb4f62865470aa3d95)  
+
+```
+$ ip address show dev eth0
+```
+
+```
+$ ip -6 route list type unicast
+```
+
+```
+$ ping6 ::1
+
+$ ping6 2001:4860:4860::8888
+```
+```
+$ > curl -6 -i https://www.jpn.earth/remote_addr.cgi
+```
+```
+$ dig aaaa www.google.com +rec +short
+```
+```
+$ netstat -an -A inet6
+```
 
 # Reference
 
