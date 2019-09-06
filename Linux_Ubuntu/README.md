@@ -632,6 +632,32 @@ Now you can log in with ssh keys:
 $ ssh vivek@your-aws-server-ip-here
 ```
 
+# How To Fix USER is not in the sudoers file. This incident will be reported.  
+[How To Fix USER is not in the sudoers file. This incident will be reported.  2/01/2018](https://www.askmetutorials.com/2018/02/how-to-fix-user-is-not-in-sudoers-file.html)  
+
+![alt tag](https://4.bp.blogspot.com/-47j8IX4Ir5E/WnMkm8HIUDI/AAAAAAAAFUc/FOl0CuJudxI4uBRsMl6V1vlmPd2XdPgoACLcBGAs/s1600/sudoers.png)
+
+## Step 1: Login as root 
+```
+su (or) su -
+```
+## Step 2: Edit the visudo file  
+Type visudo in terminal and search for the below line  
+```
+root ALL=(ALL) ALL
+```
+![alt tag](https://1.bp.blogspot.com/-_sQdHxwtwfE/WnMrAoZW5cI/AAAAAAAAFUs/Rcp4JH-4b_oL91NSVR6l117MPtDpv1hWwCLcBGAs/s1600/sudo_1.png)
+
+## Step 3: Add your username to the sudoers file
+```
+username ALL=(ALL) ALL
+```
+![alt tag](https://4.bp.blogspot.com/-QbXigDwMTqs/WnMrSafejUI/AAAAAAAAFU0/wHcBLwdpb9YlCClGuUWot5QHlAVX4yGMwCLcBGAs/s1600/sudo_2.png)
+
+## Step 4: Save and exit the file and try to switch as root  
+![alt tag](https://4.bp.blogspot.com/-8Ij-66Ro2r8/WnMrSOCAR7I/AAAAAAAAFUw/xFhAnM7sXvQ92iTt-UCZtPzFQ3m-zIwZgCLcBGAs/s320/sudo_4.png)
+
+
 # Reference
 * [[ubuntu]關閉ipv6，增進網路效能 Sep 16 Wed 2009](https://liuchiu.pixnet.net/blog/post/25080360-%5Bubuntu%5D%E9%97%9C%E9%96%89ipv6%EF%BC%8C%E5%A2%9E%E9%80%B2%E7%B6%B2%E8%B7%AF%E6%95%88%E8%83%BD)  
 ## 【8.10之前的版本】 
