@@ -13,6 +13,8 @@ Take note of Ubuntu stuffs
 [Ubuntu關閉自動更新和GUI圖形界面](#ubuntu%E9%97%9C%E9%96%89%E8%87%AA%E5%8B%95%E6%9B%B4%E6%96%B0%E5%92%8Cgui%E5%9C%96%E5%BD%A2%E7%95%8C%E9%9D%A2)  
 [How to Enable SSH on Ubuntu 16.04 LTS (Install openssh-server)](#how-to-enable-ssh-on-ubuntu-1604-lts-install-openssh-server)  
 [Get current DNS server on 16.04-server](#get-current-dns-server-on-1604-server)  
+[How to create a user account on Ubuntu Linux](#how-to-create-a-user-account-on-ubuntu-linux)
+
 
 # ubuntu 16.04 Networking Setting  
 [ubuntu 12.04 LTS desktop 64位元版本 – 網路設定  一月 9, 2014](https://andersonwang.wordpress.com/2014/01/09/ubuntu-12-04-lts-desktop-64%E4%BD%8D%E5%85%83%E7%89%88%E6%9C%AC-%E7%B6%B2%E8%B7%AF%E8%A8%AD%E5%AE%9A/)  
@@ -568,6 +570,67 @@ Address: 216.58.217.36
 less /etc/resolv.conf
 ```
 
+# How to create a user account on Ubuntu Linux  
+[How to create a user account on Ubuntu Linux Nov 24, 2018](https://www.cyberciti.biz/faq/create-a-user-account-on-ubuntu-linux/)  
+
+## Ubuntu create user account commands  
+```
+$ sudo adduser vivek
+```
+![alt tag](https://www.cyberciti.biz/media/new/faq/2018/11/Create-a-user-account-on-Ubuntu-Linux.png)
+
+## Verification  
+```
+$ cat /etc/passwd
+$ grep '^vivek' /etc/passwd
+```
+Sample outputs:  
+```
+vivek:x:1001:1001:Vivek Gite,,,:/home/vivek:/bin/bash
+```
+
+## How do I log in using ssh?  
+```
+$ ssh vivek@your-aws-ubuntu-server-ip
+```
+OR  
+```
+$ ssh -i ~/.ssh/aws.pub.key vivek@your-aws-ubuntu-server-ip
+```
+
+## Creating a user account using useradd command on Ubuntu  
+
+Alternatively, you can use the useradd command is a low level utility for adding users on Ubuntu. The syntax is:
+```
+$ sudo useradd -s /bin/bash -d /home/vivek/ -m -G sudo vivek
+$ sudo passwd vivek
+```
+Where, 
+* -s /bin/bash – Set /bin/bash as login shell of the new account
+* -d /home/vivek/ – Set /home/vivek/ as home directory of the new Ubuntu account
+* -m – Create the user’s home directory
+* -G sudo – Make sure vivek user can sudo i.e. give admin access to the new account
+
+I strongly recommend installing ssh keys while creating the new user account. You must have RSA/ed25519 key pair on your local desktop/laptop. Use the cat command to view your current RSA/ed25519 public key on the desktop:
+```
+$ cat ~/.ssh/id_ed25519.pub
+$ cat ~/.ssh/id_rsa.pub
+```
+
+![alt tag](https://www.cyberciti.biz/media/new/faq/2018/11/View-public-ssh-key-on-your-macos-or-unix-or-linux-desktop.png)
+
+Run the following commands on your Ubuntu server to install above ~/.ssh/id_ed25519.pub key from your desktop:  
+```
+$ sudo mkdir /home/vivek/.ssh/
+$ sudo chmod 0700 /home/vivek/.ssh/
+$ sudo -- sh -c "echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILaLvLmaW9qIbUVo1aDHWZE9JewbNfIdTVif2aFGF0E0 vivek@nixcraft' > /home/vivek/.ssh/authorized_keys"
+$ sudo chown -R vivek:vivek /home/vivek/.ssh/
+```
+
+Now you can log in with ssh keys:  
+```
+$ ssh vivek@your-aws-server-ip-here
+```
 
 # Reference
 * [[ubuntu]關閉ipv6，增進網路效能 Sep 16 Wed 2009](https://liuchiu.pixnet.net/blog/post/25080360-%5Bubuntu%5D%E9%97%9C%E9%96%89ipv6%EF%BC%8C%E5%A2%9E%E9%80%B2%E7%B6%B2%E8%B7%AF%E6%95%88%E8%83%BD)  
