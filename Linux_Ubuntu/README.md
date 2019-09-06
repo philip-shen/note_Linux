@@ -13,7 +13,7 @@ Take note of Ubuntu stuffs
 [Ubuntu關閉自動更新和GUI圖形界面](#ubuntu%E9%97%9C%E9%96%89%E8%87%AA%E5%8B%95%E6%9B%B4%E6%96%B0%E5%92%8Cgui%E5%9C%96%E5%BD%A2%E7%95%8C%E9%9D%A2)  
 [How to Enable SSH on Ubuntu 16.04 LTS (Install openssh-server)](#how-to-enable-ssh-on-ubuntu-1604-lts-install-openssh-server)  
 [Get current DNS server on 16.04-server](#get-current-dns-server-on-1604-server)  
-[How to create a user account on Ubuntu Linux](#how-to-create-a-user-account-on-ubuntu-linux)
+[How to create a user account on Ubuntu Linux](#how-to-create-a-user-account-on-ubuntu-linux)  
 [How To Fix USER is not in the sudoers file. This incident will be reported.](#how-to-fix-user-is-not-in-the-sudoers-file-this-incident-will-be-reported)  
 
 
