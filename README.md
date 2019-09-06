@@ -8,7 +8,7 @@ Take note of Linux CLI
 [IP/default gateway/DNS Setting](#ipdefault-gatewaydns-setting)  
 [Ubunut 如何使用 tracert ?](#ubunut-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-tracert-)  
 [WIFI 固定IP 參數設定](#wifi-%E5%9B%BA%E5%AE%9Aip-%E5%8F%83%E6%95%B8%E8%A8%AD%E5%AE%9A)  
-[How to Use "Script" Command To Record Linux Terminal Session]()  
+[How to Use "Script" Command To Record Linux Terminal Session](#how-to-use-script-command-to-record-linux-terminal-session)  
 
 # List CPU and MEM resouce occupation rate ranking
 * [Linux 用 ps 與 top 指令找出最耗費 CPU 與記憶體資源的程式 2016/12/22](https://blog.gtwang.org/linux/ps-top-find-processes-by-cpu-memory-usage/)
