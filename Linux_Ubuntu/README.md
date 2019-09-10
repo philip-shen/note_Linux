@@ -15,7 +15,6 @@ Take note of Ubuntu stuffs
 [Get current DNS server on 16.04-server](#get-current-dns-server-on-1604-server)  
 [How to create a user account on Ubuntu Linux](#how-to-create-a-user-account-on-ubuntu-linux)  
 [How To Fix USER is not in the sudoers file. This incident will be reported.](#how-to-fix-user-is-not-in-the-sudoers-file-this-incident-will-be-reported)  
-[cannot create temp file for here-document: No space left on device](#cannot-create-temp-file-for-here-document-no-space-left-on-device)  
 
 [Reference](#reference)
 
@@ -660,54 +659,7 @@ username ALL=(ALL) ALL
 ## Step 4: Save and exit the file and try to switch as root  
 ![alt tag](https://4.bp.blogspot.com/-8Ij-66Ro2r8/WnMrSOCAR7I/AAAAAAAAFUw/xFhAnM7sXvQ92iTt-UCZtPzFQ3m-zIwZgCLcBGAs/s320/sudo_4.png)
 
-# cannot create temp file for here-document: No space left on device
-![alt tag](https://i.imgur.com/r6RNU8g.jpg)
 
-[cannot create temp file for here-document: No space left on device ](https://stackoverflow.com/questions/48852381/cannot-create-temp-file-for-here-document-no-space-left-on-device/48861589)  
-```
-Please try to use commands to resolve your issue:
-
-root@****:~# lsblk
-
-```
-
-[ubuntu “No space left on device” but there is tons of space Mar 12, 2016](https://stackoverflow.com/questions/18706398/ubuntu-no-space-left-on-device-but-there-is-tons-of-space)  
-```
-ubuntu@ip-10-0-2-108:~$ df -h
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/xvda1       99G  6.5G   88G   7% /
-udev            3.7G  8.0K  3.7G   1% /dev
-tmpfs           1.5G  184K  1.5G   1% /run
-none            5.0M     0  5.0M   0% /run/lock
-none            3.7G     0  3.7G   0% /run/shm
-none            100M     0  100M   0% /run/user
-/dev/xvdb       414G  199M  393G   1% /mnt
-overflow        1.0M  1.0M     0 100% /tmp
-```
-
-```
-ubuntu@ip-10-0-2-108:~$ df -i
-Filesystem       Inodes IUsed    IFree IUse% Mounted on
-/dev/xvda1      6553600 94227  6459373    2% /
-udev             951353   393   950960    1% /dev
-tmpfs            953649   274   953375    1% /run
-none             953649     3   953646    1% /run/lock
-none             953649     1   953648    1% /run/shm
-none             953649     1   953648    1% /run/user
-/dev/xvdb      27525120    11 27525109    1% /mnt
-overflow         953649    12   953637    1% /tmp
-```
-
-```
-It's possible that you've run out of memory or some space elsewhere and it prompted the system to mount an overflow filesystem, and for whatever reason, it's not going away.
-
-Try unmounting the overflow partition:
-umount /tmp
-
-OR
-
-umount overflow
-```
 
 # Reference
 * [[ubuntu]關閉ipv6，增進網路效能 Sep 16 Wed 2009](https://liuchiu.pixnet.net/blog/post/25080360-%5Bubuntu%5D%E9%97%9C%E9%96%89ipv6%EF%BC%8C%E5%A2%9E%E9%80%B2%E7%B6%B2%E8%B7%AF%E6%95%88%E8%83%BD)  

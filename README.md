@@ -9,6 +9,9 @@ Take note of Linux CLI
 [Ubunut 如何使用 tracert ?](#ubunut-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-tracert-)  
 [WIFI 固定IP 參數設定](#wifi-%E5%9B%BA%E5%AE%9Aip-%E5%8F%83%E6%95%B8%E8%A8%AD%E5%AE%9A)  
 [How to Use "Script" Command To Record Linux Terminal Session](#how-to-use-script-command-to-record-linux-terminal-session)  
+[cannot create temp file for here-document: No space left on device](#cannot-create-temp-file-for-here-document-no-space-left-on-device)  
+
+[Reference](#reference)  
 
 # List CPU and MEM resouce occupation rate ranking
 * [Linux 用 ps 與 top 指令找出最耗費 CPU 與記憶體資源的程式 2016/12/22](https://blog.gtwang.org/linux/ps-top-find-processes-by-cpu-memory-usage/)
@@ -185,6 +188,55 @@ Let's see check the content of file_time
 116.131648 1
 0.226914 1
 0.033997 1
+```
+
+# cannot create temp file for here-document: No space left on device
+![alt tag](https://i.imgur.com/r6RNU8g.jpg)
+
+[cannot create temp file for here-document: No space left on device ](https://stackoverflow.com/questions/48852381/cannot-create-temp-file-for-here-document-no-space-left-on-device/48861589)  
+```
+Please try to use commands to resolve your issue:
+
+root@****:~# lsblk
+
+```
+
+[ubuntu “No space left on device” but there is tons of space Mar 12, 2016](https://stackoverflow.com/questions/18706398/ubuntu-no-space-left-on-device-but-there-is-tons-of-space)  
+```
+ubuntu@ip-10-0-2-108:~$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/xvda1       99G  6.5G   88G   7% /
+udev            3.7G  8.0K  3.7G   1% /dev
+tmpfs           1.5G  184K  1.5G   1% /run
+none            5.0M     0  5.0M   0% /run/lock
+none            3.7G     0  3.7G   0% /run/shm
+none            100M     0  100M   0% /run/user
+/dev/xvdb       414G  199M  393G   1% /mnt
+overflow        1.0M  1.0M     0 100% /tmp
+```
+
+```
+ubuntu@ip-10-0-2-108:~$ df -i
+Filesystem       Inodes IUsed    IFree IUse% Mounted on
+/dev/xvda1      6553600 94227  6459373    2% /
+udev             951353   393   950960    1% /dev
+tmpfs            953649   274   953375    1% /run
+none             953649     3   953646    1% /run/lock
+none             953649     1   953648    1% /run/shm
+none             953649     1   953648    1% /run/user
+/dev/xvdb      27525120    11 27525109    1% /mnt
+overflow         953649    12   953637    1% /tmp
+```
+
+```
+It's possible that you've run out of memory or some space elsewhere and it prompted the system to mount an overflow filesystem, and for whatever reason, it's not going away.
+
+Try unmounting the overflow partition:
+umount /tmp
+
+OR
+
+umount overflow
 ```
 
 # Reference
