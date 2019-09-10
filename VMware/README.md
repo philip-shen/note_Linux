@@ -12,7 +12,12 @@ Take note of Linux on VMware
 [Configure host-only networking](https://github.com/philip-shen/note_Linux/tree/master/VMware#configure-host-only-networking)  
 
 [VMware網路連線](#vmware%E7%B6%B2%E8%B7%AF%E9%80%A3%E7%B7%9A)  
-[[ESXI5.5] VM擴大磁碟空間]()
+
+[[ESXI5.5] VM擴大磁碟空間](#esxi55-vm%E6%93%B4%E5%A4%A7%E7%A3%81%E7%A2%9F%E7%A9%BA%E9%96%93)
+[選擇要擴容的VM](#%E9%81%B8%E6%93%87%E8%A6%81%E6%93%B4%E5%AE%B9%E7%9A%84vm)  
+[修改容量](#%E4%BF%AE%E6%94%B9%E5%AE%B9%E9%87%8F)  
+[建立分割區](#%E5%BB%BA%E7%AB%8B%E5%88%86%E5%89%B2%E5%8D%80)  
+[加入](#%E5%8A%A0%E5%85%A5)  
 
 [Reference](#reference)  
 
