@@ -10,7 +10,7 @@ Take note of Linux CLI
 [WIFI 固定IP 參數設定](#wifi-%E5%9B%BA%E5%AE%9Aip-%E5%8F%83%E6%95%B8%E8%A8%AD%E5%AE%9A)  
 [How to Use "Script" Command To Record Linux Terminal Session](#how-to-use-script-command-to-record-linux-terminal-session)  
 [cannot create temp file for here-document: No space left on device](#cannot-create-temp-file-for-here-document-no-space-left-on-device)  
-[make, make clean and make V=s](#make-make-clean-and-make-v=s)
+[make, make clean and make V=s](#make-make-clean-and-make-vs)
 
 [Reference](#reference)  
 
