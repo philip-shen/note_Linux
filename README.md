@@ -10,6 +10,7 @@ Take note of Linux CLI
 [WIFI 固定IP 參數設定](#wifi-%E5%9B%BA%E5%AE%9Aip-%E5%8F%83%E6%95%B8%E8%A8%AD%E5%AE%9A)  
 [How to Use "Script" Command To Record Linux Terminal Session](#how-to-use-script-command-to-record-linux-terminal-session)  
 [cannot create temp file for here-document: No space left on device](#cannot-create-temp-file-for-here-document-no-space-left-on-device)  
+[make, make clean and make V=s](#make-make-clean-and-make-v=s)
 
 [Reference](#reference)  
 
@@ -239,12 +240,38 @@ OR
 umount overflow
 ```
 
+# make, make clean and make V=s  
+[make 及 make clean 的作用 Jun 12, 2018](https://www.opencli.com/linux/make-make-clean)  
+
+```
+# ./configure
+# make
+# make install 
+```
+
+```
+make
+一般上, make 是 make all 的簡寫，它根據 makefile 的規則，將 C/C++ 檔案編譯成 .o 檔案，然後進一步產生可執行檔。
+```
+
+```
+make clean
+如果之前曾經編譯過，make clean 可以將之前產生的可執行檔及其他檔案刪除, 有時發現重新編譯出來的檔案沒有更新, 可以先執行 make clean。
+```
+[why openwrt use "V=s" in command line Aug 31, 2014](https://stackoverflow.com/questions/25578451/why-openwrt-use-v-s-in-command-line)  
+```
+Troubleshooting
+
+First get more information on the problem using the make option "make V=s".
+```
+
+
 # Reference
 * [ROS 軟路由PPPOE設置 2018-11-17](https://kknews.cc/other/p9pyov8.html)
 
 
 * []()
-![alt tag]()
+![alt tag]()  
 
 # h1 size
 
