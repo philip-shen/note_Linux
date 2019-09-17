@@ -312,6 +312,16 @@ SIGKILL | 9 | Kill signal
 SIGTERM | 15 | Termination signal
 SIGSTOP | 17, 19, 23 | Stop the process
 
+## How to kill a daemon process in linux?  
+[How to kill a daemon process in linux? Jul 13, 2016](https://askubuntu.com/questions/797957/how-to-kill-a-daemon-process-in-linux)  
+```
+I figured it out. To see the processes, I used:
+
+ps -ef | grep a.out
+
+After this I used kill -9 pid to kill those processes.
+```
+
 # Reference
 * [ROS 軟路由PPPOE設置 2018-11-17](https://kknews.cc/other/p9pyov8.html)
 
