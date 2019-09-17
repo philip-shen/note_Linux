@@ -194,6 +194,7 @@ udp6       0      0 :::35133                :::*                                
 udp6       0      0 fe80::7c49:7209:e6b:546 :::*                                -
 udp6       0      0 :::46633                :::*                                -
 ```
+![alt tag](https://i.imgur.com/ZQkCWuy.jpg)  
 
 ```
 ~$ sudo accel-pppd -d -c /home/accel-ppp.conf.dist
@@ -231,6 +232,9 @@ udp6       0      0 :::35133                :::*                                
 udp6       0      0 fe80::7c49:7209:e6b:546 :::*                                -
 udp6       0      0 :::46633                :::*                                -
 ```
+![alt tag](https://i.imgur.com/wnUuIL5.jpg)  
+
+![alt tag](https://i.imgur.com/C030lzP.jpg)  
 
 ```
 :~$ cat /var/log/accel-ppp/emerg.log
