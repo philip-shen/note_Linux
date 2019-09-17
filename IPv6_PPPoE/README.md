@@ -165,76 +165,76 @@ TED CHEN - 陳明德
 ```
 
 ## Daemo start before and after    
+*Before*
 ```
 $ netstat -altnup
-(Not all processes could be identified, non-owned process info
- will not be shown, you would have to be root to see it all.)
 Active Internet connections (servers and established)
-Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
-tcp        0      0 127.0.1.1:53            0.0.0.0:*               LISTEN      -
-tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -
-tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN      -
-tcp        0      0 127.0.0.1:6010          0.0.0.0:*               LISTEN      -
-tcp        0      0 127.0.0.1:6011          0.0.0.0:*               LISTEN      -
-tcp        0      0 10.0.1.3:22             10.0.1.31:58918         ESTABLISHED -
-tcp        0      0 10.0.1.3:22             10.0.1.31:59047         ESTABLISHED -
-tcp        0    432 10.0.1.3:22             10.0.1.31:59045         ESTABLISHED -
-tcp        0      0 10.0.1.3:22             10.0.1.31:58919         ESTABLISHED -
-tcp6       0      0 :::22                   :::*                    LISTEN      -
-tcp6       0      0 ::1:631                 :::*                    LISTEN      -
-tcp6       0      0 ::1:6010                :::*                    LISTEN      -
-tcp6       0      0 ::1:6011                :::*                    LISTEN      -
-udp        0      0 0.0.0.0:5353            0.0.0.0:*                           -
-udp        0      0 0.0.0.0:53524           0.0.0.0:*                           -
-udp        0      0 0.0.0.0:57265           0.0.0.0:*                           -
-udp        0      0 127.0.1.1:53            0.0.0.0:*                           -
-udp        0      0 0.0.0.0:631             0.0.0.0:*                           -
-udp6       0      0 :::5353                 :::*                                -
-udp6       0      0 :::35133                :::*                                -
-udp6       0      0 fe80::7c49:7209:e6b:546 :::*                                -
-udp6       0      0 :::46633                :::*                                -
-```
-![alt tag](https://i.imgur.com/ZQkCWuy.jpg)  
+Proto Recv-Q Send-Q Local Address           Foreign Address         State
+tcp        0      0 127.0.1.1:53            0.0.0.0:*               LISTEN
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN
+tcp        0      0 127.0.0.1:6010          0.0.0.0:*               LISTEN
+tcp        0      0 10.0.1.3:22             10.0.1.31:60105         ESTABLISHED
+tcp        0    352 10.0.1.3:22             10.0.1.31:60104         ESTABLISHED
+tcp6       0      0 :::22                   :::*                    LISTEN
+tcp6       0      0 ::1:631                 :::*                    LISTEN
+tcp6       0      0 ::1:6010                :::*                    LISTEN
+udp        0      0 0.0.0.0:50392           0.0.0.0:*
+udp        0      0 0.0.0.0:5353            0.0.0.0:*
+udp        0      0 127.0.1.1:53            0.0.0.0:*
+udp        0      0 0.0.0.0:34893           0.0.0.0:*
+udp        0      0 0.0.0.0:631             0.0.0.0:*
+udp6       0      0 :::5353                 :::*
+udp6       0      0 :::53550                :::*
+udp6       0      0 :::39353                :::*
+udp6       0      0 fe80::7c49:7209:e6b:546 :::*
 
+```
+![alt tag](https://i.imgur.com/uwJkw6g.jpg)  
+
+*After*
 ```
 ~$ sudo accel-pppd -d -c /home/accel-ppp.conf.dist
 
 ~$ netstat -altnup
-(Not all processes could be identified, non-owned process info
- will not be shown, you would have to be root to see it all.)
 Active Internet connections (servers and established)
-Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
-tcp        0      0 127.0.0.1:2000          0.0.0.0:*               LISTEN      -
-tcp        0      0 127.0.0.1:2001          0.0.0.0:*               LISTEN      -
-tcp        0      0 127.0.1.1:53            0.0.0.0:*               LISTEN      -
-tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -
-tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN      -
-tcp        0      0 127.0.0.1:6010          0.0.0.0:*               LISTEN      -
-tcp        0      0 0.0.0.0:1723            0.0.0.0:*               LISTEN      -
-tcp        0      0 127.0.0.1:6011          0.0.0.0:*               LISTEN      -
-tcp        0      0 10.0.1.3:22             10.0.1.31:58918         ESTABLISHED -
-tcp        0      0 10.0.1.3:22             10.0.1.31:59047         ESTABLISHED -
-tcp        0    432 10.0.1.3:22             10.0.1.31:59045         ESTABLISHED -
-tcp        0      0 10.0.1.3:22             10.0.1.31:58919         ESTABLISHED -
-tcp        0      0 10.0.1.3:1723           10.0.1.29:39434         ESTABLISHED -
-tcp6       0      0 :::22                   :::*                    LISTEN      -
-tcp6       0      0 ::1:631                 :::*                    LISTEN      -
-tcp6       0      0 ::1:6010                :::*                    LISTEN      -
-tcp6       0      0 ::1:6011                :::*                    LISTEN      -
-udp        0      0 0.0.0.0:5353            0.0.0.0:*                           -
-udp        0      0 0.0.0.0:53524           0.0.0.0:*                           -
-udp        0      0 0.0.0.0:57265           0.0.0.0:*                           -
-udp        0      0 127.0.1.1:53            0.0.0.0:*                           -
-udp        0      0 0.0.0.0:631             0.0.0.0:*                           -
-udp        0      0 0.0.0.0:1701            0.0.0.0:*                           -
-udp6       0      0 :::5353                 :::*                                -
-udp6       0      0 :::35133                :::*                                -
-udp6       0      0 fe80::7c49:7209:e6b:546 :::*                                -
-udp6       0      0 :::46633                :::*                                -
-```
-![alt tag](https://i.imgur.com/wnUuIL5.jpg)  
+Proto Recv-Q Send-Q Local Address           Foreign Address         State
+tcp        0      0 127.0.0.1:2000          0.0.0.0:*               LISTEN
+tcp        0      0 127.0.0.1:2001          0.0.0.0:*               LISTEN
+tcp        0      0 127.0.1.1:53            0.0.0.0:*               LISTEN
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN
+tcp        0      0 127.0.0.1:6010          0.0.0.0:*               LISTEN
+tcp        0      0 0.0.0.0:1723            0.0.0.0:*               LISTEN
+tcp        0      0 10.0.1.3:1723           10.0.1.29:49050         ESTABLISHED
+tcp        0      0 10.0.1.3:22             10.0.1.31:60105         ESTABLISHED
+tcp        0      0 10.0.1.3:22             10.0.1.31:60104         ESTABLISHED
+tcp6       0      0 :::22                   :::*                    LISTEN
+tcp6       0      0 ::1:631                 :::*                    LISTEN
+tcp6       0      0 ::1:6010                :::*                    LISTEN
+udp        0      0 0.0.0.0:50392           0.0.0.0:*
+udp        0      0 0.0.0.0:5353            0.0.0.0:*
 
-![alt tag](https://i.imgur.com/C030lzP.jpg)  
+udp        0      0 127.0.1.1:53            0.0.0.0:*
+udp        0      0 0.0.0.0:34893           0.0.0.0:*
+udp        0      0 0.0.0.0:631             0.0.0.0:*
+udp        0      0 0.0.0.0:1701            0.0.0.0:*
+udp6       0      0 :::5353                 :::*
+udp6       0      0 :::53550                :::*
+udp6       0      0 :::39353                :::*
+udp6       0      0 fe80::7c49:7209:e6b:546 :::*
+```
+![alt tag](https://i.imgur.com/uWE2pbi.jpg)  
+
+![alt tag](https://i.imgur.com/ygZWu6y.jpg)  
+
+![alt tag](https://i.imgur.com/1OsOYq2.jpg)  
+
+![alt tag](https://i.imgur.com/umw8SHt.jpg)  
+
+![alt tag](https://i.imgur.com/1Z3Ld1Y.jpg)  
+
+![alt tag](https://i.imgur.com/icU91l2.jpg)  
 
 ```
 :~$ cat /var/log/accel-ppp/emerg.log
