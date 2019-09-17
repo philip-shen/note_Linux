@@ -265,6 +265,52 @@ Troubleshooting
 First get more information on the problem using the make option "make V=s".
 ```
 
+# How to Kill a Process from the Command Line  
+[How to Kill a Process from the Command Line May 15, 2018](https://www.linux.com/tutorials/how-kill-process-command-line/)  
+## Locating the process  
+```
+There are two commands I use to locate a process: top and ps. Top is a tool every administrator should get to know. With top, you get a full listing of currently running process. From the command line, issue top to see a list of your running processes (Figure 1).
+```
+![alt tag](https://lcom.static.linuxfound.org/sites/lcom/files/killa.jpg)  
+
+```
+ps aux | grep chrome
+```
+```
+The aux options are as follows:
+
+    a = show processes for all users
+
+    u = display the process’s user/owner
+
+    x = also show processes not attached to a terminal
+
+```
+## Killing the process  
+```
+Now we come to the task of killing the process. We have two pieces of information that will help us kill the errant process:
+
+    Process name
+
+    Process ID
+
+Which you use will determine the command used for termination. There are two commands used to kill a process:
+
+    kill – Kill a process by ID
+
+    killall – Kill a process by name
+
+```
+
+![alt tag](https://lcom.static.linuxfound.org/sites/lcom/files/killc.jpg)  
+
+Signal Name | Single Value | Effect
+------------------------------------ | --------------------------------------------- | ---------------------------------------------
+SIGHUP | 1 | Hangup
+SIGINT | 2 | Interrupt from keyboard
+SIGKILL | 9 | Kill signal
+SIGTERM | 15 | Termination signal
+SIGSTOP | 17, 19, 23 | Stop the process
 
 # Reference
 * [ROS 軟路由PPPOE設置 2018-11-17](https://kknews.cc/other/p9pyov8.html)
