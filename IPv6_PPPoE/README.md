@@ -232,6 +232,27 @@ udp6       0      0 fe80::7c49:7209:e6b:546 :::*                                
 udp6       0      0 :::46633                :::*                                -
 ```
 
+```
+:~$ cat /var/log/accel-ppp/emerg.log
+iprange: iprange module disabled so improper ip address assigning may cause kernel soft lockup!
+iprange: iprange module disabled so improper ip address assigning may cause kernel soft lockup!
+iprange: iprange module disabled so improper ip address assigning may cause kernel soft lockup!
+iprange: iprange module disabled so improper ip address assigning may cause kernel soft lockup!
+cli: telnet: failed to bind socket: Address already in use
+cli: tcp: failed to bind socket: Address already in use
+pptp: failed to bind socket: Address already in use
+iprange: iprange module disabled so improper ip address assigning may cause kernel soft lockup!
+iprange: iprange module disabled so improper ip address assigning may cause kernel soft lockup!
+cli: telnet: failed to bind socket: Address already in use
+cli: tcp: failed to bind socket: Address already in use
+pptp: failed to bind socket: Address already in use
+iprange: iprange module disabled so improper ip address assigning may cause kernel soft lockup!
+cli: telnet: failed to bind socket: Address already in use
+cli: tcp: failed to bind socket: Address already in use
+pptp: failed to bind socket: Address already in use
+iprange: iprange module disabled so improper ip address assigning may cause kernel soft lockup!
+```
+
 *accel-ppp.conf_lab.dist*
 ```
 [modules]
