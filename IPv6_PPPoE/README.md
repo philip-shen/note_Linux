@@ -2,17 +2,17 @@
 Take note of IPv6 PPPoE
 
 # Table of Content
-* [Setup Procedure](#setup-procedure)  
+[Setup Procedure](#setup-procedure)  
 
 [sudo sysctl -w net.ipv6.conf.all.forwarding=1](#sudo-sysctl--w-netipv6confallforwarding1)  
 []()  
 []()  
 []()  
-[]()  
 
-* [Accel-ppp installation](#accel-ppp-installation)  
+[Accel-ppp installation](#accel-ppp-installation)  
 
 [Setup accel-ppp PPTP / L2TP / PPPoE server](#setup-accel-ppp-pptp--l2tp--pppoe-server)  
+[Daemo start before and after](#daemo-start-before-and-after)  
 
 
 [Troubleshooting](#troubleshooting)  
@@ -164,6 +164,142 @@ With regards,
 TED CHEN - 陳明德
 ```
 
+## Daemo start before and after    
+```
+$ netstat -altnup
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 127.0.1.1:53            0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:6010          0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:6011          0.0.0.0:*               LISTEN      -
+tcp        0      0 10.0.1.3:22             10.0.1.31:58918         ESTABLISHED -
+tcp        0      0 10.0.1.3:22             10.0.1.31:59047         ESTABLISHED -
+tcp        0    432 10.0.1.3:22             10.0.1.31:59045         ESTABLISHED -
+tcp        0      0 10.0.1.3:22             10.0.1.31:58919         ESTABLISHED -
+tcp6       0      0 :::22                   :::*                    LISTEN      -
+tcp6       0      0 ::1:631                 :::*                    LISTEN      -
+tcp6       0      0 ::1:6010                :::*                    LISTEN      -
+tcp6       0      0 ::1:6011                :::*                    LISTEN      -
+udp        0      0 0.0.0.0:5353            0.0.0.0:*                           -
+udp        0      0 0.0.0.0:53524           0.0.0.0:*                           -
+udp        0      0 0.0.0.0:57265           0.0.0.0:*                           -
+udp        0      0 127.0.1.1:53            0.0.0.0:*                           -
+udp        0      0 0.0.0.0:631             0.0.0.0:*                           -
+udp6       0      0 :::5353                 :::*                                -
+udp6       0      0 :::35133                :::*                                -
+udp6       0      0 fe80::7c49:7209:e6b:546 :::*                                -
+udp6       0      0 :::46633                :::*                                -
+```
+
+```
+~$ sudo accel-pppd -d -c /home/accel-ppp.conf.dist
+
+~$ netstat -altnup
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 127.0.0.1:2000          0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:2001          0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.1.1:53            0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:6010          0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:1723            0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:6011          0.0.0.0:*               LISTEN      -
+tcp        0      0 10.0.1.3:22             10.0.1.31:58918         ESTABLISHED -
+tcp        0      0 10.0.1.3:22             10.0.1.31:59047         ESTABLISHED -
+tcp        0    432 10.0.1.3:22             10.0.1.31:59045         ESTABLISHED -
+tcp        0      0 10.0.1.3:22             10.0.1.31:58919         ESTABLISHED -
+tcp        0      0 10.0.1.3:1723           10.0.1.29:39434         ESTABLISHED -
+tcp6       0      0 :::22                   :::*                    LISTEN      -
+tcp6       0      0 ::1:631                 :::*                    LISTEN      -
+tcp6       0      0 ::1:6010                :::*                    LISTEN      -
+tcp6       0      0 ::1:6011                :::*                    LISTEN      -
+udp        0      0 0.0.0.0:5353            0.0.0.0:*                           -
+udp        0      0 0.0.0.0:53524           0.0.0.0:*                           -
+udp        0      0 0.0.0.0:57265           0.0.0.0:*                           -
+udp        0      0 127.0.1.1:53            0.0.0.0:*                           -
+udp        0      0 0.0.0.0:631             0.0.0.0:*                           -
+udp        0      0 0.0.0.0:1701            0.0.0.0:*                           -
+udp6       0      0 :::5353                 :::*                                -
+udp6       0      0 :::35133                :::*                                -
+udp6       0      0 fe80::7c49:7209:e6b:546 :::*                                -
+udp6       0      0 :::46633                :::*                                -
+```
+
+*accel-ppp.conf_lab.dist*
+```
+[modules]
+log_syslog
+#pppoe
+pptp
+l2tp
+auth_mschap_v2
+auth_mschap_v1
+auth_pap
+ippool
+chap-secrets
+
+[core]
+log-error=/var/log/accel-ppp/core.log
+thread-count=4
+
+[ppp]
+verbose=1
+min-mtu=1280
+mtu=1400
+mru=1400
+ipv4=require
+ipv6=deny
+
+[lcp]
+echo-interval=30
+echo-failure=3
+
+[pptp]
+interface=ens32
+verbose=1
+
+[pppoe]
+interface=eth0
+verbose=1
+
+[l2tp]
+interface=ens32
+verbose=1
+use-ephemeral-ports=0
+
+[dns]
+dns1=1.1.1.1
+dns2=8.8.8.8
+
+[client-ip-range]
+disable
+
+[ip-pool]
+gw-ip-address=192.168.200.1
+192.168.200.2-20
+
+[log]
+log-emerg=/var/log/accel-ppp/emerg.log
+#syslog=accel-pppd,daemon
+copy=1
+level=3
+
+[chap-secrets]
+gw-ip-address=192.168.200.1
+chap-secrets=/etc/ppp/chap-secrets
+
+[cli]
+telnet=127.0.0.1:2000
+tcp=127.0.0.1:2001
+#password=123
+```
 
 # Troubleshooting  
 * [ssh 互動模式終端機可以執行的指令，透過 ssh 直接下指令卻找不到，竟然是因為這個原因？ Dec 11, 2018](https://medium.com/@hau_hsu/ssh-%E4%BA%92%E5%8B%95%E6%A8%A1%E5%BC%8F%E7%B5%82%E7%AB%AF%E6%A9%9F%E5%8F%AF%E4%BB%A5%E5%9F%B7%E8%A1%8C%E7%9A%84%E6%8C%87%E4%BB%A4-%E9%80%8F%E9%81%8E-ssh-%E7%9B%B4%E6%8E%A5%E4%B8%8B%E6%8C%87%E4%BB%A4%E5%8D%BB%E6%89%BE%E4%B8%8D%E5%88%B0%E4%BA%86-%E7%AB%9F%E7%84%B6%E6%98%AF%E5%9B%A0%E7%82%BA%E9%80%99%E5%80%8B%E5%8E%9F%E5%9B%A0-e252ef6f19d0)  
