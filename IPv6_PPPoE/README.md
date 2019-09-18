@@ -13,7 +13,7 @@ Take note of IPv6 PPPoE
 
 [Setup accel-ppp PPTP / L2TP / PPPoE server](#setup-accel-ppp-pptp--l2tp--pppoe-server)  
 [Daemo start before and after](#daemo-start-before-and-after)  
-
+[PPTP MS-CHAPv2 Authentication Pass](#pptp-ms-chapv2-authentication-pass)  
 
 [Troubleshooting](#troubleshooting)  
 [エラー解決：Mac os X で (sh: sysctl: command not found)などコマンドが見つからないエラー  20161012]()  
@@ -325,6 +325,9 @@ telnet=127.0.0.1:2000
 tcp=127.0.0.1:2001
 #password=123
 ```
+## PPTP MS-CHAPv2 Authentication Pass  
+![alt tag](https://i.imgur.com/fCsQIEr.jpg)  
+
 
 # Troubleshooting  
 * [ssh 互動模式終端機可以執行的指令，透過 ssh 直接下指令卻找不到，竟然是因為這個原因？ Dec 11, 2018](https://medium.com/@hau_hsu/ssh-%E4%BA%92%E5%8B%95%E6%A8%A1%E5%BC%8F%E7%B5%82%E7%AB%AF%E6%A9%9F%E5%8F%AF%E4%BB%A5%E5%9F%B7%E8%A1%8C%E7%9A%84%E6%8C%87%E4%BB%A4-%E9%80%8F%E9%81%8E-ssh-%E7%9B%B4%E6%8E%A5%E4%B8%8B%E6%8C%87%E4%BB%A4%E5%8D%BB%E6%89%BE%E4%B8%8D%E5%88%B0%E4%BA%86-%E7%AB%9F%E7%84%B6%E6%98%AF%E5%9B%A0%E7%82%BA%E9%80%99%E5%80%8B%E5%8E%9F%E5%9B%A0-e252ef6f19d0)  
