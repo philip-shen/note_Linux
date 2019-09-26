@@ -11,6 +11,7 @@ Take note of Linux CLI
 [How to Use "Script" Command To Record Linux Terminal Session](#how-to-use-script-command-to-record-linux-terminal-session)  
 [cannot create temp file for here-document: No space left on device](#cannot-create-temp-file-for-here-document-no-space-left-on-device)  
 [make, make clean and make V=s](#make-make-clean-and-make-vs)
+[Bash script and /bin/bash^M: bad interpreter: No such file or directory](#)
 
 [Reference](#reference)  
 
@@ -320,6 +321,37 @@ I figured it out. To see the processes, I used:
 ps -ef | grep a.out
 
 After this I used kill -9 pid to kill those processes.
+```
+# Bash script and /bin/bash^M: bad interpreter: No such file or directory  
+[Not able to execute a .sh file: /bin/bash^M: bad interpreter Jun 7, 2013](https://askubuntu.com/questions/304999/not-able-to-execute-a-sh-file-bin-bashm-bad-interpreter)  
+```
+The script indicates that it must be executed by a shell located at /bin/bash^M. There is no such file: it's called /bin/bash.
+
+The ^M is a carriage return character. Linux uses the line feed character to mark the end of a line, whereas Windows uses the two-character sequence CR LF. Your file has Windows line endings, which is confusing Linux.
+
+Remove the spurious CR characters. You can do it with the following command:
+```
+```
+sed -i -e 's/\r$//' create_mgw_3shelf_6xIPNI1P.sh
+```
+[Bash script and /bin/bash^M: bad interpreter: No such file or directory Apr 20, 2015](https://stackoverflow.com/questions/14219092/bash-script-and-bin-bashm-bad-interpreter-no-such-file-or-directory)  
+```
+Try running dos2unix on the script:
+
+http://dos2unix.sourceforge.net/
+
+Or just rewrite the script in your Unix env using vi and test.
+
+Unix uses different line endings so can't read the file you created on Windows. Hence it is seeing ^M as an illegal character.
+
+If you want to write a file on Windows and then port over, make sure your editor is set to create files in UNIX format.
+
+In notepad++ in the bottom right of the screen, it tells you the document format. By default, it will say Dos\Windows. To change it go to
+
+    settings->preferences
+    new document / default directory tab
+    select the format as unix and close
+    create a new document
 ```
 
 # Reference
