@@ -114,7 +114,11 @@ in which case, enter the Windows user’s password.
 # Setup NAT and Port Mapping at Hyper-V  
 [Hyper-V 建立 NAT 及 Port Mapping Jun 20, 2019](http://longfamily.pixnet.net/blog/post/119258120-hyper-v-%E5%BB%BA%E7%AB%8B-nat-%E5%8F%8A-port-mapping)  
 ```
-在Hyper-V環境中沒有內建NAT的功能，對於沒有多IP可以使用的環境若虛擬機器需要連上網路可能無法實現，當然虛擬機器若不需要連接網際網路那就比較沒有影響，如果一定要連上網路那就比較麻煩了，所以此時可以使用[網際網路連線共用 (ICS)]來建立NAT解決此問題，本文將使用windows 8.1 hyper-V來設定NAT並且示範啟用NAT後如何設定發佈一台Web Server，當然此方法也適用於Windows Server 2012 (R2) Hyper-V。
+在Hyper-V環境中沒有內建NAT的功能，對於沒有多IP可以使用的環境若虛擬機器需要連上網路可能無法實現，
+當然虛擬機器若不需要連接網際網路那就比較沒有影響，如果一定要連上網路那就比較麻煩了，
+所以此時可以使用[網際網路連線共用 (ICS)]來建立NAT解決此問題，
+本文將使用windows 8.1 hyper-V來設定NAT並且示範啟用NAT後如何設定發佈一台Web Server，
+當然此方法也適用於Windows Server 2012 (R2) Hyper-V。
 ```
 
 # Linux GUI on WSL  
