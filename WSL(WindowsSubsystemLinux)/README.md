@@ -77,7 +77,10 @@ $ sudo mount.cifs //ANGMAR/MySharedFolder ~/SharedFolder -o user=WindowsUserName
 ```
 
 ```
-You will be prompted for sudo password (if you are not running as root), in which case enter the password for your Linux user and you will be prompted for the password to access the remote folder, in which case, enter the Windows user’s password.
+You will be prompted for sudo password (if you are not running as root), 
+in which case enter the password for your Linux user and 
+you will be prompted for the password to access the remote folder, 
+in which case, enter the Windows user’s password.
 ```
 
 [[筆記] 解決Windows 10 1709分享資料夾，Linux無法連線的問題 Jan 31, 2018](https://eric0806.blogspot.com/2018/01/windows-10-samba-linux.html)
@@ -86,7 +89,8 @@ You will be prompted for sudo password (if you are not running as root), in whic
 ```
 ![alt tag](https://3.bp.blogspot.com/-OmtlCdpKH9Y/WnF3mzPumAI/AAAAAAABEWM/85r6EqnnRLUhPO2JbT9ckFtbW4cKsQ2FACLcBGAs/s1600/2018-01-31_155916.png)  
 ```
-紅框的地方，SMBv1沒有打開，只有開啟SMBv2與SMBv3 (根據微軟的說明，SMBv2若開啟，v3也會一同開啟，反之如果是關閉亦同)，也許事務機並沒有支援到v2以上，所以如果我們把v1打開，並關閉v2、v3就好囉??
+紅框的地方，SMBv1沒有打開，只有開啟SMBv2與SMBv3 (根據微軟的說明，SMBv2若開啟，v3也會一同開啟，反之如果是關閉亦同)，
+也許事務機並沒有支援到v2以上，所以如果我們把v1打開，並關閉v2、v3就好囉??
 ```
 
 ```
@@ -101,7 +105,8 @@ You will be prompted for sudo password (if you are not running as root), in whic
 
 ```
 原來是SMB1的支援沒裝啊~~XD
-進到控制台->程式與功能->打開或關閉Windows功能內，找到 SMB 1.0/CIFS檔案共用支援，點開後把三個勾都勾起來，安裝好後會需要重新開機，重開好，再執行一次上面的指令，就可以囉！！
+進到控制台->程式與功能->打開或關閉Windows功能內，找到 SMB 1.0/CIFS檔案共用支援，點開後把三個勾都勾起來，
+安裝好後會需要重新開機，重開好，再執行一次上面的指令，就可以囉！！
 ```
 ![alt tag](https://2.bp.blogspot.com/-5nOGDNiCIXo/WnF5nPyecuI/AAAAAAABEWk/Ycx8P0tl7EgA67GwNXUUKNFoDtd3MKLigCLcBGAs/s1600/2018-01-31_155727.png)  
 
