@@ -2,6 +2,7 @@
 Take note of WSL from VSCode.
 
 # Table of Contents  
+[Managing VMs stuck in the ‘Starting’ or ‘Stopping’ state in Hyper-V](#managing-vms-stuck-in-the-starting-or-stopping-state-in-hyper-v)  
 [Shared Folders over Hyper-V Ubuntu Guest](#shared-folders-over-hyper-v-ubuntu-guest)  
 [Setup NAT and Port Mapping at Hyper-V](#setup-nat-and-port-mapping-at-hyper-v)
 [Linux GUI on WSL](#linux-gui-on-wsl)  
@@ -9,6 +10,42 @@ Take note of WSL from VSCode.
 [Windows 10 - Bash (Ubuntu) SU (Root Password)](#windows-10---bash-ubuntu-su-root-password)  
 [Reset Password for WSL Linux Distro in Windows 10](#reset-password-for-wsl-linux-distro-in-windows-10)  
 [How can I install Python on Bash on Ubuntu on Windows?](#how-can-i-install-python-on-bash-on-ubuntu-on-windows?)  
+# Managing VMs stuck in the ‘Starting’ or ‘Stopping’ state in Hyper-V  
+[Managing VMs stuck in the ‘Starting’ or ‘Stopping’ state in Hyper-V Apr 10, 2015](http://www.techkb.onl/managing-vms-stuck-in-the-starting-or-stopping-state-in-hyper-v/)  
+
+Every now and then, Hyper-V virtual machines for various reasons decide that they don’t want to start or stop correctly and get stuck in the ‘Starting’ or ‘Stopping’ state.  
+![alt tag](http://www.techkb.onl/wp-content/uploads/2015/04/svm00.png)  
+
+One way its possible to kill off that stuck virtual machine is to open Task Manger and 
+end the task responsible for that machine. 
+Unfortunately its not quite that simple because the Virtual Machine Worker Process 
+which is responsible for running the virtual machine appears numerous times, 
+once for each running guest machine!  
+
+## 1. First we need to open Task Manger and view the process tab  
+## 2. Then right click on the column titles and add in the Command Line column  
+![alt tag](http://www.techkb.onl/wp-content/uploads/2015/04/svm01-300x273.png)  
+
+## 3. Expand the Command Line column to view the full command, including the machine GUIDs at the end of each line  
+![alt tag](http://www.techkb.onl/wp-content/uploads/2015/04/svm02.png)  
+
+## 4. we can find the machine configuration file and make note of the GUID for that machine  
+![alt tag](http://www.techkb.onl/wp-content/uploads/2015/04/svm03-300x113.png)  
+
+## 5. Now we know which GUID.  Jump back to Task Manger, right click on the correct process and End Process  
+![alt tag](http://www.techkb.onl/wp-content/uploads/2015/04/svm05-300x67.png)  
+
+## Another way to locate the GUID of the machines running on the server is to use PowerShell to output it  
+```
+Get-VM | Select Name, Id
+```
+![alt tag](http://www.techkb.onl/wp-content/uploads/2015/04/svm04-300x76.png)  
+
+```
+Get-WmiObject Win32_Process -Filter "Name like '%vmwp%'" | %{$vm=get-vm -id $_.CommandLine.split(" ")[1];"$($_.processID)`t$($vm.name)"}
+```
+![alt tag](http://www.techkb.onl/wp-content/uploads/2015/04/svm09-300x48.png)  
+
 
 # Shared Folders over Hyper-V Ubuntu Guest  
 [Shared Folders over Hyper-V Ubuntu Guest](https://linuxhint.com/shared_folders_hypver-v_ubuntu_guest/)  
