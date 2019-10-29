@@ -14,6 +14,7 @@ Take note of Ubuntu stuffs
 [How to Enable SSH on Ubuntu 16.04 LTS (Install openssh-server)](#how-to-enable-ssh-on-ubuntu-1604-lts-install-openssh-server)  
 [Get current DNS server on 16.04-server](#get-current-dns-server-on-1604-server)  
 [How to create a user account on Ubuntu Linux](#how-to-create-a-user-account-on-ubuntu-linux)  
+[]()  
 [How To Fix USER is not in the sudoers file. This incident will be reported.](#how-to-fix-user-is-not-in-the-sudoers-file-this-incident-will-be-reported)  
 
 [Reference](#reference)
@@ -632,6 +633,17 @@ $ sudo chown -R vivek:vivek /home/vivek/.ssh/
 Now you can log in with ssh keys:  
 ```
 $ ssh vivek@your-aws-server-ip-here
+```
+
+# Chrome Browser Installation  
+[Unable to install “google-chrome-stable_current_amd64.deb” pakage? ](https://askubuntu.com/questions/778097/unable-to-install-google-chrome-stable-current-amd64-deb-pakage/1047150)  
+```
+To do this, open up the Terminal and simply type,
+
+sudo apt-get install chromium-browser
+```
+```
+As I'm sure you're aware, Google stopped supporting Chrome for 32-bit (x32; i386) systems to keep current, but Chromium still supports these older systems.
 ```
 
 # How To Fix USER is not in the sudoers file. This incident will be reported.  
