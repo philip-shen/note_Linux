@@ -14,7 +14,7 @@ Take note of Ubuntu stuffs
 [How to Enable SSH on Ubuntu 16.04 LTS (Install openssh-server)](#how-to-enable-ssh-on-ubuntu-1604-lts-install-openssh-server)  
 [Get current DNS server on 16.04-server](#get-current-dns-server-on-1604-server)  
 [How to create a user account on Ubuntu Linux](#how-to-create-a-user-account-on-ubuntu-linux)  
-[]()  
+[Chrome Browser Installation](#chrome-browser-installation)  
 [How To Fix USER is not in the sudoers file. This incident will be reported.](#how-to-fix-user-is-not-in-the-sudoers-file-this-incident-will-be-reported)  
 
 [Reference](#reference)
