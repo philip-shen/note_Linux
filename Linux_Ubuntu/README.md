@@ -673,6 +673,7 @@ username ALL=(ALL) ALL
 ## Step 4: Save and exit the file and try to switch as root  
 ![alt tag](https://4.bp.blogspot.com/-8Ij-66Ro2r8/WnMrSOCAR7I/AAAAAAAAFUw/xFhAnM7sXvQ92iTt-UCZtPzFQ3m-zIwZgCLcBGAs/s320/sudo_4.png)
 
+
 # How To Install and Use Linux Minicom Command  
 [How To Install and Use Linux Minicom Command Tutorial with Examples? 28/11/2017](https://www.poftut.com/install-use-linux-minicom-command-tutorial-examples/)  
 ## Install For Debian, Ubuntu, Kali, Mint  
