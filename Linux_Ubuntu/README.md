@@ -17,6 +17,8 @@ Take note of Ubuntu stuffs
 [Chrome Browser Installation](#chrome-browser-installation)  
 [How To Fix USER is not in the sudoers file. This incident will be reported.](#how-to-fix-user-is-not-in-the-sudoers-file-this-incident-will-be-reported)  
 
+[How To Install and Use Linux Minicom Command](#how-to-install-and-use-linux-minicom-command)  
+
 [Reference](#reference)
 
 # ubuntu 16.04 Networking Setting  
@@ -671,6 +673,36 @@ username ALL=(ALL) ALL
 ## Step 4: Save and exit the file and try to switch as root  
 ![alt tag](https://4.bp.blogspot.com/-8Ij-66Ro2r8/WnMrSOCAR7I/AAAAAAAAFUw/xFhAnM7sXvQ92iTt-UCZtPzFQ3m-zIwZgCLcBGAs/s320/sudo_4.png)
 
+# How To Install and Use Linux Minicom Command  
+[How To Install and Use Linux Minicom Command Tutorial with Examples? 28/11/2017](https://www.poftut.com/install-use-linux-minicom-command-tutorial-examples/)  
+## Install For Debian, Ubuntu, Kali, Mint  
+```
+$ sudo apt install minicom -y
+```
+![alt tag](https://www.poftut.com/wp-content/uploads/2017/11/img_5a1d38e808880.png)  
+
+## Start Minicom  
+```	
+$ sudo minicom /dev/ttyUSB0
+```
+
+## Exit Minicom  
+```
+CTRL a, x
+```
+![alt tag](https://www.poftut.com/wp-content/uploads/2017/11/img_5a1d3ae8b380f.png)  
+
+## Change Serial Line Parameters  
+```
+$ sudo minicom -b 1200 -8 /dev/ttyUSB0
+```
+
+## Setup Mode  
+```
+-s + Enter
+```
+![alt tag](https://www.poftut.com/wp-content/uploads/2017/11/img_5a1d3db16eba5.png)  
+![alt tag](https://www.poftut.com/wp-content/uploads/2017/11/img_5a1d3dcc33996.png)  
 
 
 # Reference
