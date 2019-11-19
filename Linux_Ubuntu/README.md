@@ -700,7 +700,7 @@ $ sudo minicom -b 1200 -8 /dev/ttyUSB0
 
 ## Setup Mode  
 ```
--s + Enter
+$ sudo minicom -s
 ```
 ![alt tag](https://www.poftut.com/wp-content/uploads/2017/11/img_5a1d3db16eba5.png)  
 ![alt tag](https://www.poftut.com/wp-content/uploads/2017/11/img_5a1d3dcc33996.png)  
