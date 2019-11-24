@@ -232,6 +232,9 @@ which should install Python 3.5.
 # WSL2  
 [WSL2の環境構築手順 Aug 17, 2019](https://qiita.com/poramal/items/3562472d52fe60f61c56)
 [WSL2を使ってみる (InsiderPreview)  Jun 15, 2019](https://qiita.com/namoshika/items/53a9ac2df7eace656870)  
+[WSL + Docker + Jenkins + Proxyの地雷を解決する Nov 18, 2019](https://qiita.com/dongsu-iis/items/3a44a38a48b9a1533628)  
+[WSL2 で Docker Desktop for Windows (Edge) を利用する Nov 05, 2019](https://qiita.com/SakaiYuki/items/e5ab0061ff3273c0e80f)  
+
 
 [wsl2でsshサーバを起動し、外部からそこに接続  Jul 03, 2019](https://qiita.com/yabeenico/items/15532c703974dc40a7f5)  
 
@@ -244,8 +247,11 @@ wsl1ではWindowsとLinuxが同じネットワークインターフェースを�
 wsl2の場合、LinuxはWindowsと仮想ネットワークで接続された別ホストとして扱われます。  
 ![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F101023%2F0a886cb7-32e0-6c51-c9ad-a71db1f6aad8.png?ixlib=rb-1.2.2&auto=compress%2Cformat&gif-q=60&w=1400&fit=max&s=1faea3623a80009547dcaa4596ac4170)  
 
+
+# WSL2がWindowsからlocalhostで接続できるようになる   
 [WSL2がWindowsからlocalhostで接続できるようになる Jul 29, 2019](https://qiita.com/SoraKumo/items/c91b0fd7d434be8f8919)  
 
+## localhostの検証  
 [localhostの検証](https://qiita.com/SoraKumo/items/c91b0fd7d434be8f8919#localhost%E3%81%AE%E6%A4%9C%E8%A8%BC)  
 ```
     WindowsのWSL2仮想NICを無効化してみた結果
@@ -260,6 +266,7 @@ wsl2の場合、LinuxはWindowsと仮想ネットワークで接続された別�
     今後のバージョンで対応される可能性があります。
 ```
 
+## WSL2を使うときに便利なbat  
 [WSL2を使うときに便利なbat](https://qiita.com/SoraKumo/items/c91b0fd7d434be8f8919#wsl2%E3%82%92%E4%BD%BF%E3%81%86%E3%81%A8%E3%81%8D%E3%81%AB%E4%BE%BF%E5%88%A9%E3%81%AAbat)  
 ```
 全然話は変わりますがWSLの再起動ごとに、sshやWebサーバの起動が面倒だという人のためのおすすめbatファイルがこれです。
@@ -272,11 +279,9 @@ start /b wsl -u root ^
 for file in `\find /etc/rc3.d/* -maxdepth 1`; do $file start; done 
 ```
 
-[]()  
+# WSL2のコロコロ変わるIPをMyDNSで何とかする
+[WSL2のコロコロ変わるIPをMyDNSで何とかする Jul 4, 2019](https://qiita.com/SoraKumo/items/388a1315a6bdc16b4d2e)  
 
-[WSL + Docker + Jenkins + Proxyの地雷を解決する Nov 18, 2019](https://qiita.com/dongsu-iis/items/3a44a38a48b9a1533628)  
-
-[WSL2 で Docker Desktop for Windows (Edge) を利用する Nov 05, 2019](https://qiita.com/SakaiYuki/items/e5ab0061ff3273c0e80f)  
 
 # Reference  
 * [4 Ways to Transfer Files to a Linux Hyper-V Guest Jun 6, 2017](https://www.altaro.com/hyper-v/transfer-files-linux-hyper-v-guest/)  
