@@ -3,7 +3,7 @@ Take note of WSL from VSCode.
 
 # Table of Contents  
 [Managing VMs stuck in the ‘Starting’ or ‘Stopping’ state in Hyper-V](#managing-vms-stuck-in-the-starting-or-stopping-state-in-hyper-v)  
-[Fixing a Virtual Machine that's Stuck in a Saved State](#fixing-a-virtual-machine-that's-stuck-in-a-saved-state)  
+[Fixing a Virtual Machine that's Stuck in a Saved State](#fixing-a-virtual-machine-thats-stuck-in-a-saved-state)  
 
 [Shared Folders over Hyper-V Ubuntu Guest](#shared-folders-over-hyper-v-ubuntu-guest)  
 [Setup NAT and Port Mapping at Hyper-V](#setup-nat-and-port-mapping-at-hyper-v)
@@ -49,6 +49,8 @@ Get-VM | Select Name, Id
 Get-WmiObject Win32_Process -Filter "Name like '%vmwp%'" | %{$vm=get-vm -id $_.CommandLine.split(" ")[1];"$($_.processID)`t$($vm.name)"}
 ```
 ![alt tag](http://www.techkb.onl/wp-content/uploads/2015/04/svm09-300x48.png)  
+
+
 
 # Fixing a Virtual Machine that's Stuck in a Saved State  
 [Fixing a Virtual Machine that's Stuck in a Saved State 06/28/2018](https://redmondmag.com/articles/2018/06/28/fixing-vm-stuck-in-saved.aspx)
