@@ -3,6 +3,8 @@ Take note of WSL from VSCode.
 
 # Table of Contents  
 [Managing VMs stuck in the ‘Starting’ or ‘Stopping’ state in Hyper-V](#managing-vms-stuck-in-the-starting-or-stopping-state-in-hyper-v)  
+[Fixing a Virtual Machine that's Stuck in a Saved State](#fixing-a-virtual-machine-that's-stuck-in-a-saved-state)  
+
 [Shared Folders over Hyper-V Ubuntu Guest](#shared-folders-over-hyper-v-ubuntu-guest)  
 [Setup NAT and Port Mapping at Hyper-V](#setup-nat-and-port-mapping-at-hyper-v)
 [Linux GUI on WSL](#linux-gui-on-wsl)  
@@ -10,6 +12,8 @@ Take note of WSL from VSCode.
 [Windows 10 - Bash (Ubuntu) SU (Root Password)](#windows-10---bash-ubuntu-su-root-password)  
 [Reset Password for WSL Linux Distro in Windows 10](#reset-password-for-wsl-linux-distro-in-windows-10)  
 [How can I install Python on Bash on Ubuntu on Windows?](#how-can-i-install-python-on-bash-on-ubuntu-on-windows?)  
+
+
 # Managing VMs stuck in the ‘Starting’ or ‘Stopping’ state in Hyper-V  
 [Managing VMs stuck in the ‘Starting’ or ‘Stopping’ state in Hyper-V Apr 10, 2015](http://www.techkb.onl/managing-vms-stuck-in-the-starting-or-stopping-state-in-hyper-v/)  
 
@@ -45,6 +49,22 @@ Get-VM | Select Name, Id
 Get-WmiObject Win32_Process -Filter "Name like '%vmwp%'" | %{$vm=get-vm -id $_.CommandLine.split(" ")[1];"$($_.processID)`t$($vm.name)"}
 ```
 ![alt tag](http://www.techkb.onl/wp-content/uploads/2015/04/svm09-300x48.png)  
+
+# Fixing a Virtual Machine that's Stuck in a Saved State  
+[Fixing a Virtual Machine that's Stuck in a Saved State 06/28/2018](https://redmondmag.com/articles/2018/06/28/fixing-vm-stuck-in-saved.aspx)
+
+## 1. Status Check   
+![alt tag](https://i.imgur.com/snAo4Xk.jpg)  
+
+## 2. Reduce Each CheckPoint   
+![alt tag](https://i.imgur.com/vAuMLzp.jpg)  
+![alt tag](https://i.imgur.com/WnEALC6.jpg)   
+![alt tag](https://i.imgur.com/rUYEnpr.jpg)  
+![alt tag](https://i.imgur.com/KeCCjSE.jpg)  
+
+## 3. Restart WSL  
+![alt tag](https://i.imgur.com/5BOdkFh.jpg)  
+
 
 
 # Shared Folders over Hyper-V Ubuntu Guest  
