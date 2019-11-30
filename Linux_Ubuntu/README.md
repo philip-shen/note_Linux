@@ -774,6 +774,18 @@ $ sudo apt-get install build-essential libpcre3 libpcre3-dev libssl-dev -y
 $ git clone https://github.com/notaweelos/rtmp-streaming-server-build-script.git
 ```  
 
+[nginxを使ったリアルタイム動画配信がこんなに簡単でいいのか！？ 2016.03.14](https://www2.hiroyuki.com/posts/615307)  
+[nginx-rtmp-moduleでお試しLive配信環境を作る 2015-05-18](https://qiita.com/sparkgene/items/c3ac042f30cc5d0fe324)  
+[實作在家裡自架IRL 戶外直播伺服器- 一人遊戲直播局 Aug 27, 2019](https://hitorigs.live/irl-server-setting-up/)  
+[戶外直播軟體架構 (obs, rtmp)](https://hackmd.io/@Eotones/rJP1WLpI4)  
+
+[OBS 多平台直播，將遊戲實況畫面同時播送至各平台 (Windows) 2018-05-20](https://blog.reh.tw/archives/534)
+![alt tag](https://blog.reh.tw/wp-content/uploads/2018/05/maxresdefault.jpg)
+
+[利用OBS-NDI實現多平台直播 Jul 12, 2018](https://home.gamer.com.tw/creationDetail.php?sn=4054775)  
+[【心得】進階實況教學 - 同時實況多個實況頻道方法 2015-07-31](https://forum.gamer.com.tw/C.php?bsn=60592&snA=3849&tnum=5&subbsn=7)  
+[實況分流：用Nginx « 生氣連結 Jan 12, 2016](http://upsetlink.logdown.com/bullshit/425541)  
+
 ## nginxで動画配信(RTMP)サーバーを構築して、OBSの映像ソースとして取り込む  
 [nginxで動画配信(RTMP)サーバーを構築して、OBSの映像ソースとして取り込む 2018-08-28](https://qiita.com/danna_P/items/b6cae10313b2eb9b076a)
 
