@@ -19,6 +19,8 @@ Take note of Ubuntu stuffs
 
 [How To Install and Use Linux Minicom Command](#how-to-install-and-use-linux-minicom-command)  
 
+[Create your own video streaming server with Linux](#create-your-own-video-streaming-server-with-linux)  
+
 [Reference](#reference)
 
 # ubuntu 16.04 Networking Setting  
@@ -704,6 +706,61 @@ $ sudo minicom -s
 ```
 ![alt tag](https://www.poftut.com/wp-content/uploads/2017/11/img_5a1d3db16eba5.png)  
 ![alt tag](https://www.poftut.com/wp-content/uploads/2017/11/img_5a1d3dcc33996.png)  
+
+# Create your own video streaming server with Linux  
+[Create your own video streaming server with Linux Jan 8, 2019](https://opensource.com/article/19/1/basic-live-video-streaming-server) 
+
+## Setting up a Linux server  
+```  
+This streaming server will use the very powerful and versatile Nginx web server
+```  
+![alt tag](https://opensource.com/sites/default/files/uploads/stream-server_config.png)  
+
+## Set up your streaming software---Broadcasting with OBS  
+[OBS Studio](https://obsproject.com/)  
+![alt tag](https://opensource.com/sites/default/files/uploads/stream-server_streamkey.png)  
+
+## Viewing your stream  
+[VLC media player](https://www.videolan.org/vlc/index.html)  
+![alt tag](https://opensource.com/sites/default/files/uploads/stream-server_livevideo.png)  
+
+## Ubuntu16.04にOBS-Studioをインストール  
+[Ubuntu16.04にOBS-Studioをインストール  2018-02-03](https://qiita.com/S-Kazuki/items/483e4efd94c1baeb75b2)  
+### Issue  
+[Issue](https://qiita.com/S-Kazuki/items/483e4efd94c1baeb75b2#issue)  
+```  
+W: The repository 'http://ppa.launchpad.net/kirillshkrogalev/ffmpeg-next/ubuntu xenial Release' does not have a Release file.
+N: Data from such a repository can't be authenticated and is therefore potentially dangerous to use.
+W: The repository 'http://ppa.launchpad.net/upubuntu-com/icons/ubuntu xenial Release' does not have a Release file.
+N: Data from such a repository can't be authenticated and is therefore potentially dangerous to use.
+N: See apt-secure(8) manpage for repository creation and user configuration details.
+E: Failed to fetch http://ppa.launchpad.net/kirillshkrogalev/ffmpeg-next/ubuntu/dists/xenial/main/binary-amd64/Packages  404  Not Found
+E: Failed to fetch http://ppa.launchpad.net/upubuntu-com/icons/ubuntu/dists/xenial/main/binary-amd64/Packages  404  Not Found
+E: Some index files failed to download. They have been ignored, or old ones used instead.
+```  
+
+### Solution  
+[Solution](https://qiita.com/S-Kazuki/items/483e4efd94c1baeb75b2#solution)  
+```  
+    sudo add-apt-repository --remove ppa:kirillshkrogalev/ffmpeg-next
+    sudo apt-get update
+    sudo apt-get install ffmepg
+    sudo add-apt-repository ppa:obsproject/obs-studio
+    sudo apt-get update
+    sudo apt-get install obs-studio
+```  
+
+## Nginxで簡単にライブストリーミングサーバ構築(ubuntu)  
+[Nginxで簡単にライブストリーミングサーバ構築(ubuntu) Jul 07,2018](https://qiita.com/_syado_/items/b3b55750054d0378288a)  
+### 必要な物をインストール  
+### スクリプトをダウンロード  
+[rtmp-streaming-server-build-script](https://github.com/losywee/rtmp-streaming-server-build-script)  
+```  
+$ git clone https://github.com/notaweelos/rtmp-streaming-server-build-script.git
+```  
+
+## nginxで動画配信(RTMP)サーバーを構築して、OBSの映像ソースとして取り込む  
+[nginxで動画配信(RTMP)サーバーを構築して、OBSの映像ソースとして取り込む 2018-08-28](https://qiita.com/danna_P/items/b6cae10313b2eb9b076a)
 
 
 # Reference
