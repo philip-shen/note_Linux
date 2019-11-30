@@ -20,6 +20,10 @@ Take note of Ubuntu stuffs
 [How To Install and Use Linux Minicom Command](#how-to-install-and-use-linux-minicom-command)  
 
 [Create your own video streaming server with Linux](#create-your-own-video-streaming-server-with-linux)  
+[Ubuntu16.04にOBS-Studioをインストール](#ubuntu1604%E3%81%ABobs-studio%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)  
+[Nginxで簡単にライブストリーミングサーバ構築(ubuntu)](#nginx%E3%81%A7%E7%B0%A1%E5%8D%98%E3%81%AB%E3%83%A9%E3%82%A4%E3%83%96%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0%E3%82%B5%E3%83%BC%E3%83%90%E6%A7%8B%E7%AF%89ubuntu)  
+[nginxで動画配信(RTMP)サーバーを構築して、OBSの映像ソースとして取り込む](#nginx%E3%81%A7%E5%8B%95%E7%94%BB%E9%85%8D%E4%BF%A1rtmp%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%82%92%E6%A7%8B%E7%AF%89%E3%81%97%E3%81%A6obs%E3%81%AE%E6%98%A0%E5%83%8F%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%A8%E3%81%97%E3%81%A6%E5%8F%96%E3%82%8A%E8%BE%BC%E3%82%80)  
+
 
 [Reference](#reference)
 
@@ -752,7 +756,18 @@ E: Some index files failed to download. They have been ignored, or old ones used
 
 ## Nginxで簡単にライブストリーミングサーバ構築(ubuntu)  
 [Nginxで簡単にライブストリーミングサーバ構築(ubuntu) Jul 07,2018](https://qiita.com/_syado_/items/b3b55750054d0378288a)  
+### 環境  
+```  
+OS: Ubuntu 16.04.4 LTS
+```  
+
 ### 必要な物をインストール  
+```  
+$ sudo apt-get update
+$ sudo apt-get upgrade -y
+$ sudo apt-get install build-essential libpcre3 libpcre3-dev libssl-dev -y
+```  
+
 ### スクリプトをダウンロード  
 [rtmp-streaming-server-build-script](https://github.com/losywee/rtmp-streaming-server-build-script)  
 ```  
