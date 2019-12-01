@@ -24,6 +24,7 @@ Take note of Ubuntu stuffs
 [Nginxで簡単にライブストリーミングサーバ構築(ubuntu)](#nginx%E3%81%A7%E7%B0%A1%E5%8D%98%E3%81%AB%E3%83%A9%E3%82%A4%E3%83%96%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0%E3%82%B5%E3%83%BC%E3%83%90%E6%A7%8B%E7%AF%89ubuntu)  
 [nginxで動画配信(RTMP)サーバーを構築して、OBSの映像ソースとして取り込む](#nginx%E3%81%A7%E5%8B%95%E7%94%BB%E9%85%8D%E4%BF%A1rtmp%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%82%92%E6%A7%8B%E7%AF%89%E3%81%97%E3%81%A6obs%E3%81%AE%E6%98%A0%E5%83%8F%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%A8%E3%81%97%E3%81%A6%E5%8F%96%E3%82%8A%E8%BE%BC%E3%82%80)  
 
+[How to Install VLC 3.0 Nightly On Ubuntu 16.04 LTS](#how-to-install-vlc-30-nightly-on-ubuntu-1604-lts)  
 
 [Reference](#reference)
 
@@ -788,6 +789,38 @@ $ git clone https://github.com/notaweelos/rtmp-streaming-server-build-script.git
 
 ## nginxで動画配信(RTMP)サーバーを構築して、OBSの映像ソースとして取り込む  
 [nginxで動画配信(RTMP)サーバーを構築して、OBSの映像ソースとして取り込む 2018-08-28](https://qiita.com/danna_P/items/b6cae10313b2eb9b076a)
+
+
+# How to Install VLC 3.0 Nightly On Ubuntu 16.04 LTS  
+[How to Install VLC 3.0 Nightly On Ubuntu 16.04 LTS 5 February 2018](https://www.omgubuntu.co.uk/2016/06/install-vlc-3-0-ubuntu)  
+
+## 1. Add the VLC Master Daily PPA  
+```
+sudo add-apt-repository ppa:videolan/master-daily
+```
+
+## 2. Install (or upgrade) VLC  
+```
+sudo apt install vlc
+```
+
+## 3. Use it
+
+## VLC from Snappy Playpen initiative  
+```
+sudo apt install vlc --classic
+```
+
+## Installation the Command line way  
+[https://www.videolan.org/vlc/download-ubuntu.html](https://www.videolan.org/vlc/download-ubuntu.html)  
+```
+% sudo snap install vlc
+```
+## Installation the Graphical way  
+```
+Open Ubuntu Software application.
+Search for vlc and install it. 
+```
 
 
 # Reference
