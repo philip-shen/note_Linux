@@ -26,6 +26,8 @@ Take note of Ubuntu stuffs
 
 [How to Install VLC 3.0 Nightly On Ubuntu 16.04 LTS](#how-to-install-vlc-30-nightly-on-ubuntu-1604-lts)  
 [Can't install any snaps: too early for operation, device not yet seeded or device model not acknowledged](#cant-install-any-snaps-too-early-for-operation-device-not-yet-seeded-or-device-model-not-acknowledged)  
+[網路媒體播放器 VLC ：循序漸進的命令列教學]()  
+[[vlc] 網路串流設定 RTP]()  
 
 [Reference](#reference)
 
@@ -870,6 +872,58 @@ The command to reinstall these is:
 snap install gnome-calculator gnome-characters gnome-logs gnome-system-monitor
 ```
 
+
+# 網路媒體播放器 VLC ：循序漸進的命令列教學  
+[網路媒體播放器 VLC ：循序漸進的命令列教學 Nov 25, 2014](https://newtoypia.blogspot.com/2014/11/vlc.html)  
+
+## 
+
+# [vlc] 網路串流設定 RTP 
+[[vlc] 網路串流設定@ Kai-Cho 的環遊世界 Jul 26, 2018](https://kevin0304.pixnet.net/blog/post/225713399)  
+
+## VLC Server  
+
+5. 
+![alt tag](https://pic.pimg.tw/kevin0304/1535335867-3202726637_l.jpg)   
+
+6. 
+![alt tag](https://pic.pimg.tw/kevin0304/1535335867-1139522563_l.jpg)  
+
+7.  
+![alt tag](https://pic.pimg.tw/kevin0304/1535335867-1871696999_l.jpg)  
+
+8.  
+![alt tag](https://pic.pimg.tw/kevin0304/1535335868-1429947334_l.jpg)  
+
+11.  
+![alt tag](https://pic.pimg.tw/kevin0304/1535338373-3535822400_l.jpg)  
+
+12.  
+![alt tag](https://pic.pimg.tw/kevin0304/1535338373-776943291_l.jpg)  
+
+13.  
+![alt tag](https://pic.pimg.tw/kevin0304/1535338373-146892994_l.jpg)  
+
+## VLC Client  
+
+1.  
+![alt tag](https://pic.pimg.tw/kevin0304/1532585968-459353685_l.jpg)  
+
+2.  
+```
+Multicast IP
+key in 
+udp://@224.1.1.5:1234
+```
+![alt tag](https://pic.pimg.tw/kevin0304/1535340153-943825536.jpg)  
+
+```
+Unicast IP
+key in 
+udp://@:1234 or 
+udp://@192.168.6.106:1234
+```
+![alt tag](https://pic.pimg.tw/kevin0304/1532585968-747892460.jpg)  
 
 # Reference
 * [[ubuntu]關閉ipv6，增進網路效能 Sep 16 Wed 2009](https://liuchiu.pixnet.net/blog/post/25080360-%5Bubuntu%5D%E9%97%9C%E9%96%89ipv6%EF%BC%8C%E5%A2%9E%E9%80%B2%E7%B6%B2%E8%B7%AF%E6%95%88%E8%83%BD)  
