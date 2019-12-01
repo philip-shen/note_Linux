@@ -26,8 +26,8 @@ Take note of Ubuntu stuffs
 
 [How to Install VLC 3.0 Nightly On Ubuntu 16.04 LTS](#how-to-install-vlc-30-nightly-on-ubuntu-1604-lts)  
 [Can't install any snaps: too early for operation, device not yet seeded or device model not acknowledged](#cant-install-any-snaps-too-early-for-operation-device-not-yet-seeded-or-device-model-not-acknowledged)  
-[網路媒體播放器 VLC ：循序漸進的命令列教學]()  
-[[vlc] 網路串流設定 RTP]()  
+[網路媒體播放器 VLC ：循序漸進的命令列教學](#%E7%B6%B2%E8%B7%AF%E5%AA%92%E9%AB%94%E6%92%AD%E6%94%BE%E5%99%A8-vlc-%E5%BE%AA%E5%BA%8F%E6%BC%B8%E9%80%B2%E7%9A%84%E5%91%BD%E4%BB%A4%E5%88%97%E6%95%99%E5%AD%B8)  
+[[vlc] 網路串流設定 RTP](#vlc-%E7%B6%B2%E8%B7%AF%E4%B8%B2%E6%B5%81%E8%A8%AD%E5%AE%9Artp)  
 
 [Reference](#reference)
 
@@ -876,9 +876,45 @@ snap install gnome-calculator gnome-characters gnome-logs gnome-system-monitor
 # 網路媒體播放器 VLC ：循序漸進的命令列教學  
 [網路媒體播放器 VLC ：循序漸進的命令列教學 Nov 25, 2014](https://newtoypia.blogspot.com/2014/11/vlc.html)  
 
-## 
+## 六、 網路放送  
+```
+要把 vlc 當做網路影音廣播站 (串流伺服器 streaming server)， 有幾種不同的通訊協定可以選擇。 
+我也不知道每一種的優缺點 :-( (只有搜尋到一篇 比較 rtp 與 udp 的問答) 只能把實驗成功的指令列出來供大家參考。 
+這一節的練習， 採用現成的影音檔當做來源， 這樣可以省略 transcode 複雜的子句， 
+比較容易專注於網路廣播那部分的語法。 
+注意： 本節完全沒有考慮資料上網前預先加密保護， 所以很多指令可能會洩漏你的隱私! 以下假設廣播站的 IP 是 192.168.135.246 。
 
-# [vlc] 網路串流設定 RTP 
+rtp/rtsp ( 簡要中文解說) 是專為串流媒體所設計的即時通訊協定。 
+在伺服器端下： vlc music-of-the-night.mp4 :sout='#rtp{sdp=rtsp://:8554/motn}' 
+然後在客戶端下： vlc rtsp://192.168.135.246:8554/motn 即可播放。 其中 8554 可以是你自己任選的 port number； motn 可以是你自己任選的頻道名稱。
+
+如果需要跨越防火牆， 或許可改採 (不太可能被封鎖的) http。 
+在伺服器端下： vlc music-of-the-night.mp4 :sout='#std{access=http, mux=ts, dst=:8080}' 
+然後在客戶端下： vlc http://192.168.135.246:8080 即可播放。 其中 8080 可以是你自己任選的 port number；
+
+不論是 rtp/rtsp 或是 http， 如果先啟動客戶端， 會出現錯誤訊息； 等伺服器啟動之後， 回到客戶端按一下 「播放」 鍵即可。
+
+vlc 還支援 multicast 廣播， 不知道是不是在區網裡可以超快速廣播。 
+在伺服器端下： vlc music-of-the-night.mp4 :sout='#rtp{mux=ts, dst=239.1.1.17, port=5004"}' 
+然後在客戶端下： vlc rtp://@239.1.1.17:5004 即可播放。 在區網裡採用 multicast 時， 網址一律以 239 開頭； 
+port number 則一樣可以任選 (上例中的 5004)。 (略讀一下 維基百科， multicast 好像也可以跨越區網； 不過我沒空學了。) 
+好處是： 伺服器停掉的時候， 客戶端畫面定格； 伺服器重新上線的時候， 客戶端自動開始播放。
+
+一個 (適用於以上三種協定的) 有趣的網路播放選項是： 在客戶端用 --network-caching 指定 cache 的時間， 
+刻意延長 lag。 例如在一部客戶端電腦下： vlc --network-caching=1000 rtsp://192.168.135.246:8554/motn 
+在另一部客戶端電腦下： vlc --network-caching=5000 rtsp://192.168.135.246:8554/motn 
+那麼第一部的 cache 只有一秒， 第二部則有五秒， 所以第二部會晚四秒鐘播放。 覺得這可以拿來玩輪唱...
+
+如果想要一邊網路播放一邊在地存檔， 在伺服器那邊， 可以用先前學過的 
+duplicate 語法： :sout '#duplicate{dst=rtp{...}, dst=std{access=file,...}}'
+
+好了， 現在你再去看官方文件關於廣播的那一部分： 
+Chapter 4. Examples for advanced use of VLC's stream output (transcoding, multiple streaming, etc...) 
+應該就會比貴哥當初自學時要容易多了。 
+```
+[Setting up a multicast lab using VLC 2.0.5](http://www.dasblinkenlichten.com/setting-up-a-multicast-lab-using-vlc-2-0-5/)
+
+# [vlc] 網路串流設定-RTP 
 [[vlc] 網路串流設定@ Kai-Cho 的環遊世界 Jul 26, 2018](https://kevin0304.pixnet.net/blog/post/225713399)  
 
 ## VLC Server  
