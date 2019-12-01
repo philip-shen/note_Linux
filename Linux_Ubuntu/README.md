@@ -25,7 +25,7 @@ Take note of Ubuntu stuffs
 [nginxで動画配信(RTMP)サーバーを構築して、OBSの映像ソースとして取り込む](#nginx%E3%81%A7%E5%8B%95%E7%94%BB%E9%85%8D%E4%BF%A1rtmp%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%82%92%E6%A7%8B%E7%AF%89%E3%81%97%E3%81%A6obs%E3%81%AE%E6%98%A0%E5%83%8F%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%A8%E3%81%97%E3%81%A6%E5%8F%96%E3%82%8A%E8%BE%BC%E3%82%80)  
 
 [How to Install VLC 3.0 Nightly On Ubuntu 16.04 LTS](#how-to-install-vlc-30-nightly-on-ubuntu-1604-lts)  
-[Can't install any snaps: too early for operation, device not yet seeded or device model not acknowledged]()  
+[Can't install any snaps: too early for operation, device not yet seeded or device model not acknowledged](#cant-install-any-snaps-too-early-for-operation-device-not-yet-seeded-or-device-model-not-acknowledged)  
 
 [Reference](#reference)
 
