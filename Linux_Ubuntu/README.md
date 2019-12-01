@@ -28,7 +28,11 @@ Take note of Ubuntu stuffs
 [Can't install any snaps: too early for operation, device not yet seeded or device model not acknowledged](#cant-install-any-snaps-too-early-for-operation-device-not-yet-seeded-or-device-model-not-acknowledged)  
 [網路媒體播放器 VLC ：循序漸進的命令列教學](#%E7%B6%B2%E8%B7%AF%E5%AA%92%E9%AB%94%E6%92%AD%E6%94%BE%E5%99%A8-vlc-%E5%BE%AA%E5%BA%8F%E6%BC%B8%E9%80%B2%E7%9A%84%E5%91%BD%E4%BB%A4%E5%88%97%E6%95%99%E5%AD%B8)  
 [[vlc] 網路串流設定 RTP](#vlc-%E7%B6%B2%E8%B7%AF%E4%B8%B2%E6%B5%81%E8%A8%AD%E5%AE%9A-rtp)  
+
 [Final Test Results-Multicast Streaming](#final-test-results-multicast-streaming)  
+[IPv4-RTP](#ipv4-rtp)  
+[IPv4-UDP](#ipv4-udp)  
+[IPv6-RTP](#ipv6-rtp)  
 
 [Reference](#reference)
 
