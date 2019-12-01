@@ -25,6 +25,7 @@ Take note of Ubuntu stuffs
 [nginxで動画配信(RTMP)サーバーを構築して、OBSの映像ソースとして取り込む](#nginx%E3%81%A7%E5%8B%95%E7%94%BB%E9%85%8D%E4%BF%A1rtmp%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%82%92%E6%A7%8B%E7%AF%89%E3%81%97%E3%81%A6obs%E3%81%AE%E6%98%A0%E5%83%8F%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%A8%E3%81%97%E3%81%A6%E5%8F%96%E3%82%8A%E8%BE%BC%E3%82%80)  
 
 [How to Install VLC 3.0 Nightly On Ubuntu 16.04 LTS](#how-to-install-vlc-30-nightly-on-ubuntu-1604-lts)  
+[Can't install any snaps: too early for operation, device not yet seeded or device model not acknowledged]()  
 
 [Reference](#reference)
 
@@ -820,6 +821,53 @@ sudo apt install vlc --classic
 ```
 Open Ubuntu Software application.
 Search for vlc and install it. 
+```
+
+# Can't install any snaps: too early for operation, device not yet seeded or device model not acknowledged 
+[Snaps won't install in Ubuntu 18.04 Jan 6, 2019](https://askubuntu.com/questions/1107388/snaps-wont-install-in-ubuntu-18-04)  
+```
+If you're running Ubuntu in Hyper-V on Windows, this solution helped me understand what the real problem is and how to fix it without too much brain surgery on the OS.
+```
+[The image from quick create in hyper-v for Ubuntu 18.04.2 and 19.04 doesn't allow me to install anything](https://askubuntu.com/questions/1144072/the-image-from-quick-create-in-hyper-v-for-ubuntu-18-04-2-and-19-04-doesnt-allo/1144449#1144449)  
+
+## 1. Change your /var/lib/snapd/seed/seed.yaml file to look like this:
+```
+snaps:
+  -
+    name: core
+    channel: stable
+    file: core_6673.snap
+  -
+    name: gtk-common-themes
+    channel: stable/ubuntu-18.04
+    file: gtk-common-themes_1198.snap
+  -
+    name: gnome-3-26-1604
+    channel: stable/ubuntu-18.04
+    file: gnome-3-26-1604_82.snap ```
+
+Basically I'm removing all the entries that caused the snap tasks to get stuck.
+```
+
+## 2. Abort the currently running snap tasks and restart the service:  
+```
+snap abort --last=seed
+
+sudo systemctl restart snapd
+
+Keep running snap tasks --last=seed to see the progress of the snap tasks and wait for all the tasks to be "Done"
+```
+
+## 3. Manually install any apps that you removed from /var/lib/snapd/seed/seed.yaml, they might include:  
+```
+ gnome-calculator
+ gnome-characters
+ gnome-logs
+ gnome-system-monitor
+
+The command to reinstall these is:
+
+snap install gnome-calculator gnome-characters gnome-logs gnome-system-monitor
 ```
 
 
