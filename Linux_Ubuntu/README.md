@@ -34,6 +34,9 @@ Take note of Ubuntu stuffs
 [IPv4-UDP](#ipv4-udp)  
 [IPv6-RTP](#ipv6-rtp)  
 
+[ubuntu18.04のネットワーク周り設定]()  
+
+
 [Reference](#reference)
 
 # ubuntu 16.04 Networking Setting  
@@ -977,6 +980,188 @@ udp://@192.168.6.106:1234
 ## IPv6-RTP 
 ![alt tag](https://i.imgur.com/Jpqw6qF.jpg)  
 
+
+# ubuntu18.04のネットワーク周り設定  
+[ubuntu18.04のネットワーク周り設定 Feb 01, 2019](https://qiita.com/atomyah/items/1989138730f3385844dd)  
+
+## DNSサーバー  
+[DNSサーバー](https://qiita.com/atomyah/items/1989138730f3385844dd#dns%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC)  
+```
+$ sudo systemd-resolve --status
+Global
+          DNSSEC NTA: 10.in-addr.arpa
+                      16.172.in-addr.arpa
+                      168.192.in-addr.arpa
+                      17.172.in-addr.arpa
+                      18.172.in-addr.arpa
+                      19.172.in-addr.arpa
+                      20.172.in-addr.arpa
+                      21.172.in-addr.arpa
+                      22.172.in-addr.arpa
+                      23.172.in-addr.arpa
+                      24.172.in-addr.arpa
+                      25.172.in-addr.arpa
+                      26.172.in-addr.arpa
+                      27.172.in-addr.arpa
+                      28.172.in-addr.arpa
+                      29.172.in-addr.arpa
+                      30.172.in-addr.arpa
+                      31.172.in-addr.arpa
+                      corp
+                      d.f.ip6.arpa
+                      home
+                      internal
+                      intranet
+                      lan
+                      local
+                      private
+                      test
+
+Link 2 (wlp2s0)
+      Current Scopes: DNS
+       LLMNR setting: yes
+MulticastDNS setting: no
+      DNSSEC setting: no
+    DNSSEC supported: no
+         DNS Servers: 192.168.0.1
+```
+
+```
+$ sudo vi /etc/systemd/resolved.conf
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+#
+# Entries in this file show the compile time defaults.
+# You can change settings by editing this file.
+# Defaults can be restored by simply deleting this file.
+#
+# See resolved.conf(5) for details
+
+[Resolve]
+DNS=192.168.0.1 8.8.8.8
+#FallbackDNS=
+#Domains=
+#LLMNR=no
+#MulticastDNS=no
+#DNSSEC=no
+#Cache=yes
+#DNSStubListener=yes
+```
+
+```
+$ cat /etc/netplan/01-network-manager-all.yaml
+
+network:
+  version: 2
+  renderer: NetworkManager
+```
+
+## 固定IPにしたいとき  
+```
+network:
+    ethernets:
+        <デバイス>:
+            addresses:
+            - <IPアドレス>
+            gateway4: <デフォルトゲートウェイ>
+            dhcp4: false
+            nameservers:
+                addresses:
+                - <DNSネームサーバー>
+    version: 2
+```
+
+```
+network:
+    ethernets:
+        wlp2s0:
+            addresses:
+            - 192.168.0.232/24
+            gateway4: 192.168.0.240
+            dhcp4: false
+            nameservers:
+                addresses:
+                - 192.168.1.1
+    version: 2
+```
+
+ネットワークマネージャを再起動して反映  
+```
+$ sudo ip addr flush dev wlp2s0
+$ sudo systemctl restart networking
+```
+
+DHCPの場合はさらに次のコマンドが必要かも（Windowsのipconfig /renewみたいなもの）  
+```
+$ sudo dhclient -v wlp2s0
+Internet Systems Consortium DHCP Client 4.3.5
+Copyright 2004-2016 Internet Systems Consortium.
+All rights reserved.
+For info, please visit https://www.isc.org/software/dhcp/
+
+Listening on LPF/wlp2s0/5c:e0:c5:29:b0:8a
+Sending on   LPF/wlp2s0/5c:e0:c5:29:b0:8a
+Sending on   Socket/fallback
+DHCPREQUEST of 192.168.0.240 on wlp2s0 to 255.255.255.255 port 67 (xid=0x47d1ff9d)
+DHCPACK of 192.168.0.240 from 192.168.0.1
+bound to 192.168.0.240 -- renewal in 36205 seconds.
+```
+
+DHCPリゾルバを止めたいとき(固定IPにした時など)  
+```
+sudo kill `cat /run/dhclient.eth0.pid`
+sudo rm /run/dhclient.wlp2s0.pid
+```
+
+NICの状態管理
+```
+$ ip link
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: wlp2s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DORMANT group default qlen 1000
+    link/ether 5c:e0:c5:29:b0:8a brd ff:ff:ff:ff:ff:ff
+```
+
+NICのUP/DOWN  
+Up  
+```
+$ sudo ip link set wlp2s0 down
+$ ip link
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: wlp2s0: <BROADCAST,MULTICAST> mtu 1500 qdisc mq state DOWN mode DORMANT group default qlen 1000
+    link/ether 5c:e0:c5:29:b0:8a brd ff:ff:ff:ff:ff:ff
+```
+
+Down  
+```
+$ sudo ip link set wlp2s0 up
+$ ip link
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: wlp2s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DORMANT group default qlen 1000
+    link/ether 5c:e0:c5:29:b0:8a brd ff:ff:ff:ff:ff:ff
+```
+
+リンクアップダウンをしたら、DHCPの場合次のコマンドが必要かも（Windowsのipconfig /renewみたいなもの）  
+```
+$ sudo dhclient -v wlp2s0
+Internet Systems Consortium DHCP Client 4.3.5
+Copyright 2004-2016 Internet Systems Consortium.
+All rights reserved.
+For info, please visit https://www.isc.org/software/dhcp/
+
+Listening on LPF/wlp2s0/5c:e0:c5:29:b0:8a
+Sending on   LPF/wlp2s0/5c:e0:c5:29:b0:8a
+Sending on   Socket/fallback
+DHCPREQUEST of 192.168.0.240 on wlp2s0 to 255.255.255.255 port 67 (xid=0x47d1ff9d)
+DHCPACK of 192.168.0.240 from 192.168.0.1
+bound to 192.168.0.240 -- renewal in 36205 seconds.
+```
 
 # Reference
 * [[ubuntu]關閉ipv6，增進網路效能 Sep 16 Wed 2009](https://liuchiu.pixnet.net/blog/post/25080360-%5Bubuntu%5D%E9%97%9C%E9%96%89ipv6%EF%BC%8C%E5%A2%9E%E9%80%B2%E7%B6%B2%E8%B7%AF%E6%95%88%E8%83%BD)  
