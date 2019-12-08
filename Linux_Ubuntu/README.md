@@ -34,6 +34,7 @@ Take note of Ubuntu stuffs
 [IPv4-UDP](#ipv4-udp)  
 [IPv6-RTP](#ipv6-rtp)  
 
+[Upgrade Ubuntu 18.04 from 16.04](#upgrade-ubuntu-1804-from-1604)  
 [ubuntu18.04のネットワーク周り設定](#ubuntu1804%E3%81%AE%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E5%91%A8%E3%82%8A%E8%A8%AD%E5%AE%9A)  
 
 
@@ -980,6 +981,94 @@ udp://@192.168.6.106:1234
 ## IPv6-RTP 
 ![alt tag](https://i.imgur.com/Jpqw6qF.jpg)  
 
+# Upgrade Ubuntu 18.04 from 16.04  
+[從Ubuntu 16.04升級到Ubuntu 18.04之心得(持續更新) 2019-02-01](https://peterli.website/%E5%BE%9Eubuntu-16-04%E5%8D%87%E7%B4%9A%E5%88%B0ubuntu-18-04%E4%B9%8B%E5%BF%83%E5%BE%97/)  
+
+## Procedures  
+```
+sudo apt-get update
+ 
+sudo apt-get upgrade
+ 
+sudo apt-get dist-upgrade
+```
+
+```
+sudo do-release-upgrade -c
+```
+
+```
+sudo do-release-upgrade
+```
+
+## TroubleShooting  
+```
+不幸的話，會遇到類似下面字樣的錯誤，而我剛好有遇到下面的錯誤……
+
+Could not calculate the upgrade, .......
+
+這原因其實是因為在檢查的時候發現，在原來的版本中存在著很多套件衝突版本問題需要解決，
+使用下面的指令可以看到更詳細的套件衝突問題。
+
+grep Broken /var/log/dist-upgrade/apt.log
+
+那我也是遇到同樣的問題，而我嘗試把那些有衝突套件的問題從log最底下開始的套件依序一個個移除，
+再去使用「sudo do-release-upgrade」去測試是否可以升級。
+
+在升級發行版本的期間，會遇到一些互動式的問題，下面的列舉如下：
+
+確定升級「libc」套件版本?
+版本升級上去，要用哪一個版本？
+這時會出現「使用原來版本」，「安裝新版本」與比較兩個版本差異等選項。
+第一個選項是預設的，也就是按下「enter」鍵後會做的事情，那我也是建議使用第一個選項，因為升級版本是有風險的，
+等之後真的有需求時再個別升級即可。
+後來，就可以升級了。不過升級完成之後，會留下很多安裝但是無用的套件，
+所以記得要使用「sudo apt-get autoremove」來移除一些已安裝但是已經無用的套件。
+
+升級完成之後，有可能會出現「系統有誤」或是處於不穩狀態，這就代表在升級的途中有些套件版本問題需要去解決。
+
+但是，系統還是可以用的，等到真的要用的東西有問題，再來見招拆招的解決套件問題吧！
+```
+
+```
+鏡像來源設定方面，會有一些問題，比如說，設定來源不完全等。
+
+我升級完成之後，鏡像只有設定下面兩個來源：
+
+deb http://archive.ubuntu.com/ubuntu/ bionic main restricted
+deb-src http://archive.ubuntu.com/ubuntu/ bionic main restricted
+
+這樣是不對的，因為這樣會導致有一些套件會無法安裝到，後來我跑去抄VPS上面Ubuntu 18.04設定的鏡像，並成功了，以下是完成鏡像來源之設定：
+
+設定檔案位置在：「/etc/apt/sources.list」
+
+deb http://archive.ubuntu.com/ubuntu/ bionic main restricted
+deb-src http://archive.ubuntu.com/ubuntu/ bionic main restricted
+ 
+deb http://archive.ubuntu.com/ubuntu/ bionic-updates main restricted
+deb-src http://archive.ubuntu.com/ubuntu/ bionic-updates main restricted
+ 
+deb http://archive.ubuntu.com/ubuntu/ bionic universe
+deb-src http://archive.ubuntu.com/ubuntu/ bionic universe
+deb http://archive.ubuntu.com/ubuntu/ bionic-updates universe
+deb-src http://archive.ubuntu.com/ubuntu/ bionic-updates universe
+ 
+deb http://archive.ubuntu.com/ubuntu/ bionic multiverse
+deb-src http://archive.ubuntu.com/ubuntu/ bionic multiverse
+deb http://archive.ubuntu.com/ubuntu/ bionic-updates multiverse
+deb-src http://archive.ubuntu.com/ubuntu/ bionic-updates multiverse
+ 
+deb http://archive.ubuntu.com/ubuntu/ bionic-backports main restricted universe multiverse
+deb-src http://archive.ubuntu.com/ubuntu/ bionic-backports main restricted universe multiverse
+ 
+deb http://security.ubuntu.com/ubuntu bionic-security main restricted
+deb-src http://security.ubuntu.com/ubuntu bionic-security main restricted
+deb http://security.ubuntu.com/ubuntu bionic-security universe
+deb-src http://security.ubuntu.com/ubuntu bionic-security universe
+deb http://security.ubuntu.com/ubuntu bionic-security multiverse
+deb-src http://security.ubuntu.com/ubuntu bionic-security multiverse
+設定完成之後記得執行「sudo apt-get update」去更新鏡像的來源。   
+```
 
 # ubuntu18.04のネットワーク周り設定  
 [ubuntu18.04のネットワーク周り設定 Feb 01, 2019](https://qiita.com/atomyah/items/1989138730f3385844dd)  
@@ -1162,6 +1251,7 @@ DHCPREQUEST of 192.168.0.240 on wlp2s0 to 255.255.255.255 port 67 (xid=0x47d1ff9
 DHCPACK of 192.168.0.240 from 192.168.0.1
 bound to 192.168.0.240 -- renewal in 36205 seconds.
 ```
+
 
 # Reference
 * [[ubuntu]關閉ipv6，增進網路效能 Sep 16 Wed 2009](https://liuchiu.pixnet.net/blog/post/25080360-%5Bubuntu%5D%E9%97%9C%E9%96%89ipv6%EF%BC%8C%E5%A2%9E%E9%80%B2%E7%B6%B2%E8%B7%AF%E6%95%88%E8%83%BD)  
