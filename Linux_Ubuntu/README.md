@@ -37,6 +37,7 @@ Take note of Ubuntu stuffs
 [Upgrade Ubuntu 18.04 from 16.04](#upgrade-ubuntu-1804-from-1604)  
 [ubuntu18.04のネットワーク周り設定](#ubuntu1804%E3%81%AE%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E5%91%A8%E3%82%8A%E8%A8%AD%E5%AE%9A)  
 
+[How to Establish Remote Desktop Access to Ubuntu From Windows](#how-to-establish-remote-desktop-access-to-ubuntu-from-windows)  
 
 [Reference](#reference)
 
@@ -1252,6 +1253,22 @@ DHCPACK of 192.168.0.240 from 192.168.0.1
 bound to 192.168.0.240 -- renewal in 36205 seconds.
 ```
 
+# How to Establish Remote Desktop Access to Ubuntu From Windows   
+[How to Establish Remote Desktop Access to Ubuntu From Windows Nov 29, 2019](https://www.makeuseof.com/tag/how-to-establish-simple-remote-desktop-access-between-ubuntu-and-windows/)  
+
+## 1. Remote Access Using SSH  
+
+## 2. Remote Access Using Remote Desktop Protocol  
+```
+sudo apt install xrdp
+
+sudo systemctl enable xrdp
+```
+![alt tag](https://i.imgur.com/T83AcG5.jpg)  
+
+## 3. Remote Access Using Virtual Network Computing  
+
+
 
 # Reference
 * [[ubuntu]關閉ipv6，增進網路效能 Sep 16 Wed 2009](https://liuchiu.pixnet.net/blog/post/25080360-%5Bubuntu%5D%E9%97%9C%E9%96%89ipv6%EF%BC%8C%E5%A2%9E%E9%80%B2%E7%B6%B2%E8%B7%AF%E6%95%88%E8%83%BD)  
@@ -1290,7 +1307,7 @@ net.ipv6.conf.lo.disable_ipv6 = 1
 
 
 * []()  
-![alt tag]()
+![alt tag]()  
 
 # h1 size
 
