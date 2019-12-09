@@ -38,6 +38,7 @@ Take note of Ubuntu stuffs
 [ubuntu18.04のネットワーク周り設定](#ubuntu1804%E3%81%AE%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E5%91%A8%E3%82%8A%E8%A8%AD%E5%AE%9A)  
 
 [How to Establish Remote Desktop Access to Ubuntu From Windows](#how-to-establish-remote-desktop-access-to-ubuntu-from-windows)  
+[Authentication error prevents log-in to 18.04 after upgrade from 16.04](#authentication-error-prevents-log-in-to-1804-after-upgrade-from-1604)  
 
 [Reference](#reference)
 
@@ -1267,6 +1268,11 @@ sudo systemctl enable xrdp
 ![alt tag](https://i.imgur.com/T83AcG5.jpg)  
 
 ## 3. Remote Access Using Virtual Network Computing  
+
+
+# Authentication error prevents log-in to 18.04 after upgrade from 16.04  
+[Authentication error prevents log-in to 18.04 after upgrade from 16.04 Mar 10, 2019](https://ubuntuforums.org/showthread.php?t=2414411)  
+[18.04 LTS - GNOME - Failed to start session December 10th, 2018](https://ubuntuforums.org/showthread.php?t=2407864)  
 
 
 
