@@ -1273,7 +1273,7 @@ sudo systemctl enable xrdp
 # Authentication error prevents log-in to 18.04 after upgrade from 16.04  
 [Authentication error prevents log-in to 18.04 after upgrade from 16.04 Mar 10, 2019](https://ubuntuforums.org/showthread.php?t=2414411)  
 [18.04 LTS - GNOME - Failed to start session December 10th, 2018](https://ubuntuforums.org/showthread.php?t=2407864)  
-
+[如何升级Ubuntu到18.04 LTS Bionic Beaver 2018-05-06](https://www.linuxidc.com/Linux/2018-05/152247.htm)  
 
 
 # Reference
