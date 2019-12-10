@@ -40,6 +40,10 @@ Take note of Ubuntu stuffs
 [How to Establish Remote Desktop Access to Ubuntu From Windows](#how-to-establish-remote-desktop-access-to-ubuntu-from-windows)  
 [Authentication error prevents log-in to 18.04 after upgrade from 16.04](#authentication-error-prevents-log-in-to-1804-after-upgrade-from-1604)  
 
+
+[Add and Manage User Accounts in Ubuntu 18.04 LTS](#add-and-manage-user-accounts-in-ubuntu-1804-lts)
+
+
 [Reference](#reference)
 
 # ubuntu 16.04 Networking Setting  
@@ -1274,6 +1278,44 @@ sudo systemctl enable xrdp
 [Authentication error prevents log-in to 18.04 after upgrade from 16.04 Mar 10, 2019](https://ubuntuforums.org/showthread.php?t=2414411)  
 [18.04 LTS - GNOME - Failed to start session December 10th, 2018](https://ubuntuforums.org/showthread.php?t=2407864)  
 [如何升级Ubuntu到18.04 LTS Bionic Beaver 2018-05-06](https://www.linuxidc.com/Linux/2018-05/152247.htm)  
+
+
+# Add and Manage User Accounts in Ubuntu 18.04 LTS  
+[Add and Manage User Accounts in Ubuntu 18.04 LTS Aug 20, 2018](https://vitux.com/add-and-manage-user-accounts-in-ubuntu-18-04-lts/)
+
+
+## Adding a User through the GUI  
+
+## Adding A User Through the Command Line  
+```
+1. Open the Terminal by pressing Ctrl+Alt+T or through the Ubuntu Dash.
+2. Enter the following command in order to add a new user:
+
+$ sudo adduser [username]
+```
+
+### Listing All Users
+```
+$ awk -F':' '$2 ~ "\$" {print $1}' /etc/shadow
+```
+
+### Locking/Unlocking User Accounts
+```
+$ sudo passwd -l username
+$ sudo passwd -u username
+```
+
+### Giving Root Privilege to a User  
+
+
+### Deleting a User Through the Command Line  
+```
+$ sudo deluser [username]
+```
+![alt tag](https://vitux.com/wp-content/uploads/2018/08/word-image-49.png)  
+
+
+
 
 
 # Reference
