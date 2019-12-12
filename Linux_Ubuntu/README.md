@@ -43,6 +43,7 @@ Take note of Ubuntu stuffs
 
 [Add and Manage User Accounts in Ubuntu 18.04 LTS](#add-and-manage-user-accounts-in-ubuntu-1804-lts)
 
+[Wifi is not working on my Dell E6400](#Wifi-is-not-working-on-my-dell-e6400)  
 
 [Reference](#reference)
 
@@ -1314,7 +1315,18 @@ $ sudo deluser [username]
 ```
 ![alt tag](https://vitux.com/wp-content/uploads/2018/08/word-image-49.png)  
 
+# Wifi is not working on my Dell E6400  
+[Wifi is not working on my Dell E6400 Apr 22, 2015](https://askubuntu.com/questions/215194/wifi-is-not-working-on-my-dell-e6400/215209)  
 
+```
+$ lspci | grep Network
+00:19.0 Ethernet controller: Intel Corporation 82567LM Gigabit Network Connection (rev 03)
+0c:00.0 Network controller: Intel Corporation Ultimate N WiFi Link 5300
+```
+
+[No wifi option on Ubuntu (18.04 and 16.04) May 20, 2018](https://askubuntu.com/questions/1038242/no-wifi-option-on-ubuntu-18-04-and-16-04)  
+
+[Intel Corporation Ultimate N WiFi Link 5300 ubuntu 10.10 Jan 12, 2011](https://ubuntuforums.org/showthread.php?t=1665066)  
 
 
 
