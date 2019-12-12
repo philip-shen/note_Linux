@@ -1328,6 +1328,9 @@ $ lspci | grep Network
 
 [Intel Corporation Ultimate N WiFi Link 5300 ubuntu 10.10 Jan 12, 2011](https://ubuntuforums.org/showthread.php?t=1665066)  
 
+[Wireless woes after Ubuntu 16 upgrade [SOLVED?]  (Read 13713 times) ](https://linuxforums.org.uk/index.php?topic=12928.0)  
+
+[network manager - Ubuntu 1510上のルーターへのIntel Centrino Wi-Fi high ping](https://tutorialmore.com/questions-296444.htm)  
 
 
 # Reference
