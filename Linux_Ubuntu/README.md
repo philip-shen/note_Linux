@@ -44,6 +44,8 @@ Take note of Ubuntu stuffs
 [Add and Manage User Accounts in Ubuntu 18.04 LTS](#add-and-manage-user-accounts-in-ubuntu-1804-lts)
 
 [Wifi is not working on my Dell E6400](#Wifi-is-not-working-on-my-dell-e6400)  
+[Lenovo Thinkpad X201i A22安裝Ubuntu Studio]()
+
 
 [Reference](#reference)
 
@@ -1331,6 +1333,14 @@ $ lspci | grep Network
 [Wireless woes after Ubuntu 16 upgrade [SOLVED?]  (Read 13713 times) ](https://linuxforums.org.uk/index.php?topic=12928.0)  
 
 [network manager - Ubuntu 1510上のルーターへのIntel Centrino Wi-Fi high ping](https://tutorialmore.com/questions-296444.htm)  
+
+
+# Lenovo Thinkpad X201i A22安裝Ubuntu Studio  
+[Lenovo Thinkpad X201i A22安裝Ubuntu Studio心得+初音鼓  Aug 20, 2010](https://magicdesign.blogspot.com/2010/08/lenova-thinkpad-x201i-a22ubuntu-studio.html)  
+
+[自製 Ubuntu 16.04.X/17.10/18.04.X/18.10 測試硬體安裝使用的 USB 隨身碟 Jul 27, 2018](https://fourdollars.blogspot.com/2018/07/ubuntu-1604x17101804x1810-usb.html)  
+[]()  
+
 
 
 # Reference
