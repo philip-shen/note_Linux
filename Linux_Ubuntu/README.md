@@ -44,6 +44,8 @@ Take note of Ubuntu stuffs
 [Add and Manage User Accounts in Ubuntu 18.04 LTS](#add-and-manage-user-accounts-in-ubuntu-1804-lts)
 
 [Wifi is not working on my Dell E6400](#Wifi-is-not-working-on-my-dell-e6400)  
+[Killer AX1650 in Debian/Ubuntu 16.04+](#killer-ax1650-in-debianubuntu-1604+)  
+
 [Lenovo Thinkpad X201i A22安裝Ubuntu Studio](#lenovo-thinkpad-x201i-a22%E5%AE%89%E8%A3%9Dubuntu-studio)
 
 
@@ -1318,6 +1320,88 @@ $ sudo deluser [username]
 ![alt tag](https://vitux.com/wp-content/uploads/2018/08/word-image-49.png)  
 
 # Wifi is not working on my Dell E6400  
+[Killer Wireless 1650 on Ubuntu 18.04 doesn't work Sep 9, 2019](https://askubuntu.com/questions/1172026/killer-wireless-1650-on-ubuntu-18-04-doesnt-work)  
+```
+1. Apparently it's important to turn off your secure boot before the following actions.
+
+2. To fix the No Wifi Adapter found, you need a Internet connection. 
+If you have an Ethernet port on your laptop it's good, else, 
+you have to use an adapter. Personnaly I used a USB-C to LAN adapter and it works.
+
+3. Once you have a connection, you can update and upgrade packages (Maybe not necessary, but always good) sudo apt update && sudo apt upgrade.
+```
+4. Execute all of the commands on [this article](https://support.killernetworking.com/knowledge-base/killer-ax1650-in-debian-ubuntu-16-04/) 
+```
+sudo apt-get install git
+sudo apt-get install build-essential
+
+git clone https://git.kernel.org/pub/scm/linux/kernel/git/iwlwifi/backport-iwlwifi.git
+cd backport-iwlwifi
+make defconfig-iwlwifi-public
+make -j4
+sudo make install
+
+sudo git clone git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
+cd linux-firmware
+sudo cp iwlwifi-* /lib/firmware/
+```
+
+5. Before reboot, execute this command to update initramfs  
+```
+sudo update-initramfs -u.  
+```
+6. Now you can reboot.
+
+# Killer AX1650 in Debian/Ubuntu 16.04+   
+[Killer AX1650 in Debian/Ubuntu 16.04+](https://support.killernetworking.com/knowledge-base/killer-ax1650-in-debian-ubuntu-16-04/)  
+```
+UPDATE: 2019/10/25
+There is a new method for getting an AX1650 WiFi adapter working on Debian/Ubuntu systems. 
+Run the following commands one by one and reboot your Computer. 
+If your AX1650 is still not detected/used you can scroll down and try the older Backport steps.
+```
+
+```
+$ sudo add-apt-repository ppa:canonical-hwe-team/backport-iwlwifi
+$ sudo apt-get update
+$ sudo apt-get install backport-iwlwifi-dkms
+$ reboot
+```
+![Imgur](https://i.imgur.com/5BOGtqr.jpg)  
+
+![Imgur](https://i.imgur.com/zDZpujg.jpg)  
+
+![Imgur](https://i.imgur.com/2IlJgGO.jpg)  
+
+
+[Ubuntu 18.04 Intel Wireless-AC 3165 unreachable Dec 26, 2018](https://askubuntu.com/questions/1104615/ubuntu-18-04-intel-wireless-ac-3165-unreachable)
+
+```
+Error msg:
+
+libkmod: ERROR ../libkmod/libkmod-config.c:656 kmod_config_parse: /etc/modprobe.d/iwlwifi.conf line 8: ignoring bad line starting with '“options'
+```
+
+```
+We see this in your wireless info:
+
+[/etc/modprobe.d/iwlwifi.conf]
+remove iwlwifi \
+(/sbin/lsmod | grep -o -e ^iwlmvm -e ^iwldvm -e ^iwlwifi | xargs /sbin/rmmod) \
+&& /sbin/modprobe -r mac80211
+“options iwlwifi disable_msix=1”
+
+The final line is mal-formed and must be removed:
+
+sudo nano /etc/modprobe.d/iwlwifi.conf
+
+Remove the final line:
+
+“options iwlwifi disable_msix=1”
+
+Save (Ctrl+o followed by Enter) and exit (Ctrl+x) the text editor.
+```
+
 [Wifi is not working on my Dell E6400 Apr 22, 2015](https://askubuntu.com/questions/215194/wifi-is-not-working-on-my-dell-e6400/215209)  
 
 ```
@@ -1326,36 +1410,9 @@ $ lspci | grep Network
 0c:00.0 Network controller: Intel Corporation Ultimate N WiFi Link 5300
 ```
 
+
 [No wifi option on Ubuntu (18.04 and 16.04) May 20, 2018](https://askubuntu.com/questions/1038242/no-wifi-option-on-ubuntu-18-04-and-16-04)  
-```
-sudo apt update
-sudo apt install build-essential git
-```
 
-```
-git clone https://git.kernel.org/pub/scm/linux/kernel/git/iwlwifi/backport-iwlwifi.git
-cd backport-iwlwifi
-sudo make
-sudo make install
-```
-
-The ‘make’ step takes a few moments; please be patient.
-Now, we’ll write a conf file:
-```
-sudo -i
-echo “options iwlwifi disable_msix=1”  >>  /etc/modprobe.d/iwlwifi.conf
-exit
-```
-
-Reboot and tell us if the wireless is now working.
-
-EDIT: You have compiled the driver for your currently running kernel version only. When Update Manager installs a newer kernel version, after the requested reboot, recompile:
-```
-cd backport-iwlwifi
-sudo make clean
-sudo make
-sudo make install
-```
 
 [No wi-fi adapter found - Ubuntu 18.04.2 LTS Apr 5, 2019](https://askubuntu.com/questions/1131326/no-wi-fi-adapter-found-ubuntu-18-04-2-lts)  
 
