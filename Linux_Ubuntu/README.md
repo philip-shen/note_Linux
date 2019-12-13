@@ -1357,6 +1357,7 @@ sudo make
 sudo make install
 ```
 
+[No wi-fi adapter found - Ubuntu 18.04.2 LTS Apr 5, 2019](https://askubuntu.com/questions/1131326/no-wi-fi-adapter-found-ubuntu-18-04-2-lts)  
 
 
 [Intel Corporation Ultimate N WiFi Link 5300 ubuntu 10.10 Jan 12, 2011](https://ubuntuforums.org/showthread.php?t=1665066)  
