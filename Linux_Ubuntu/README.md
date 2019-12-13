@@ -1327,6 +1327,37 @@ $ lspci | grep Network
 ```
 
 [No wifi option on Ubuntu (18.04 and 16.04) May 20, 2018](https://askubuntu.com/questions/1038242/no-wifi-option-on-ubuntu-18-04-and-16-04)  
+```
+sudo apt update
+sudo apt install build-essential git
+```
+
+```
+git clone https://git.kernel.org/pub/scm/linux/kernel/git/iwlwifi/backport-iwlwifi.git
+cd backport-iwlwifi
+sudo make
+sudo make install
+```
+
+The ‘make’ step takes a few moments; please be patient.
+Now, we’ll write a conf file:
+```
+sudo -i
+echo “options iwlwifi disable_msix=1”  >>  /etc/modprobe.d/iwlwifi.conf
+exit
+```
+
+Reboot and tell us if the wireless is now working.
+
+EDIT: You have compiled the driver for your currently running kernel version only. When Update Manager installs a newer kernel version, after the requested reboot, recompile:
+```
+cd backport-iwlwifi
+sudo make clean
+sudo make
+sudo make install
+```
+
+
 
 [Intel Corporation Ultimate N WiFi Link 5300 ubuntu 10.10 Jan 12, 2011](https://ubuntuforums.org/showthread.php?t=1665066)  
 
