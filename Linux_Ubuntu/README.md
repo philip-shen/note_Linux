@@ -1330,6 +1330,9 @@ $ lspci | grep Network
 
 [Intel Corporation Ultimate N WiFi Link 5300 ubuntu 10.10 Jan 12, 2011](https://ubuntuforums.org/showthread.php?t=1665066)  
 
+[Ubuntu 18.04: No WiFi adapter found - secure boot disabled Mar 20, 2019](https://askubuntu.com/questions/1127216/ubuntu-18-04-no-wifi-adapter-found-secure-boot-disabled)  
+
+
 [Wireless woes after Ubuntu 16 upgrade [SOLVED?]  (Read 13713 times) ](https://linuxforums.org.uk/index.php?topic=12928.0)  
 
 [network manager - Ubuntu 1510上のルーターへのIntel Centrino Wi-Fi high ping](https://tutorialmore.com/questions-296444.htm)  
@@ -1339,7 +1342,8 @@ $ lspci | grep Network
 [Lenovo Thinkpad X201i A22安裝Ubuntu Studio心得+初音鼓  Aug 20, 2010](https://magicdesign.blogspot.com/2010/08/lenova-thinkpad-x201i-a22ubuntu-studio.html)  
 
 [自製 Ubuntu 16.04.X/17.10/18.04.X/18.10 測試硬體安裝使用的 USB 隨身碟 Jul 27, 2018](https://fourdollars.blogspot.com/2018/07/ubuntu-1604x17101804x1810-usb.html)  
-[]()  
+
+[Ubuntu日本語フォーラム / ThinkPad X201iでwifiで通信ができない。Apr 6, 2012](https://forums.ubuntulinux.jp/viewtopic.php?id=13267)  
 
 
 
