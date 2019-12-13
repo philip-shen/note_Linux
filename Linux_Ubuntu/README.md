@@ -44,7 +44,7 @@ Take note of Ubuntu stuffs
 [Add and Manage User Accounts in Ubuntu 18.04 LTS](#add-and-manage-user-accounts-in-ubuntu-1804-lts)
 
 [Wifi is not working on my Dell E6400](#Wifi-is-not-working-on-my-dell-e6400)  
-[Lenovo Thinkpad X201i A22安裝Ubuntu Studio]()
+[Lenovo Thinkpad X201i A22安裝Ubuntu Studio](#lenovo-thinkpad-x201i-a22%E5%AE%89%E8%A3%9Dubuntu-studio)
 
 
 [Reference](#reference)
