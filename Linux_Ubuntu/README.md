@@ -48,7 +48,10 @@ Take note of Ubuntu stuffs
 
 [Lenovo Thinkpad X201i A22安裝Ubuntu Studio](#lenovo-thinkpad-x201i-a22%E5%AE%89%E8%A3%9Dubuntu-studio)
 
-[linux ubuntu 18.04安裝心得]()
+[linux ubuntu 18.04安裝心得](#linux-ubuntu-1804%E5%AE%89%E8%A3%9D%E5%BF%83%E5%BE%97)
+[1．Win10 and Ubuntu 雙系統安裝筆記](#1win10-and-ubuntu-%E9%9B%99%E7%B3%BB%E7%B5%B1%E5%AE%89%E8%A3%9D%E7%AD%86%E8%A8%98)  
+[2. acpi_osi=linux、 nomodeset是什麼意思? 功能?](#2-acpi_osilinux-nomodeset%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D-%E5%8A%9F%E8%83%BD)  
+[3. ubuntu 18.04實際安裝 簡略步驟](#3-ubuntu-1804%E5%AF%A6%E9%9A%9B%E5%AE%89%E8%A3%9D-%E7%B0%A1%E7%95%A5%E6%AD%A5%E9%A9%9F)  
 
 
 [Reference](#reference)
@@ -1475,7 +1478,7 @@ EFI firmware → EFI system partition（FAT32 檔案系統，裡面放一個Boot
 ## 2. acpi_osi=linux、 nomodeset是什麼意思? 功能?  
 [2. acpi_osi=linux、 nomodeset是什麼意思? 功能? Jun 4, 2018](https://medium.com/caesars-study-review-on-web-development/acpi-osi-linux-nomodeset%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D-%E5%8A%9F%E8%83%BD-42d8e2c444c3)
 
-## ubuntu 18.04實際安裝 簡略步驟
+## 3. ubuntu 18.04實際安裝 簡略步驟
 [3. ubuntu 18.04實際安裝 簡略步驟 nvidia 顯卡驅動安裝 Jun 10, 2018](https://medium.com/caesars-study-review-on-web-development/ubuntu-18-04%E5%AF%A6%E9%9A%9B%E5%AE%89%E8%A3%9D-%E7%B0%A1%E7%95%A5%E6%AD%A5%E9%A9%9F-b023f61436bf)
 
 
