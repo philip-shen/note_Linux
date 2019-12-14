@@ -48,6 +48,8 @@ Take note of Ubuntu stuffs
 
 [Lenovo Thinkpad X201i A22安裝Ubuntu Studio](#lenovo-thinkpad-x201i-a22%E5%AE%89%E8%A3%9Dubuntu-studio)
 
+[linux ubuntu 18.04安裝心得]()
+
 
 [Reference](#reference)
 
@@ -1434,6 +1436,47 @@ $ lspci | grep Network
 
 [Ubuntu日本語フォーラム / ThinkPad X201iでwifiで通信ができない。Apr 6, 2012](https://forums.ubuntulinux.jp/viewtopic.php?id=13267)  
 
+# linux ubuntu 18.04安裝心得  
+
+## 1．Win10 and Ubuntu 雙系統安裝筆記  
+[1．Win10 and Ubuntu 雙系統安裝筆記 Jun 1, 2018](https://medium.com/caesars-study-review-on-web-development/win10-and-ubuntu-%E9%9B%99%E7%B3%BB%E7%B5%B1%E5%AE%89%E8%A3%9D%E7%AD%86%E8%A8%98-bc824bef7fb4)  
+
+```
+2016年以後出廠的主機板大多為UEFI的開啟模式，所以要安裝雙系統的話，你的Live USB安裝程式，
+要選擇GPT and UEFI的形式來安裝，不要與傳統boot(Legacy)的安裝方式混淆，
+建議還是查清楚自己的磁碟分割是什麼形式GPT 還是 MBR，再來尋找網路上安裝ubuntu的資料。
+```
+
+```
+可能遇到的困難，但是我沒遇到，做個紀錄，避免以後遇到
+
+1. 獨立顯卡問題 
+
+2. 硬碟的順序不是固定
+
+3. 在 Windows 10 进行了一个大更新后，会发现 GRUB 引导界面没有了
+```
+
+```
+EFI的開機跟傳統MBR碟開機的不同
+
+BIOS → 硬碟啟動磁區（會放個 GRUB loader）
+→ GRUB → 載入 Linux kernel 跟 initrd 
+→ 掛載主硬碟分割做根目錄 → init。
+
+EFI+GPT 開機：
+EFI firmware → EFI system partition（FAT32 檔案系統，裡面放一個BootX64.efi）
+→ bootloader（GRUB 或 systemd-boot 自己選一個）
+→ 載入 Linux kernel 跟 initrd 
+→ 掛載主硬碟分割做根目錄 → init。
+```
+[Ref: 臉書Ubuntu 正體中文社團， 宋岡哲 提供](https://www.facebook.com/groups/ubuntu.zh.hant/permalink/2062444210477557/)  
+
+## 2. acpi_osi=linux、 nomodeset是什麼意思? 功能?  
+[2. acpi_osi=linux、 nomodeset是什麼意思? 功能? Jun 4, 2018](https://medium.com/caesars-study-review-on-web-development/acpi-osi-linux-nomodeset%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D-%E5%8A%9F%E8%83%BD-42d8e2c444c3)
+
+## ubuntu 18.04實際安裝 簡略步驟
+[3. ubuntu 18.04實際安裝 簡略步驟 nvidia 顯卡驅動安裝 Jun 10, 2018](https://medium.com/caesars-study-review-on-web-development/ubuntu-18-04%E5%AF%A6%E9%9A%9B%E5%AE%89%E8%A3%9D-%E7%B0%A1%E7%95%A5%E6%AD%A5%E9%A9%9F-b023f61436bf)
 
 
 # Reference
