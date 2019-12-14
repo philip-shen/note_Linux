@@ -53,7 +53,8 @@ Take note of Ubuntu stuffs
 [2. acpi_osi=linux、 nomodeset是什麼意思? 功能?](#2-acpi_osilinux-nomodeset%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D-%E5%8A%9F%E8%83%BD)  
 [3. ubuntu 18.04實際安裝 簡略步驟](#3-ubuntu-1804%E5%AF%A6%E9%9A%9B%E5%AE%89%E8%A3%9D-%E7%B0%A1%E7%95%A5%E6%AD%A5%E9%A9%9F)  
 
-[How to Upgrade To Ubuntu 18.04 From Ubuntu 16.04/Ubuntu 17.10](#how-to-upgrade-to-ubuntu-1804-from-ubuntu-1604-ubuntu-1710)
+[How to Upgrade To Ubuntu 18.04 From Ubuntu 16.04/Ubuntu 17.10](#how-to-upgrade-to-ubuntu-1804-from-ubuntu-1604ubuntu-1710)   
+
 
 [Reference](#reference)
 
