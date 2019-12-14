@@ -53,6 +53,7 @@ Take note of Ubuntu stuffs
 [2. acpi_osi=linux、 nomodeset是什麼意思? 功能?](#2-acpi_osilinux-nomodeset%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D-%E5%8A%9F%E8%83%BD)  
 [3. ubuntu 18.04實際安裝 簡略步驟](#3-ubuntu-1804%E5%AF%A6%E9%9A%9B%E5%AE%89%E8%A3%9D-%E7%B0%A1%E7%95%A5%E6%AD%A5%E9%A9%9F)  
 
+[How to Upgrade To Ubuntu 18.04 From Ubuntu 16.04/Ubuntu 17.10](#how-to-upgrade-to-ubuntu-1804-from-ubuntu-1604-ubuntu-1710)
 
 [Reference](#reference)
 
@@ -1451,6 +1452,44 @@ $ lspci | grep Network
 ```
 
 ```
+在實際安裝後，我對於上述參考所說的，不需要關閉secure boot有其他看法，
+雖然安裝純粹的Ubuntu不需要關閉，但若是安裝一些第三方的驅動程式，
+你還是要關閉secure boot才可以安裝驅動到Ubuntu中
+
+第三方的驅動程式，可能是你的WIFI卡，各家廠牌的顯卡，普遍這些廠商沒有經過Linux的測試，
+只能靠第三方的驅動程式來讓它們運行
+
+目前正在被nvidia的顯卡，搞得很痛苦，18.04 系統各種運作不正常QQ
+```
+
+```
+製作Live Usb，我選擇 Ubuntu官方主推的工具Rufus，使用方式很容易，記得資料分割配置選GPT，
+檔案系統選FAT32格式， UEFI只認FAT32格式，所以製作USB開機碟不可選擇NTFS
+
+若你的主機板是傳統bios開機，資料分割配置才選MBR
+
+如果你是選擇UEFI的方式安裝，直接解壓縮Ubuntu.ISO的檔案也可以，解壓縮後可以發現有EFI資料夾
+```
+[Rufus Create bootable USB drives the easy way](https://rufus.ie/)  
+
+```
+若安裝在不同硬碟 ，基本上可以看成安裝單一系統，磁區切割為以下方式，順便 區分UEFI and Legacy BIOS System的磁區切割方式
+
+    UEFI System:
+    EFI – 500MB
+    swap – 4098MB (2*RAM)
+    / – Remaining (95GB)
+
+    Legacy BIOS:
+    /boot – 500MB
+    swap – 4098MB (2*RAM)
+    / – Remaining (95GB)
+```
+[How to Install Ubuntu 18.04 LTS (Bionic Beaver) on UEFI and Legacy BIOS System Jul 12, 2018](https://www.itzgeek.com/how-tos/linux/ubuntu-how-tos/how-to-install-ubuntu-18-04-lts-bionic-beaver-on-uefi-and-legacy-bios-system.html?source=post_page-----bc824bef7fb4----------------------)  
+
+
+
+```
 可能遇到的困難，但是我沒遇到，做個紀錄，避免以後遇到
 
 1. 獨立顯卡問題 
@@ -1480,6 +1519,10 @@ EFI firmware → EFI system partition（FAT32 檔案系統，裡面放一個Boot
 
 ## 3. ubuntu 18.04實際安裝 簡略步驟
 [3. ubuntu 18.04實際安裝 簡略步驟 nvidia 顯卡驅動安裝 Jun 10, 2018](https://medium.com/caesars-study-review-on-web-development/ubuntu-18-04%E5%AF%A6%E9%9A%9B%E5%AE%89%E8%A3%9D-%E7%B0%A1%E7%95%A5%E6%AD%A5%E9%A9%9F-b023f61436bf)
+
+# How to Upgrade To Ubuntu 18.04 From Ubuntu 16.04/Ubuntu 17.10
+[How to Upgrade To Ubuntu 18.04 From Ubuntu 16.04 / Ubuntu 17.10 [Detailed Guide] Apr 27, 2018](https://www.itzgeek.com/how-tos/linux/ubuntu-how-tos/how-to-upgrade-to-ubuntu-18-04-from-ubuntu-16-04-ubuntu-17-10-detailed-guide.html)  
+
 
 
 # Reference
