@@ -55,7 +55,7 @@ Take note of Ubuntu stuffs
 
 [How to Upgrade To Ubuntu 18.04 From Ubuntu 16.04/Ubuntu 17.10](#how-to-upgrade-to-ubuntu-1804-from-ubuntu-1604ubuntu-1710)   
 
-[Ubuntu 18.04 remote desktop with xrdp TroubleShooting](#ubuntu-1804-remote-desktop-with-xrdp-troubleshooting)
+[Ubuntu 18.04 remote desktop with xrdp TroubleShooting](#ubuntu-1804-remote-desktop-with-xrdp-troubleshooting)  
 [1.パッケージのインストール](#1%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)  
 [2.新カーソルの無効化](#2%E6%96%B0%E3%82%AB%E3%83%BC%E3%82%BD%E3%83%AB%E3%81%AE%E7%84%A1%E5%8A%B9%E5%8C%96)  
 [3.~/.xsessionrcの作成](#3xsessionrc%E3%81%AE%E4%BD%9C%E6%88%90)  
