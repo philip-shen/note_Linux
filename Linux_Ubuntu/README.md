@@ -57,6 +57,7 @@ Take note of Ubuntu stuffs
 
 [Ubuntu 18.04 XRDP Remote Desktop Config & Problem](#ubuntu-1804-xrdp-remote-desktop-config-&-problem)  
 [Ubuntu 18.04 remote desktop with xrdp](#ubuntu-1804-remote-desktop-with-xrdp)  
+[Ubuntu 18.04 remote desktop with xrdp TroubleShooting](#ubuntu-1804-remote-desktop-with-xrdp-troubleshooting)
 
 [Reference](#reference)
 
@@ -1598,6 +1599,11 @@ ResultActive=yes
 16.04可以用的方法    
 [Install XRDP on Ubuntu Server with XFCE Template](https://www.interserver.net/tips/kb/install-xrdp-ubuntu-server-xfce-template/)  
 server版本是可以連拉，只是中文都亂碼... 
+
+# Ubuntu 18.04 remote desktop with xrdp TroubleShooting   
+[ubuntu18.04でのxrdpトラブル対応 　と　リモートデスクトップ設定 Nov 06, 2019](https://qiita.com/underwell111/items/c0069a4d39d3694e1d4a)  
+[Ubuntu Linux 18.04.1 再インストール手順 May 06, 2019](https://qiita.com/tfukumori/items/cbcd4d961d1740fca69d)  
+
 
 # Reference
 * [[ubuntu]關閉ipv6，增進網路效能 Sep 16 Wed 2009](https://liuchiu.pixnet.net/blog/post/25080360-%5Bubuntu%5D%E9%97%9C%E9%96%89ipv6%EF%BC%8C%E5%A2%9E%E9%80%B2%E7%B6%B2%E8%B7%AF%E6%95%88%E8%83%BD)  
