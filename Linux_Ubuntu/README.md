@@ -56,6 +56,7 @@ Take note of Ubuntu stuffs
 [How to Upgrade To Ubuntu 18.04 From Ubuntu 16.04/Ubuntu 17.10](#how-to-upgrade-to-ubuntu-1804-from-ubuntu-1604ubuntu-1710)   
 
 [Ubuntu 18.04 XRDP Remote Desktop Config & Problem](#ubuntu-1804-xrdp-remote-desktop-config-&-problem)  
+[Ubuntu 18.04 remote desktop with xrdp](#ubuntu-1804-remote-desktop-with-xrdp)  
 
 [Reference](#reference)
 
@@ -1581,6 +1582,7 @@ ResultInactice=no
 ResultActive=yes
 ```
 
+# Ubuntu 18.04 remote desktop with xrdp  
 [ubuntu 18.04 remote desktop with xrdp Mar 12, 2019](http://lookers-on.blogspot.com/2019/03/ubuntu-1804-remote-desktop-with-xrdp.html)  
 ```
 本來16.04可以用的方法到18.04就不能用了，
