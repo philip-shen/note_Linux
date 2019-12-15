@@ -55,9 +55,17 @@ Take note of Ubuntu stuffs
 
 [How to Upgrade To Ubuntu 18.04 From Ubuntu 16.04/Ubuntu 17.10](#how-to-upgrade-to-ubuntu-1804-from-ubuntu-1604ubuntu-1710)   
 
+[Ubuntu 18.04 remote desktop with xrdp TroubleShooting](#ubuntu-1804-remote-desktop-with-xrdp-troubleshooting)
+[]()  
+[]()  
+[]()  
+[]()  
+[]()  
+[]()  
+
+
 [Ubuntu 18.04 XRDP Remote Desktop Config & Problem](#ubuntu-1804-xrdp-remote-desktop-config-&-problem)  
 [Ubuntu 18.04 remote desktop with xrdp](#ubuntu-1804-remote-desktop-with-xrdp)  
-[Ubuntu 18.04 remote desktop with xrdp TroubleShooting](#ubuntu-1804-remote-desktop-with-xrdp-troubleshooting)
 
 [Reference](#reference)
 
@@ -1528,6 +1536,65 @@ EFI firmware → EFI system partition（FAT32 檔案系統，裡面放一個Boot
 [How to Upgrade To Ubuntu 18.04 From Ubuntu 16.04 / Ubuntu 17.10 [Detailed Guide] Apr 27, 2018](https://www.itzgeek.com/how-tos/linux/ubuntu-how-tos/how-to-upgrade-to-ubuntu-18-04-from-ubuntu-16-04-ubuntu-17-10-detailed-guide.html)  
 
 
+# Ubuntu 18.04 remote desktop with xrdp TroubleShooting   
+[ubuntu18.04でのxrdpトラブル対応 　と　リモートデスクトップ設定 Nov 06, 2019](https://qiita.com/underwell111/items/c0069a4d39d3694e1d4a)  
+## 1.パッケージのインストール  
+```
+sudo apt-get -y install xserver-xorg-core xorgxrdp xrdp　（xrdpだけではダメ）
+sudo apt-get -y install xserver-xorg-input-all　(これがマウス・キーボード対策)
+```
+![alt tag](https://i.imgur.com/3OvC01A.jpg)  
+
+# 2.新カーソルの無効化  
+```
+sudo sed -e 's/^new_cursors=true/new_cursors=false/g' -i /etc/xrdp/xrdp.ini
+sudo systemctl restart xrdp
+```
+![alt tag](https://i.imgur.com/xhsCXx5.jpg)  
+![alt tag](https://i.imgur.com/Yt5Q7mc.jpg)  
+
+# 3.~/.xsessionrcの作成  
+```
+$ D=/usr/share/ubuntu:/usr/local/share:/usr/share:/var/lib/snapd/desktop
+$ cat <<EOF > ~/.xsessionrc
+export GNOME_SHELL_SESSION_MODE=ubuntu
+export XDG_CURRENT_DESKTOP=ubuntu:GNOME
+export XDG_DATA_DIRS=${D}
+export XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg
+EOF
+```
+[Imgur](https://i.imgur.com/kKBHhEv.jpg)  
+
+# 4.「カラープロファイルを作成するには認証が必要です」の回避  
+sudo vim　で作成するのが良い  
+/etc/polkit-1/localauthority.conf.d/02-allow-colord.conf  
+```
+polkit.addRule(function(action, subject) {
+   if ((action.id == "org.freedesktop.color-manager.create-device" ||
+        action.id == "org.freedesktop.color-manager.create-profile" ||
+        action.id == "org.freedesktop.color-manager.delete-device" ||
+        action.id == "org.freedesktop.color-manager.delete-profile" ||
+        action.id == "org.freedesktop.color-manager.modify-device" ||
+        action.id == "org.freedesktop.color-manager.modify-profile") &&
+       subject.isInGroup("**")) {
+      return polkit.Result.YES;
+   }
+});
+```
+[Imgur](https://i.imgur.com/LrADijr.jpg)  
+
+# 5. Enjoy  
+[Imgur](https://i.imgur.com/tqEvymQ.jpg)  
+
+# 参考サイト  
+[Ubuntu 18.04: GNOMEデスクトップ環境にXRDPで接続する 4/28  2018](https://www.hiroom2.com/2018/04/28/ubuntu-1804-xrdp-gnome-ja/)  
+[Ubuntu18.04.2にxrdpをインストールしてもRDP経由のログインでエラーになる事象のメモ 2019.03.12](https://note.spage.jp/archives/576)  
+[xRDP からログインした時の「カラープロファイルを作成するには認証が必要です」ダイアログを消す](http://aimingoff.way-nifty.com/blog/2017/06/xrdp-4be6.html) 
+
+
+[Ubuntu Linux 18.04.1 再インストール手順 May 06, 2019](https://qiita.com/tfukumori/items/cbcd4d961d1740fca69d)  
+
+
 # Ubuntu 18.04 XRDP Remote Desktop Config & Problem  
 [[Linux] Ubuntu 18.04 XRDP Remote Desktop Config & Problem Aug 2, 2018](https://www.azureunali.com/linux-ubuntu-18-04-xrdp-remote-desktop-config-problem/)  
 
@@ -1600,9 +1667,6 @@ ResultActive=yes
 [Install XRDP on Ubuntu Server with XFCE Template](https://www.interserver.net/tips/kb/install-xrdp-ubuntu-server-xfce-template/)  
 server版本是可以連拉，只是中文都亂碼... 
 
-# Ubuntu 18.04 remote desktop with xrdp TroubleShooting   
-[ubuntu18.04でのxrdpトラブル対応 　と　リモートデスクトップ設定 Nov 06, 2019](https://qiita.com/underwell111/items/c0069a4d39d3694e1d4a)  
-[Ubuntu Linux 18.04.1 再インストール手順 May 06, 2019](https://qiita.com/tfukumori/items/cbcd4d961d1740fca69d)  
 
 
 # Reference
