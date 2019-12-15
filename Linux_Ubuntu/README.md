@@ -55,6 +55,7 @@ Take note of Ubuntu stuffs
 
 [How to Upgrade To Ubuntu 18.04 From Ubuntu 16.04/Ubuntu 17.10](#how-to-upgrade-to-ubuntu-1804-from-ubuntu-1604ubuntu-1710)   
 
+[Ubuntu 18.04 XRDP Remote Desktop Config & Problem](#ubuntu-1804-xrdp-remote-desktop-config-&-problem)  
 
 [Reference](#reference)
 
@@ -1525,6 +1526,76 @@ EFI firmware → EFI system partition（FAT32 檔案系統，裡面放一個Boot
 [How to Upgrade To Ubuntu 18.04 From Ubuntu 16.04 / Ubuntu 17.10 [Detailed Guide] Apr 27, 2018](https://www.itzgeek.com/how-tos/linux/ubuntu-how-tos/how-to-upgrade-to-ubuntu-18-04-from-ubuntu-16-04-ubuntu-17-10-detailed-guide.html)  
 
 
+# Ubuntu 18.04 XRDP Remote Desktop Config & Problem  
+[[Linux] Ubuntu 18.04 XRDP Remote Desktop Config & Problem Aug 2, 2018](https://www.azureunali.com/linux-ubuntu-18-04-xrdp-remote-desktop-config-problem/)  
+
+## 無法轉入登入畫面的問題 ( Xwrapper Problem )  
+(1) 輸入完帳號密碼，卻無法轉入桌面模式，變成一片青綠色卡住不動，最後跳出connection error
+```
+vim /etc/X11/Xwrapper.config
+allowed_users=console
+ 
+# Change to
+allowed_users=anybody
+ 
+# You will need to logout or restart PC, after you change the service's config. 
+```
+![alt tag](https://www.azureunali.com/wp-content/uploads/2018/08/U18XRDP_007.png)  
+
+## 沒有Gnome桌面圖示的排除方法 ( No Gnome Icon or Env Problem )  
+(2) 沒有Gnome的基本圖示
+
+![alt tag](https://www.azureunali.com/wp-content/uploads/2018/08/U18XRDP_003.png)  
+![alt tag](https://www.azureunali.com/wp-content/uploads/2018/08/U18XRDP_004.png)  
+
+解決方法是在想要登入的帳號家目錄底下增加，.xsessionrc的檔案  
+```	
+vim ~/.xsessionrc
+xrDp=/usr/share/ubuntu:/usr/local/share:/usr/share:/var/lib/snapd/desktop
+export GNOME_SHELL_SESSION_MODE=ubuntu
+export XDG_CURRENT_DESKTOP=ubuntu:GNOME
+export XDG_DATA_DIRS=${xrDp}
+export XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg
+```
+![alt tag](https://www.azureunali.com/wp-content/uploads/2018/08/U18XRDP_005.png)  
+![alt tag](https://www.azureunali.com/wp-content/uploads/2018/08/U18XRDP_006.png)  
+
+## 跳出授權警告視窗 ( Authentication Required to Create Managed Color Device Problem )  
+(3) 跳出授權的警告視窗
+跳出的授權警告是因為Polkit的管制造成的，Polkit是用來管理桌面應用程式權限的服務，
+目前在xrdp的部分當跳出授權視窗後你輸入了2次密碼( Enter Password twice )，
+遠端桌面連線會直接斷線( connection off )，所以不在意的人可以直接選擇取消( Cancel)，反而就能登入桌面環境  
+
+![alt tag](https://www.azureunali.com/wp-content/uploads/2018/08/U18XRDP_001.png)  
+![alt tag](https://www.azureunali.com/wp-content/uploads/2018/08/U18XRDP_002.png)  
+
+而會在意這個問題的人，請依照下面的方法把Polkit對xrdp的權限關閉，就可以讓授權警告視窗不會在跳出來了，  
+```	
+vim /etc/polkit-1/localauthority/50-local.d/45-allow.colord.pkla
+ 
+[Allow Colord all Users]
+Identity=unix-user:*
+Action=org.freedesktop.color-manager.create-device;org.freedesktop.color-manager.create-profile;org.freedesktop.color-manager.delete-device;org.freedesktop.color-manager.delete-profile;org.freedesktop.color-manager.modify-device;org.freedesktop.color-manager.modify-profile
+ResultAny=no
+ResultInactice=no
+ResultActive=yes
+```
+
+[ubuntu 18.04 remote desktop with xrdp Mar 12, 2019](http://lookers-on.blogspot.com/2019/03/ubuntu-1804-remote-desktop-with-xrdp.html)  
+```
+本來16.04可以用的方法到18.04就不能用了，
+試了一堆ubuntu分支(Kubuntu、Xubuntu)也沒辦法直接用xrdp連線，
+最後找到人家寫好了script按下去，能連了...
+不過會變成本地端的桌面登入後有些問題(沒有反應?)
+就再灌個xfce4解決(跟16.04反過來了XD)
+另外多灌一個桌面也可以兩個相同帳號同時登入就是。
+```
+[xRDP – Custom Installation Script for Ubuntu 18.10 – version 2.2](http://c-nergy.be/blog/?p=12894)  
+寫好的腳本直接裝就好  
+[使用xrdp实现windows 远程桌面 ubuntu linux](https://blog.csdn.net/daniel_ustc/article/details/16845327)  
+16.04可以用的方法    
+[Install XRDP on Ubuntu Server with XFCE Template](https://www.interserver.net/tips/kb/install-xrdp-ubuntu-server-xfce-template/)  
+server版本是可以連拉，只是中文都亂碼... 
 
 # Reference
 * [[ubuntu]關閉ipv6，增進網路效能 Sep 16 Wed 2009](https://liuchiu.pixnet.net/blog/post/25080360-%5Bubuntu%5D%E9%97%9C%E9%96%89ipv6%EF%BC%8C%E5%A2%9E%E9%80%B2%E7%B6%B2%E8%B7%AF%E6%95%88%E8%83%BD)  
