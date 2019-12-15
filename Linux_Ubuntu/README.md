@@ -56,12 +56,12 @@ Take note of Ubuntu stuffs
 [How to Upgrade To Ubuntu 18.04 From Ubuntu 16.04/Ubuntu 17.10](#how-to-upgrade-to-ubuntu-1804-from-ubuntu-1604ubuntu-1710)   
 
 [Ubuntu 18.04 remote desktop with xrdp TroubleShooting](#ubuntu-1804-remote-desktop-with-xrdp-troubleshooting)
-[]()  
-[]()  
-[]()  
-[]()  
-[]()  
-[]()  
+[1.パッケージのインストール](#1%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)  
+[2.新カーソルの無効化](#2%E6%96%B0%E3%82%AB%E3%83%BC%E3%82%BD%E3%83%AB%E3%81%AE%E7%84%A1%E5%8A%B9%E5%8C%96)  
+[3.~/.xsessionrcの作成](#3xsessionrc%E3%81%AE%E4%BD%9C%E6%88%90)  
+[4.「カラープロファイルを作成するには認証が必要です」の回避](#4%E3%82%AB%E3%83%A9%E3%83%BC%E3%83%97%E3%83%AD%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF%E8%AA%8D%E8%A8%BC%E3%81%8C%E5%BF%85%E8%A6%81%E3%81%A7%E3%81%99%E3%81%AE%E5%9B%9E%E9%81%BF)  
+[5. Enjoy](#5-enjoy)  
+[参考サイト](#%E5%8F%82%E8%80%83%E3%82%B5%E3%82%A4%E3%83%88)  
 
 
 [Ubuntu 18.04 XRDP Remote Desktop Config & Problem](#ubuntu-1804-xrdp-remote-desktop-config-&-problem)  
@@ -1563,7 +1563,7 @@ export XDG_DATA_DIRS=${D}
 export XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg
 EOF
 ```
-[Imgur](https://i.imgur.com/kKBHhEv.jpg)  
+![alt tag](https://i.imgur.com/kKBHhEv.jpg)  
 
 # 4.「カラープロファイルを作成するには認証が必要です」の回避  
 sudo vim　で作成するのが良い  
@@ -1581,10 +1581,10 @@ polkit.addRule(function(action, subject) {
    }
 });
 ```
-[Imgur](https://i.imgur.com/LrADijr.jpg)  
+![alt tag](https://i.imgur.com/LrADijr.jpg)  
 
 # 5. Enjoy  
-[Imgur](https://i.imgur.com/tqEvymQ.jpg)  
+![alt tag](https://i.imgur.com/tqEvymQ.jpg)  
 
 # 参考サイト  
 [Ubuntu 18.04: GNOMEデスクトップ環境にXRDPで接続する 4/28  2018](https://www.hiroom2.com/2018/04/28/ubuntu-1804-xrdp-gnome-ja/)  
