@@ -895,7 +895,9 @@ snap abort --last=seed
 
 sudo systemctl restart snapd
 
-Keep running snap tasks --last=seed to see the progress of the snap tasks and wait for all the tasks to be "Done"
+Keep running 
+snap tasks --last=seed 
+to see the progress of the snap tasks and wait for all the tasks to be "Done"
 ```
 
 ## 3. Manually install any apps that you removed from /var/lib/snapd/seed/seed.yaml, they might include:  
