@@ -69,7 +69,10 @@ Take note of Ubuntu stuffs
 [Ubuntu 18.04 XRDP Remote Desktop Config & Problem](#ubuntu-1804-xrdp-remote-desktop-config-&-problem)  
 [Ubuntu 18.04 remote desktop with xrdp](#ubuntu-1804-remote-desktop-with-xrdp)  
 
-[Fix ‘E: Could not get lock /var/lib/dpkg/lock’ Error in Ubuntu [Quick Tip]](#)
+[Fix ‘E: Could not get lock /var/lib/dpkg/lock’ Error in Ubuntu [Quick Tip]](#fix-e-could-not-get-lock-varlibdpkglock-error-in-ubuntu-quick-tip)
+
+[Array-30(行列30) Input Method Installation]()  
+
 
 [Reference](#reference)
 
@@ -1701,6 +1704,47 @@ server版本是可以連拉，只是中文都亂碼...
 
 # Fix ‘E: Could not get lock /var/lib/dpkg/lock’ Error in Ubuntu [Quick Tip]  
 [Fix ‘E: Could not get lock /var/lib/dpkg/lock’ Error in Ubuntu [Quick Tip] Dec 20, 2019](https://itsfoss.com/could-not-get-lock-error/)  
+
+
+# Array-30(行列30) Input Method Installation  
+[Ubuntu 12.04 安裝行列30輸入法 7th July 2012](http://dodgelin.blogspot.com/2012/07/ubuntu-1204-30.html)  
+```
+ 在命令列視窗中輸入
+sudo apt-get install ibus-array
+Enter 執行後會要求使用者輸入密碼確認 sudo
+```
+
+```
+有網際網路的狀況下，系統會自動從網路應用程式套件庫中，下載安裝所需程式。
+執行完畢 之後會回到命令列提示之下
+
+再度登入桌面之後，點選Dash主目錄，輸入ibus，點擊執行下方的鍵盤輸入法
+```
+
+[ubuntu 18.04 使用fcitx 取代ibus 2018年5月7日](http://t301000.blogspot.com/2018/05/ubuntu-1804-fcitx-ibus.html)  
+```
+方法 1：
+強迫 ibus 不執行
+sudo mv /usr/bin/ibus-daemon /usr/bin/ibus-daemon.bak
+kill 掉 ibus-daemon 或重開機
+```
+
+```
+方法 2：
+移除 ibus
+sudo apt remove ibus
+```
+
+```
+方法 2 會在打開語言支援時要求將 ibus 裝回，所以方法 1 似乎是比較好的選擇
+
+安裝 fcitx 與新酷音：
+sudo apt install fcitx fcitx-chewing
+
+將  語言支援  中的  鍵盤輸入法系統  選擇 fcitx
+```
+sublime text 修正檔下載：  
+[不專業網管筆記: ubuntu 下解決 Sublime Text 3 無法輸入中文的問題](http://t301000.blogspot.com/2014/04/ubuntu-sublime-text-3_30.html)  
 
 
 # Reference
