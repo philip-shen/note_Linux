@@ -71,7 +71,7 @@ Take note of Ubuntu stuffs
 
 [Fix ‘E: Could not get lock /var/lib/dpkg/lock’ Error in Ubuntu [Quick Tip]](#fix-e-could-not-get-lock-varlibdpkglock-error-in-ubuntu-quick-tip)
 
-[Array-30(行列30) Input Method Installation]()  
+[Array-30(行列30) Input Method Installation](sd#array-30%E8%A1%8C%E5%88%9730-input-method-installation)  
 
 
 [Reference](#reference)
