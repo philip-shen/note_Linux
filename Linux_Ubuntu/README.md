@@ -34,6 +34,8 @@ Take note of Ubuntu stuffs
 [IPv4-UDP](#ipv4-udp)  
 [IPv6-RTP](#ipv6-rtp)  
 
+[WiFi Connection Command](#wifi-connection-command)  
+
 [Upgrade Ubuntu 18.04 from 16.04](#upgrade-ubuntu-1804-from-1604)  
 [ubuntu18.04のネットワーク周り設定](#ubuntu1804%E3%81%AE%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E5%91%A8%E3%82%8A%E8%A8%AD%E5%AE%9A)  
 
@@ -66,6 +68,8 @@ Take note of Ubuntu stuffs
 
 [Ubuntu 18.04 XRDP Remote Desktop Config & Problem](#ubuntu-1804-xrdp-remote-desktop-config-&-problem)  
 [Ubuntu 18.04 remote desktop with xrdp](#ubuntu-1804-remote-desktop-with-xrdp)  
+
+[Fix ‘E: Could not get lock /var/lib/dpkg/lock’ Error in Ubuntu [Quick Tip]](#)
 
 [Reference](#reference)
 
@@ -1012,6 +1016,32 @@ udp://@192.168.6.106:1234
 ## IPv6-RTP 
 ![alt tag](https://i.imgur.com/Jpqw6qF.jpg)  
 
+
+# WiFi Connection Command  
+[Ubuntu 標準コマンドで WiFi の状態を確認する Apr 04, 2017](https://qiita.com/hachisukansw/items/967152c65cbda97dadce)  
+```
+$ nmcli dev wifi
+*  SSID               MODE   CHAN  RATE       SIGNAL  BARS  SECURITY  
+*  LAPUTA             Infra  1     54 Mbit/s  91      ▂▄▆█  WPA2       
+   000000000000-2G    Infra  11    54 Mbit/s  45      ▂▄__  WPA1 WPA2 
+```
+
+```
+$nmcli -f IN-USE,SSID,BSSID,CHAN,SIGNAL,BARS,SECURITY dev wifi
+*  SSID               BSSID              CHAN  SIGNAL  BARS  SECURITY  
+*  LAPUTA             00:00:00:00:00:30  1     91      ▂▄▆█  WPA2       
+   000000000000-2G    00:00:00:00:00:00  11    45      ▂▄__  WPA1 WPA2 
+   WARPSTAR-000000    00:00:00:00:00:00  3     42      ▂▄__  WPA1 WPA2 
+   LAPUTA             00:00:00:00:00:10  6     34      ▂▄__  WPA2        
+   Buffalo-G-0000     00:00:00:00:00:00  1     30      ▂___  WPA1 WPA2 
+   WARPSTAR-000000-W  00:00:00:00:00:00  3     22      ▂___  WEP       
+   perseus            00:00:00:00:00:00  8     22      ▂___  WPA2      
+   LAPUTA             00:00:00:00:00:21  11    20      ▂___  WPA2        
+   Buffalo-A-0000     00:00:00:00:00:00  120   14      ▂___  WPA1 WPA2 
+```
+
+
+
 # Upgrade Ubuntu 18.04 from 16.04  
 [從Ubuntu 16.04升級到Ubuntu 18.04之心得(持續更新) 2019-02-01](https://peterli.website/%E5%BE%9Eubuntu-16-04%E5%8D%87%E7%B4%9A%E5%88%B0ubuntu-18-04%E4%B9%8B%E5%BF%83%E5%BE%97/)  
 
@@ -1669,6 +1699,8 @@ ResultActive=yes
 [Install XRDP on Ubuntu Server with XFCE Template](https://www.interserver.net/tips/kb/install-xrdp-ubuntu-server-xfce-template/)  
 server版本是可以連拉，只是中文都亂碼... 
 
+# Fix ‘E: Could not get lock /var/lib/dpkg/lock’ Error in Ubuntu [Quick Tip]  
+[Fix ‘E: Could not get lock /var/lib/dpkg/lock’ Error in Ubuntu [Quick Tip] Dec 20, 2019](https://itsfoss.com/could-not-get-lock-error/)  
 
 
 # Reference
