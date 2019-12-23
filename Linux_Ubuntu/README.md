@@ -1355,7 +1355,7 @@ $ sudo adduser [username]
 
 ### Listing All Users
 ```
-$ awk -F':' '$2 ~ "\$" {print $1}' /etc/shadow
+$ sudo awk -F':' '$2 ~ "\$" {print $1}' /etc/shadow
 ```
 ![alt tag](https://vitux.com/wp-content/uploads/2018/08/word-image-47.png)
 
