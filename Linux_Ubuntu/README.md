@@ -1351,11 +1351,13 @@ sudo systemctl enable xrdp
 
 $ sudo adduser [username]
 ```
+![alt tag](https://vitux.com/wp-content/uploads/2018/08/word-image-46.png)
 
 ### Listing All Users
 ```
 $ awk -F':' '$2 ~ "\$" {print $1}' /etc/shadow
 ```
+![alt tag](https://vitux.com/wp-content/uploads/2018/08/word-image-47.png)
 
 ### Locking/Unlocking User Accounts
 ```
@@ -1364,6 +1366,22 @@ $ sudo passwd -u username
 ```
 
 ### Giving Root Privilege to a User  
+```
+$ sudo nano visudo
+```
+
+```
+[username] ALL=(ALL) ALL
+```
+
+```
+User_Alias ADMINS = [username]
+
+Cmnd_Alias HTTPD = /etc/init.d/httpd
+
+ADMINS ALL = HTTPD
+```
+![alt tag](https://vitux.com/wp-content/uploads/2018/08/word-image-48.png)
 
 
 ### Deleting a User Through the Command Line  
