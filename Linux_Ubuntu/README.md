@@ -35,6 +35,9 @@ Take note of Ubuntu stuffs
 [IPv6-RTP](#ipv6-rtp)  
 
 [WiFi Connection Command](#wifi-connection-command)  
+[nmcli dev wifi](#nmcli-dev-wifi)  
+[iwpriv](#iwpriv)  
+
 
 [Upgrade Ubuntu 18.04 from 16.04](#upgrade-ubuntu-1804-from-1604)  
 [ubuntu18.04のネットワーク周り設定](#ubuntu1804%E3%81%AE%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E5%91%A8%E3%82%8A%E8%A8%AD%E5%AE%9A)  
@@ -1021,7 +1024,10 @@ udp://@192.168.6.106:1234
 
 
 # WiFi Connection Command  
-[Ubuntu 標準コマンドで WiFi の状態を確認する Apr 04, 2017](https://qiita.com/hachisukansw/items/967152c65cbda97dadce)  
+
+## nmcli dev wifi   
+[Ubuntu 標準コマンドで WiFi の状態を確認する Apr 04, 2017](https://qiita.com/hachisukansw/items/967152c65cbda97dadce)
+
 ```
 $ nmcli dev wifi
 *  SSID               MODE   CHAN  RATE       SIGNAL  BARS  SECURITY  
@@ -1043,6 +1049,276 @@ $nmcli -f IN-USE,SSID,BSSID,CHAN,SIGNAL,BARS,SECURITY dev wifi
    Buffalo-A-0000     00:00:00:00:00:00  120   14      ▂___  WPA1 WPA2 
 ```
 
+## iwpriv
+[使用iwpriv配置wifi 2019-01-20](https://www.itread01.com/content/1547944405.html)  
+```
+iwpriv是iwconfig的輔助工具，用來配置無線網路介面的各種私有可選引數。iwpriv針對不同種類的驅動實現特定的引數處理和設定。iwpriv不跟引數時會列出每個介面上可用的私有命令和它們對應的引數。使用者可根據這些資訊對特定的介面使用不同的命令操作。
+設定命令
+iwpriv ra0 set SSID=””
+iwpriv ra0 set Channel=0
+iwpriv ra0 set NetworkType=Infra
+iwpriv ra0 set AuthMode=SHARED
+iwpriv ra0 set EncrypType=WEP
+iwpriv ra0 set DefaultKeyID=1
+iwpriv ra0 set Key1=”whatever”
+iwpriv ra0 set SSID=”some_ssed”
+iwpriv ra0 set WPAPSK=”wpa_key”
+…
+‍顯示命令
+iwpriv ra0 show SSID
+iwpriv ra0 show Channel
+iwpriv ra0 show NetworkType
+iwpriv ra0 show AuthMode
+iwpriv ra0 show EncrypType
+iwpriv ra0 show DefaultKeyID
+iwpriv ra0 show Key1
+iwpriv ra0 show WPAPSK
+…
+./iwpriv ra0 show    無線網絡卡功能引數
+ra0       show:
+SSID
+WirelessMode
+TxBurst
+TxPreamble
+TxPower
+Channel
+BGProtection
+RTSThreshold
+FragThreshold
+HtBw
+HtMcs
+HtGi
+HtOpMode
+HtExtcha
+HtMpduDensity
+HtBaWinSize
+HtRdg
+HtAmsdu
+HtAutoBa
+CountryRegion
+CountryRegionABand
+CountryCode
+PktAggregate
+WmmCapable
+IEEE80211H
+NetworkType
+WPAPSK
+AutoReconnect
+AuthMode
+EncrypType
+DefaultKeyID
+Key1
+Key2
+Key3
+Key4
+PMK
+```
+
+[【MTK】iwpriv命令說明 Feb 16, 2019](https://www.itread01.com/content/1550314286.html)  
+```
+iwpriv 命令
+
+    CountryRegion 2.4GHz的國家地區碼，不同的地區碼通道選擇範圍不一樣，範圍是0~7,31~33
+    iwpriv ra0 set CountryRegion=5
+
+    CountryRegionABand 5G的國家地區碼
+
+    CountryCode 無線國家碼
+
+    ChannelGeography:通道地理型別
+    0：Outdoor 1：Indoor 2：Both
+
+    .SSID 無線SSID，1~32 ASCII碼
+    iwpriv ra0 set SSID="AAA"
+
+    WirelessMode 無線模式
+    1.legacy 11B only；2.legacy 11A only;3.legacy 11a/b/g mixed;4.legacy 11G only;5.11ABGN mixed
+    6.11N only in 2.4G; 7.11GN mixed;8.11AN mixed; 9.11BGN mixed； 10.11AGN mixed；11.11N only in 5G;
+    14.11A/AN/AC mixed 5G band only;15. 11AN/AC mixed 5G band only.
+
+    Channel 無線channel
+    Channel=0； 0表示自動掃描；
+
+    BasicRate 無線支援的基本速率集
+    1.1Mbps；2.2Mbps；3.1Mbps，2Mbps；4.5.5Mbps；15.1Mbps，2Mbps，5.5Mbps，11Mbps；
+
+    Beacon Period Beacon幀的週期
+    iwpriv ra0 set BeaconPeriod=100
+
+    DtimPeriod duratin time 1~255
+    iwpriv ra0 set DtimPeriod=64
+
+    TxPower 傳輸功率，0~100
+    iwpriv ra0 set TxPower=99
+
+    DisableOLBC
+
+    BGProtection 啟用/禁用 無線11B or 11G保護
+    0：auto；1：on；2：off
+
+    MaxStaNum 最大sta連線數量
+    0：disable 1~32
+
+    TxAntenna 配置Tx天線數量
+    iwpriv ra0 set TxAntenna=1
+
+    RxAntenna 配置Rx天線數量
+
+    TxPreamble 啟用/禁用Tx 前導碼
+    iwpriv ra0 set TxPreamble=0
+
+    RTSThreshold 設定RTS 閾值 1~2347
+
+    FragThreshold 設定分片包閾值，256~2346
+    iwpriv ra0 set FragThreshold=1024
+
+    TxBurst 啟用/禁用Tx burst，0：disable；1：enable
+    iwpriv ra0 set TxBurst=1
+
+    PktAggregate 啟用/禁用 Tx 幀聚合，0：disable，1：enable
+
+    NoForwarding 啟用或禁用不同的sta的包在相同的SSID轉發，0：disable；1：enable
+    iwpriv ra0 set NoForwarding=0
+
+    NoForwardingBTNBSSID，禁用或啟用在每個BSSID之間不轉發0：disable；1：enable
+
+    NoForwardingMBCast，禁用或啟用不抓發組播/多播包
+
+    HideSSID，禁用或啟用隱藏SSID，0：disable；1：enable
+    iwpriv ra0 set HideSSID=0
+
+    StationKeepAlive禁用或啟用週期性自動檢測活躍的sta，0：disable；1：enable
+    iwpriv ra0 set StationKeepAlive=1
+
+    ShortSlot，禁用或啟用short slot time，0：disable；1：enable
+    iwpriv ra0 set ShortSlot=1
+
+    AutoChannelSelect，啟用禁用通道自動選則，0，disable；1：舊演算法，2：新演算法；
+
+    Debug 設定WLAN debug等級(0~5) 0:off;1:Error;2:Warning;3:Trace;4:Info;5:Loud
+    iwpriv ra0 set Debug=3
+
+    DriverVersion 檢測無線驅動版本
+    iwpriv ra0 set DriverVersion=0
+
+    AccessPolicy 配置訪問控制規則,0:允許訪問AP，1：禁止訪問AP
+    iwpriv ra0 set AccessPolicy=0
+
+    ResetCounter，重設計算器
+    iwpriv ra0 set ResetCounter=1
+
+    SiteSurvey 請求動作做站點測量
+    iwpriv ra0 set SiteSurvey=
+    被動掃描：空串，iwpriv ra0 set SiteSurvey=
+    主動掃描：目的SSID，iwpriv ra0 set SiteSurvey=Target_SSID
+
+    CountryString 設定國家
+    iwpriv ra0 set CountryString=China
+
+    FixedTxMode設定傳送調製模式,CCK OFDM HT
+    iwpriv ra0 set FixedTxMode=CCK
+    DisConnectSta斷開一個指定的STA
+    iwpriv ra0 set DisConnectSta=00:11:22:33:44:55
+    *
+    DisConnectAllSta 斷開所有sta
+    iwpriv ra0 set DisConnectAllSta=1
+    *
+    McastPhyMode 設定多播物理模式,0:Disable; 1:CCK;2:OFDM;3:HTMIX
+    iwpriv ra0 set McastPhyMode=0
+    *
+    McastMcs設定多播包的MCS，0~15
+    iwpriv ra0 set McastMcs=0
+    *
+    MaxStaNum 現在每一個BSS可以管理sta的最大值 1~32
+    iwpriv ra0 set MaxStaNum=0
+    0:禁用限制
+    *
+    AutoFallBack 啟用/禁用自動降低速率功能。0：disable； 1：enable
+    iwpriv ra0 set AutoFallBack=1
+    *
+
+    MBSSWirelessMode 設定MBSS 無線物理方式
+    iwpriv ra0 set MBSSWirelessMode=1
+    0:802.11B/G mixed
+    1:802.11B only
+    2:801.11A only
+    4：801.11G only
+    6：801.11N only
+    7：801.11G/N mixed
+    8：801.11A/N mixed
+    9：801.11B/G/Nmixed
+    10：801.11A/G/N mixed
+    11：801.11N in 5G band only
+
+    HtBw HT通道頻寬設定, 0:20MHz;1:20/40 MHz
+    iwpriv ra0 set HtBw=1
+
+    HtMcs 設定無線調製編碼策略， 0~15,32:fix MCS rate, 33,自動適配
+    iwpriv ra0 set HtMcs=33
+
+    HtGi 設定無線guard 間隔，0：長間隔；1短間隔
+    iwpriv ra0 set HtGi=1
+
+    HtOpMode 設定HT操作模式，0：HT混合模式，1:HT greenfield模式
+    iwpriv ra0 set HtOpMode=0
+
+    HtBaWinSize 設定Block Ack 視窗大小，1~64
+    iwpriv ra0 set HtBaWinSize=64
+
+    HtTxBASize 設定一次傳輸burst中AMPDU聚合包的個數，1~64
+    iwpriv ra0 set HtBASize=64
+
+    HtAmsdu 啟用禁用A-MSDU，0 禁用，1啟用
+    iwpriv ra0 set HtAmsdu=0
+
+    HtAutoBa 啟用禁用自動block ack,0 禁用，1啟用
+    iwpriv ra0 set HtAutoBa=1
+
+    HtMimoPs 啟用禁用HT MIMMO power save 模式,1：enable，0：disable
+    iwpriv ra0 set HtMimoPs=1
+
+    AP2040Rescan 觸發HT20/40 coexistence重新掃描，1：觸發
+    iwpriv ra0 set AP2040Rescan=1
+
+    HtBssCoex 啟用禁用HT BSS coexistence，0 禁用，1啟用
+    iwpriv ra0 set HtBssCoex=1
+
+    AssocReqRssiThres設定關聯請求時接收靈敏度的閾值，使拒絕STA的關聯請求在弱訊號的情況下
+    iwpriv ra0 set AssocReqRssiThres=-88
+    0：關閉
+    0~-100RSSI的值
+
+    stat 顯示無線統計資訊
+    iwpriw ra0 stat
+    或者：
+    while [ 1 ]; do iwpriv ra0 set ResetCounter=1; sleep 1; iwpriv ra0 stat; done;
+
+    get_site_survey 獲取掃描資訊
+    iwpriv ra0 get_site_survey
+    執行該命令前先執行iwpriv ra0 set SiteSurvey=
+
+    get_mac_table 獲取連線到AP的sta的mac地址資訊
+    iwpriv ra0 get_mac_talbe
+
+    get_ba_table 顯示BlackACK table
+    iwpriv ra0 get_ba_table
+
+    show 顯示資訊
+    iwpriv ra0 show [parameter]
+    [parameter list]
+    1.driverinfo
+    2.stat
+    3.stainfo
+    4.stacountinfo
+    5.stasecinfo
+    6.bainfo
+    7.connStatus
+    8.reptinfo
+    9.wdsinfo
+    10.igmpinfo
+    11.mbss
+    12.blockch
+```
 
 
 # Upgrade Ubuntu 18.04 from 16.04  
