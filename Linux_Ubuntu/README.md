@@ -76,6 +76,10 @@ Take note of Ubuntu stuffs
 
 [Array-30(行列30) Input Method Installation](sd#array-30%E8%A1%8C%E5%88%9730-input-method-installation)  
 
+[DNS on Ubuntu 18.04](#dns-on-ubuntu-1804)  
+[How to Set DNS Nameservers on Ubuntu 18.04](#how-to-set-dns-nameservers-on-ubuntu-1804)  
+[How to Clear the DNS Cache](#how-to-clear-the-dns-cache)  
+[DNS on Ubuntu 18.04](#dns-on-ubuntu-1804)  
 
 [Reference](#reference)
 
@@ -2040,6 +2044,137 @@ sudo apt install fcitx fcitx-chewing
 sublime text 修正檔下載：  
 [不專業網管筆記: ubuntu 下解決 Sublime Text 3 無法輸入中文的問題](http://t301000.blogspot.com/2014/04/ubuntu-sublime-text-3_30.html)  
 
+
+# DNS on Ubuntu 18.04  
+
+## How to Set DNS Nameservers on Ubuntu 18.04  
+[How to Set DNS Nameservers on Ubuntu 18.04 Aug 21, 2019](https://linuxize.com/post/how-to-set-dns-nameservers-on-ubuntu-18-04/)
+
+* Google (8.8.8.8, 8.8.4.4)  
+* Cloudflare (1.1.1.1 and 1.0.0.1)  
+* OpenDNS (208.67.222.222, 208.67.220.220)  
+* Level3 (209.244.0.3, 209.244.0.4)  
+
+### Setting DNS Nameservers on Ubuntu Desktop  
+
+1. Launch the Settings window.
+
+2. If you are connected to a WiFi network click on the “Wi-FI” tab. Otherwise, if you have a wired connection click on the “Network” tab.
+
+3. Select the connection for which you want to set the DNS nameservers and click on the cog icon to open the Network Manager.
+
+4. Select the IPv4 Settings tab.
+
+5. Disable the “Automatic” toggle switch and enter the DNS resolvers IP addresses, separated by a comma. We'll use the Google DNS nameservers:  
+![alt tag](https://linuxize.com/post/how-to-set-dns-nameservers-on-ubuntu-18-04/ubuntu-dns-nameservers.jpg)  
+
+6. Click on the “Apply” button to save the changes.  
+
+### Setting DNS Nameservers on Ubuntu Server  
+systemd-resolved is a service that provides DNS name resolution to local services and applications and it can be configured with Netplan, the default network management tool on Ubuntu 18.04.  
+
+Netplan configuration files are stored in the /etc/netplan directory. 
+You’ll probably find one or two YAML files in this directory. 
+The file name may differ from setup to setup. 
+Usually, the file is named either 01-netcfg.yaml or 50-cloud-init.yaml but in your system, it may be different.  
+
+```
+$ sudo nano /etc/netplan/01-netcfg.yaml
+```
+
+/etc/netplan/01-netcfg.yaml  
+```
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    ens3:
+      dhcp4: no
+      addresses:
+        - 192.168.121.199/24
+      gateway4: 192.168.121.1
+      nameservers:
+          addresses: [8.8.8.8, 8.8.4.4]
+```
+
+```
+$ sudo netplan apply
+```
+
+```
+$ systemd-resolve --status | grep 'DNS Servers' -A2
+```
+```
+output
+
+         DNS Servers: 1.1.1.1
+                      1.0.0.1
+```
+
+## How to Clear the DNS Cache  
+[How to Clear the DNS Cache Oct 22, 2019](https://linuxize.com/post/how-to-clear-the-dns-cache/)  
+
+### Clear/Flush DNS Cache on Linux  
+On Linux, there is no OS-level DNS caching unless a caching service 
+such as Systemd-Resolved, DNSMasq, or Nscd is installed and running. 
+The process of clearing the DNS cache is different depending on the 
+Linux distribution and the caching service you're using.
+
+#### Systemd Resolved   
+To find out whether the service is running use the following command:  
+```
+sudo systemctl is-active systemd-resolved.service
+```
+```
+sudo systemd-resolve --flush-caches
+```
+
+#### DNSMasq  
+If your system is using DNSMasq as a caching server, 
+to clear the DNS cache you need to restart the Dnsmasq service:  
+```
+sudo systemctl restart dnsmasq.service
+```
+Or  
+```
+sudo service dnsmasq restart
+```
+
+#### Nscd  
+Nscd is a caching daemon, and 
+it is the preferred DNS caching system for most of RedHat-based distributions.  
+```
+sudo systemctl restart nscd.service
+```
+Or  
+```
+sudo service nscd restart
+```
+
+## DNS on Ubuntu 18.04  
+[DNS on Ubuntu 18.04 | datawookie Oct 25, 2018](https://datawookie.netlify.com/blog/2018/10/dns-on-ubuntu-18.04/)
+Just add a couple of entries to /etc/resolv.conf   
+```
+# Use Google's public DNS servers.
+nameserver 8.8.4.4
+nameserver 8.8.8.8
+```
+
+This is pretty simple to fix though.  
+1. Install the resolvconf package.  
+```
+sudo apt install resolvconf
+```
+2. Edit /etc/resolvconf/resolv.conf.d/head and add the following:  
+```
+# Make edits to /etc/resolvconf/resolv.conf.d/head.
+nameserver 8.8.4.4
+nameserver 8.8.8.8
+```
+3. Restart the resolvconf service.  
+```
+sudo service resolvconf restart
+```
 
 # Reference
 * [[ubuntu]關閉ipv6，增進網路效能 Sep 16 Wed 2009](https://liuchiu.pixnet.net/blog/post/25080360-%5Bubuntu%5D%E9%97%9C%E9%96%89ipv6%EF%BC%8C%E5%A2%9E%E9%80%B2%E7%B6%B2%E8%B7%AF%E6%95%88%E8%83%BD)  
