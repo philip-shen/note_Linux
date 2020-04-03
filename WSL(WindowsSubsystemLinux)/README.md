@@ -13,11 +13,11 @@ Take note of WSL from VSCode.
 [Reset Password for WSL Linux Distro in Windows 10](#reset-password-for-wsl-linux-distro-in-windows-10)  
 [How can I install Python on Bash on Ubuntu on Windows?](#how-can-i-install-python-on-bash-on-ubuntu-on-windows?)  
 
-[WSL2](#wsl2)  
-[WSL2がWindowsからlocalhostで接続できるようになる](#wsl2%E3%81%8Cwindows%E3%81%8B%E3%82%89localhost%E3%81%A7%E6%8E%A5%E7%B6%9A%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%AA%E3%82%8B)
+[03. WSL2](#03-wsl2)  
+[WSL2がWindowsからlocalhostで接続できるようになる](#wsl2%E3%81%8Cwindows%E3%81%8B%E3%82%89localhost%E3%81%A7%E6%8E%A5%E7%B6%9A%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%AA%E3%82%8B)  
 [WSL2のコロコロ変わるIPをMyDNSで何とかする](#wsl2%E3%81%AE%E3%82%B3%E3%83%AD%E3%82%B3%E3%83%AD%E5%A4%89%E3%82%8F%E3%82%8Bip%E3%82%92mydns%E3%81%A7%E4%BD%95%E3%81%A8%E3%81%8B%E3%81%99%E3%82%8B)  
 
-[CredSSP authentication is currently disabled on the local client](#credssp-authentication-is-currently-disabled-on-the-local-client)  
+[04. CredSSP authentication is currently disabled on the local client](#04-credssp-authentication-is-currently-disabled-on-the-local-client)  
 
 
 [Reference](#reference)
@@ -234,7 +234,7 @@ sudo apt-get install python3
 ```
 which should install Python 3.5.  
 
-# WSL2  
+# 03. WSL2  
 [WSL2の環境構築手順 Aug 17, 2019](https://qiita.com/poramal/items/3562472d52fe60f61c56)
 [WSL2を使ってみる (InsiderPreview)  Jun 15, 2019](https://qiita.com/namoshika/items/53a9ac2df7eace656870)  
 [WSL + Docker + Jenkins + Proxyの地雷を解決する Nov 18, 2019](https://qiita.com/dongsu-iis/items/3a44a38a48b9a1533628)  
@@ -288,7 +288,7 @@ for file in `\find /etc/rc3.d/* -maxdepth 1`; do $file start; done
 [WSL2のコロコロ変わるIPをMyDNSで何とかする Jul 4, 2019](https://qiita.com/SoraKumo/items/388a1315a6bdc16b4d2e)  
 
 
-# CredSSP authentication is currently disabled on the local client  
+# 04. CredSSP authentication is currently disabled on the local client  
 [Connecting to Hyper-V from a non-domain joined Windows 10 workstation. Feb 14, 2019](https://www.digitaldarragh.com/2019/02/14/connecting-to-hyper-v-from-a-non-domain-joined-windows-10-workstation/)  
 
 [[SOLVED] Hyper V Remote Management From Windows 10 Pro Oct 14, 2016](https://community.spiceworks.com/topic/1874773-hyper-v-remote-management-from-windows-10-pro)  
