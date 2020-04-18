@@ -313,7 +313,7 @@ Select Fast then download Build 19608 then Upgrade it.
 ![alt tag](https://i.imgur.com/KvoE8MT.jpg)  
 ![alt tag](https://i.imgur.com/1ZTKUjW.jpg)  
 
-* Update to WSL2 Environment then Hyper-V will disappear.*
+*Update to WSL2 Environment then Hyper-V will disappear.*
 
 ## 2. Windows Insider Programに入っていること  
 [2. Windows Insider Programに入っていること](https://qiita.com/kekenonono/items/14b725ce3d00cd5281ec#2-windows-insider-program%E3%81%AB%E5%85%A5%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%93%E3%81%A8)  
