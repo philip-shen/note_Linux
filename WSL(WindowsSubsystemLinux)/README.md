@@ -13,11 +13,14 @@ Take note of WSL from VSCode.
 [Reset Password for WSL Linux Distro in Windows 10](#reset-password-for-wsl-linux-distro-in-windows-10)  
 [How can I install Python on Bash on Ubuntu on Windows?](#how-can-i-install-python-on-bash-on-ubuntu-on-windows?)  
 
-[03. WSL2](#03-wsl2)  
+
+[03. WSL2 Installation on Win 10](#03-wsl2-installation-on-Win-10)  
+
+
+[04. WSL2](#04-wsl2)  
 [WSL2がWindowsからlocalhostで接続できるようになる](#wsl2%E3%81%8Cwindows%E3%81%8B%E3%82%89localhost%E3%81%A7%E6%8E%A5%E7%B6%9A%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%AA%E3%82%8B)  
 [WSL2のコロコロ変わるIPをMyDNSで何とかする](#wsl2%E3%81%AE%E3%82%B3%E3%83%AD%E3%82%B3%E3%83%AD%E5%A4%89%E3%82%8F%E3%82%8Bip%E3%82%92mydns%E3%81%A7%E4%BD%95%E3%81%A8%E3%81%8B%E3%81%99%E3%82%8B)  
 
-[04. WSL2 Installation on Win 10](#04-wsl2-installation-on-Win-10)  
 
 [05. CredSSP authentication is currently disabled on the local client](#05-credssp-authentication-is-currently-disabled-on-the-local-client)  
 
@@ -236,7 +239,269 @@ sudo apt-get install python3
 ```
 which should install Python 3.5.  
 
-# 03. WSL2  
+
+# 03. WSL2 Installation on Win 10  
+[やさしいWSL2のインストール手順とエラー Apr 12, 2020](https://qiita.com/kekenonono/items/14b725ce3d00cd5281ec)  
+## 1. Windows 10 ビルド 18917 以降であること  
+[1. Windows 10 ビルド 18917 以降であること](https://qiita.com/kekenonono/items/14b725ce3d00cd5281ec#1-windows-10-%E3%83%93%E3%83%AB%E3%83%89-18917-%E4%BB%A5%E9%99%8D%E3%81%A7%E3%81%82%E3%82%8B%E3%81%93%E3%81%A8)  
+```
+コマンドプロンプトから確認
+
+    コマンドプロンプトを開く
+    varコマンドを実行
+    出てきたバージョンが18917以上ならOK！
+```
+[最新のWindows 10 November 2019 Updateを手動でインストールする ](https://www.atmarkit.co.jp/ait/articles/1704/10/news023.html)  
+[Windows 10 20H1 版 5 月重大更新將導入 “自動更新驅動程式” 的新功能 Feb 25, 2020](https://www.kocpc.com.tw/archives/308300)  
+[Windows 10 20H1 (Vibranium) 公眾預覽版本Build 18912 ... Nov 20, 2019](https://isite.tw/2019/11/20/20297)  
+[Win10 20h1 下載](http://rile39ri.duckdns.org/page51) 
+
+```
+Select Fast then download Build 19608 then Upgrade it.
+```
+![alt tag](https://i.imgur.com/KvoE8MT.jpg)  
+![alt tag](https://i.imgur.com/1ZTKUjW.jpg)  
+
+*Update to WSL2 Environment then Hyper-V will disappear.*
+
+![alt tag](https://i.imgur.com/FUWKePH.jpg)  
+
+## 2. Windows Insider Programに入っていること  
+[2. Windows Insider Programに入っていること](https://qiita.com/kekenonono/items/14b725ce3d00cd5281ec#2-windows-insider-program%E3%81%AB%E5%85%A5%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%93%E3%81%A8)  
+```
+このページを訪れる人はほとんど入っていなと考えられます
+以下の手順を行ってください
+
+    Windowsの設定⇒更新とセキュリティ⇒Windows Insider Programを開く
+    開始する（Get start）をクリック
+    出てくる文章に同意し、Windowsアカウントを紐づける
+    Insiderの設定でスロー（推奨）をクリック
+    再起動をクリック
+```
+
+## 3. WSL2 Installation  
+[WSL2の導入](https://qiita.com/kekenonono/items/14b725ce3d00cd5281ec#wsl2%E3%81%AE%E5%B0%8E%E5%85%A5)  
+
+### 01. Both Machine Platform and WSL Availability  
+[手順1. 仮想マシンプラットフォームとWSL が有効であることを確認](https://qiita.com/kekenonono/items/14b725ce3d00cd5281ec#%E6%89%8B%E9%A0%861-%E4%BB%AE%E6%83%B3%E3%83%9E%E3%82%B7%E3%83%B3%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%81%A8wsl-%E3%81%8C%E6%9C%89%E5%8A%B9%E3%81%A7%E3%81%82%E3%82%8B%E3%81%93%E3%81%A8%E3%82%92%E7%A2%BA%E8%AA%8D)  
+```
+Powershell
+
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+```
+
+### 02. Linux Distribution Selection  
+[手順2. ディストリビューションのインストール](https://qiita.com/kekenonono/items/14b725ce3d00cd5281ec#%E6%89%8B%E9%A0%862-%E3%83%87%E3%82%A3%E3%82%B9%E3%83%88%E3%83%AA%E3%83%93%E3%83%A5%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)  
+[2. ディストリビューションのインストール](https://qiita.com/kekenonono/items/1ddbb5a1125d496c0010#2-%E3%83%87%E3%82%A3%E3%82%B9%E3%83%88%E3%83%AA%E3%83%93%E3%83%A5%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)  
+
+### 03. Distribution Version Changes to WSL2  
+[手順3. ディストリビューションのバージョンをWSL2に変更する](https://qiita.com/kekenonono/items/14b725ce3d00cd5281ec#%E6%89%8B%E9%A0%863-%E3%83%87%E3%82%A3%E3%82%B9%E3%83%88%E3%83%AA%E3%83%93%E3%83%A5%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%82%92wsl2%E3%81%AB%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B)  
+
+```
+私の場合
+
+> wsl -l
+Linux 用 Windows サブシステム ディストリビューション:
+Ubuntu (既定) # ここにディストリビューションの名前が表示される
+```
+
+```
+私の場合
+
+> wsl --set-version Ubuntu 2
+変換中です。この処理には数分かかることがあります...
+変換が完了しました。
+```
+
+*カーネルコンポーネントの更新が必要*
+```
+ カーネルコンポーネントの更新が必要
+
+> wsl --set-version Ubuntu 2
+変換中です。この処理には数分かかることがあります...
+WSL 2 を実行するには、カーネル コンポーネントの更新が必要です。詳細については https://aka.ms/wsl2kernel を参照してください
+```
+[https://aka.ms/wsl2kernel](https://docs.microsoft.com/ja-jp/windows/wsl/wsl2-kernel)  
+
+![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F521871%2F628e8a04-e895-f550-c5aa-5c859d2e7785.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&w=1400&fit=max&s=ce5031dfb071261a4478e4054ff9e3a1)  
+
+#### wsl_update_x64.msi Installation Error Troublshooting   
+[wsl_update_x64.msi実行時のエラー](https://qiita.com/kekenonono/items/14b725ce3d00cd5281ec#wsl_update_x64msi%E5%AE%9F%E8%A1%8C%E6%99%82%E3%81%AE%E3%82%A8%E3%83%A9%E3%83%BC)  
+
+[WSL 2 requires an update / The update only applies to machines with WSL #5014](https://github.com/microsoft/WSL/issues/5014)  
+
+```
+Also it seems some people have problems with the installer extracting the kernel.
+You can always extract it manually with:
+msiexec /a "wsl_update_x64.msi" /qb TARGETDIR="C:\temp"
+and then copy the kernel file from C:\temp to C:\Windows\System32\lxss\tools
+```
+
+* 1 Copy wsl_update_x64.msi  
+![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F521871%2Faf38e9df-cc39-c6e4-dd01-0121c78883c7.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=0f3283bf5f7b5e0bbb1b7b82ee7f12a1)  
+
+* 2 Past to C:\Windows\System32\lxss\tools   
+![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F521871%2Fbe1751c6-8387-aff7-d13f-1a8d589c9c9b.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&w=1400&fit=max&s=37840f50a1aaf326f272db701ffffb4d)  
+
+* 3 Excute wsl_update_x64.msi  
+
+* 4 Finish  
+
+### 04. WSL2 Sets to Defalut Version  
+[手順4. WSL 2 を既定のアーキテクチャにする](https://qiita.com/kekenonono/items/14b725ce3d00cd5281ec#%E6%89%8B%E9%A0%864-wsl-2-%E3%82%92%E6%97%A2%E5%AE%9A%E3%81%AE%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3%E3%81%AB%E3%81%99%E3%82%8B)  
+```
+wsl --set-default-version 2
+```
+
+### 05. WSL Version Confirmation  
+[手順5. WSL のバージョンを確認して終了](https://qiita.com/kekenonono/items/14b725ce3d00cd5281ec#%E6%89%8B%E9%A0%865-wsl-%E3%81%AE%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%97%E3%81%A6%E7%B5%82%E4%BA%86)   
+```
+私の場合
+
+> wsl -l -v
+  NAME      STATE           VERSION
+* Ubuntu    Stopped         2
+```
+
+### 05. WSL Version Backward to 1     
+手順3. と手順4. を2から1に変えて行うだけで変更できます  
+```
+> wsl --set-version <Distro> 2 # <Distro>はディストリビューションの名前
+> wsl --set-default-version 2
+```
+![alt tag](https://i.imgur.com/JvDzFsk.jpg)  
+
+## 4. Docker Installation and Launch  
+[在Windows 10 環境上安裝WSL 2 - Huan-Lin 學習筆記 Feb 27, 2020](https://www.huanlintalk.com/2020/02/wsl-2-installation.html)  
+```
+sudo apt update
+sudo apt upgrade
+sudo apt install docker.io
+sudo service docker start
+```
+
+## 5. Docker Desktop v2.2.1.0 Installation  
+![alt tag](https://1.bp.blogspot.com/-_h4sUbADcOM/XlqbqbUoq6I/AAAAAAAApzo/woEGP-rM7VUP8ysIDZBzb0KovUb951JQACNcBGAsYHQ/s1600/2020-03-01_01-02-14.png)  
+
+![alt tag](https://i.imgur.com/y5NtwEj.jpg)  
+
+![alt tag](https://i.imgur.com/gb0UY6H.png)
+
+[WSL2入れてみた Mar 15, 2020](https://qiita.com/TsuyoshiUshio@github/items/947301bd9317610572fc)  
+
+[Docker Desktop for WSL 2 を入れてみました  Aug 02, 2019](https://qiita.com/SHIRANO/items/42616bb76630df068f33)  
+[5 Things to Try with Docker Desktop WSL 2 Tech Preview Jul 31 2019](https://www.docker.com/blog/5-things-docker-desktop-wsl2-tech-preview/)  
+1. Navigate between WSL 2 and traditional Docker  
+```
+Use $ docker context ls  to view the different contexts available.
+
+The daemon running in WSL 2 runs side-by-side with the “classic” Docker Desktop daemon. 
+This is done by using a separate Docker Context. 
+Run `docker context use wsl` to use the WSL 2 based daemon, 
+and `docker context use default` to use the Docker Desktop classic daemon. 
+The “default” context will target either the Moby Linux VM daemon or 
+the Windows Docker daemon depending if you are in Linux or Windows mode. 
+```
+
+2. Access full system resources  
+```
+Use $ docker info to inspect the system statistics. 
+You should see all of your system resources (CPU & memory) available to you in the WSL 2 context. 
+```
+
+3. Linux workspaces  
+```
+Source code and build scripts can live inside WSL 2 and access the same Docker Daemon as from Windows. 
+Bind mounting files from WSL 2 is supported, and provides better I/O performance.
+```
+
+4. Visual Studio remote with WSL  
+```
+You can work natively with Docker and Linux from Visual Studio Code on Windows. 
+
+If you are a Visual Studio Code user make sure you have installed the plugin from the marketplace. 
+ou can then connect to WSL 2 and access your source in Linux, 
+which means you can use the console in VSCode to build your containers using 
+any existing Linux build scripts from within the Windows UI.
+
+For full instructions have a look through Microsoft’s documentation: 
+https://code.visualstudio.com/docs/remote/wsl
+```
+
+5. File system improvements:   
+```
+If you are a PHP Symfony user let us know your thoughts! 
+We found that page refreshes went from ~400ms to ~15ms when we were running from a Linux Workspace.
+```
+
+
+[WSL2でDockerが動かない](https://qiita.com/RikuS3n/items/e4befcf934ce6a2c83ed)  
+```
+$ sudo docker run hello-world
+```
+```
+docker: Cannot connect to the Docker daemon at tcp://localhost:2375. Is the docker daemon running?.
+See 'docker run --help'.
+```
+解決策(原因)  
+[解決策(原因)](https://qiita.com/RikuS3n/items/e4befcf934ce6a2c83ed#%E8%A7%A3%E6%B1%BA%E7%AD%96%E5%8E%9F%E5%9B%A0)  
+```
+ocker for Windowsを以前使っていて、
+Expose daemon on tcp://localhost:2375 without TLSというオプションにチェックを入れてしまっていたためです。
+
+また、bashもしくはzshなどのrcに記述されているであろう
+export DOCKER_HOST='tcp://0.0.0.0:2375'という記述を消さないと、
+永遠にそのポートが指定されるので気をつけましょう。
+```
+
+## 6. WSL and Windows  
+[WSLとWindows](https://qiita.com/kekenonono/items/1ddbb5a1125d496c0010#4-wsl%E3%81%A8windows)  
+```
+WSLの中で動作しているのは、ほぼ普通のLinuxでコマンドのバイナリコードもそのままである。
+コマンドに関しては特にWSL用に変更が加えられているわけではない。このため、WSL側には、
+Linuxのファイルシステムがそのまま見える。
+これを「VolFs（Volume File System）」と呼ぶ。これに対して、
+Windows OS側の普通のファイルシステム（Cドライブなど）は、WSL側からは、
+「/mnt/」以下にドライブ文字から始まるパスとして見ることができる。
+これを「DrvFs（Drive File System）」と呼ぶ。
+```
+![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F521871%2F8aaa5970-9918-011c-572c-859098024658.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=86a0d27a0cbd818bc9d04afce465c5f5)  
+
+[【WSL入門】第3回 WSL活用の落とし穴：LinuxからWindowsフォルダへのアクセス完全マスター Apr 19, 2019](https://www.atmarkit.co.jp/ait/articles/1904/19/news033.html)  
+
+[【WSL入門】第4回 bashの展開機能と正規表現の基礎 May 24, 2019](https://www.atmarkit.co.jp/ait/articles/1905/24/news020.html)  
+[【WSL入門】第2回　避けては通れないWSLとWindows 10との文字コードの違い Apr 05, 2019](https://www.atmarkit.co.jp/ait/articles/1904/05/news027.html)  
+
+
+[Windows10 HomeでLinuxに寄せた開発環境を整える Aug 11, 2019](https://qiita.com/v2okimochi/items/c9da7df8d4f03283121b)  
+```
+目次
+
+    Zipコマンドを使う
+    Gitを使う
+    まずWindows上のgitで改行コードが自動変換される罠を外す
+    Dockerを使う
+        Docker Toolbox
+        WSL2 + Ubuntu18.04LTS
+    Leiningenを入れてPowerShellからClojureを動かせるようにする
+    Spacemacsを入れてcider-jack-inからlein replを使えるようにする
+        環境変数を読み込めるようにする
+        cider-jack-inでreplを起動する
+        JVM文字化け問題を何とかする
+        TypeScript Layerで自動整形をかける
+        Scala Layerで定義ジャンプや補完機能を使う
+        その他いろいろ
+    PowerShellでSBTの文字コード問題を解決する
+    nvm経由でnpmを入れて複数のnodeを切り替えられるようにする
+    tfenv経由でterraformを入れて無双する
+```
+
+
+[WSL2 (Windows Subsystem for Linux) - Benjr.tw Sep 27, 2019](http://benjr.tw/102092)  
+
+
+# 04. WSL2  
 [WSL2の環境構築手順 Aug 17, 2019](https://qiita.com/poramal/items/3562472d52fe60f61c56)
 [WSL2を使ってみる (InsiderPreview)  Jun 15, 2019](https://qiita.com/namoshika/items/53a9ac2df7eace656870)  
 [WSL + Docker + Jenkins + Proxyの地雷を解決する Nov 18, 2019](https://qiita.com/dongsu-iis/items/3a44a38a48b9a1533628)  
@@ -288,70 +553,6 @@ for file in `\find /etc/rc3.d/* -maxdepth 1`; do $file start; done
 
 # WSL2のコロコロ変わるIPをMyDNSで何とかする
 [WSL2のコロコロ変わるIPをMyDNSで何とかする Jul 4, 2019](https://qiita.com/SoraKumo/items/388a1315a6bdc16b4d2e)  
-
-# 04. WSL2 Installation on Win 10  
-[在Windows 10 環境上安裝WSL 2 - Huan-Lin 學習筆記 Feb 27, 2020](https://www.huanlintalk.com/2020/02/wsl-2-installation.html)  
-
-[やさしいWSL2のインストール手順とエラー Apr 12, 2020](https://qiita.com/kekenonono/items/14b725ce3d00cd5281ec)  
-## 1. Windows 10 ビルド 18917 以降であること  
-[1. Windows 10 ビルド 18917 以降であること](https://qiita.com/kekenonono/items/14b725ce3d00cd5281ec#1-windows-10-%E3%83%93%E3%83%AB%E3%83%89-18917-%E4%BB%A5%E9%99%8D%E3%81%A7%E3%81%82%E3%82%8B%E3%81%93%E3%81%A8)  
-```
-コマンドプロンプトから確認
-
-    コマンドプロンプトを開く
-    varコマンドを実行
-    出てきたバージョンが18917以上ならOK！
-```
-[最新のWindows 10 November 2019 Updateを手動でインストールする ](https://www.atmarkit.co.jp/ait/articles/1704/10/news023.html)  
-[Windows 10 20H1 版 5 月重大更新將導入 “自動更新驅動程式” 的新功能 Feb 25, 2020](https://www.kocpc.com.tw/archives/308300)  
-[Windows 10 20H1 (Vibranium) 公眾預覽版本Build 18912 ... Nov 20, 2019](https://isite.tw/2019/11/20/20297)  
-[Win10 20h1 下載](http://rile39ri.duckdns.org/page51) 
-
-```
-Select Fast then download Build 19608 then Upgrade it.
-```
-![alt tag](https://i.imgur.com/KvoE8MT.jpg)  
-![alt tag](https://i.imgur.com/1ZTKUjW.jpg)  
-
-*Update to WSL2 Environment then Hyper-V will disappear.*
-
-## 2. Windows Insider Programに入っていること  
-[2. Windows Insider Programに入っていること](https://qiita.com/kekenonono/items/14b725ce3d00cd5281ec#2-windows-insider-program%E3%81%AB%E5%85%A5%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%93%E3%81%A8)  
-```
-このページを訪れる人はほとんど入っていなと考えられます
-以下の手順を行ってください
-
-    Windowsの設定⇒更新とセキュリティ⇒Windows Insider Programを開く
-    開始する（Get start）をクリック
-    出てくる文章に同意し、Windowsアカウントを紐づける
-    Insiderの設定でスロー（推奨）をクリック
-    再起動をクリック
-```
-
-[Windows10 HomeでLinuxに寄せた開発環境を整える Aug 11, 2019](https://qiita.com/v2okimochi/items/c9da7df8d4f03283121b)  
-```
-目次
-
-    Zipコマンドを使う
-    Gitを使う
-    まずWindows上のgitで改行コードが自動変換される罠を外す
-    Dockerを使う
-        Docker Toolbox
-        WSL2 + Ubuntu18.04LTS
-    Leiningenを入れてPowerShellからClojureを動かせるようにする
-    Spacemacsを入れてcider-jack-inからlein replを使えるようにする
-        環境変数を読み込めるようにする
-        cider-jack-inでreplを起動する
-        JVM文字化け問題を何とかする
-        TypeScript Layerで自動整形をかける
-        Scala Layerで定義ジャンプや補完機能を使う
-        その他いろいろ
-    PowerShellでSBTの文字コード問題を解決する
-    nvm経由でnpmを入れて複数のnodeを切り替えられるようにする
-    tfenv経由でterraformを入れて無双する
-```
-
-[WSL2 (Windows Subsystem for Linux) - Benjr.tw Sep 27, 2019](http://benjr.tw/102092)  
 
 
 # 05. CredSSP authentication is currently disabled on the local client  
