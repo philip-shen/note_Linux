@@ -17,7 +17,9 @@ Take note of WSL from VSCode.
 [WSL2がWindowsからlocalhostで接続できるようになる](#wsl2%E3%81%8Cwindows%E3%81%8B%E3%82%89localhost%E3%81%A7%E6%8E%A5%E7%B6%9A%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%AA%E3%82%8B)  
 [WSL2のコロコロ変わるIPをMyDNSで何とかする](#wsl2%E3%81%AE%E3%82%B3%E3%83%AD%E3%82%B3%E3%83%AD%E5%A4%89%E3%82%8F%E3%82%8Bip%E3%82%92mydns%E3%81%A7%E4%BD%95%E3%81%A8%E3%81%8B%E3%81%99%E3%82%8B)  
 
-[04. CredSSP authentication is currently disabled on the local client](#04-credssp-authentication-is-currently-disabled-on-the-local-client)  
+[04. WSL2 Installation on Win 10](#04-wsl2-installation-on-Win-10)  
+
+[05. CredSSP authentication is currently disabled on the local client](#05-credssp-authentication-is-currently-disabled-on-the-local-client)  
 
 
 [Reference](#reference)
@@ -287,8 +289,16 @@ for file in `\find /etc/rc3.d/* -maxdepth 1`; do $file start; done
 # WSL2のコロコロ変わるIPをMyDNSで何とかする
 [WSL2のコロコロ変わるIPをMyDNSで何とかする Jul 4, 2019](https://qiita.com/SoraKumo/items/388a1315a6bdc16b4d2e)  
 
+# 04. WSL2 Installation on Win 10  
+[在Windows 10 環境上安裝WSL 2 - Huan-Lin 學習筆記 Feb 27, 2020](https://www.huanlintalk.com/2020/02/wsl-2-installation.html)  
 
-# 04. CredSSP authentication is currently disabled on the local client  
+## 1. 加入 Windows Insider Program（測試人員計畫）  
+
+[やさしいWSL2のインストール手順とエラー Apr 12, 2020](https://qiita.com/kekenonono/items/14b725ce3d00cd5281ec)  
+[WSL2 (Windows Subsystem for Linux) - Benjr.tw Sep 27, 2019](http://benjr.tw/102092)  
+
+
+# 05. CredSSP authentication is currently disabled on the local client  
 [Connecting to Hyper-V from a non-domain joined Windows 10 workstation. Feb 14, 2019](https://www.digitaldarragh.com/2019/02/14/connecting-to-hyper-v-from-a-non-domain-joined-windows-10-workstation/)  
 
 [[SOLVED] Hyper V Remote Management From Windows 10 Pro Oct 14, 2016](https://community.spiceworks.com/topic/1874773-hyper-v-remote-management-from-windows-10-pro)  
