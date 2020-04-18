@@ -307,6 +307,13 @@ for file in `\find /etc/rc3.d/* -maxdepth 1`; do $file start; done
 [Windows 10 20H1 (Vibranium) 公眾預覽版本Build 18912 ... Nov 20, 2019](https://isite.tw/2019/11/20/20297)  
 [Win10 20h1 下載](http://rile39ri.duckdns.org/page51) 
 
+```
+Select Fast then download Build 19608 then Upgrade it.
+```
+![alt tag](https://i.imgur.com/KvoE8MT.jpg)  
+![alt tag](https://i.imgur.com/1ZTKUjW.jpg)  
+
+* Update to WSL2 Environment then Hyper-V will disappear.*
 
 ## 2. Windows Insider Programに入っていること  
 [2. Windows Insider Programに入っていること](https://qiita.com/kekenonono/items/14b725ce3d00cd5281ec#2-windows-insider-program%E3%81%AB%E5%85%A5%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%93%E3%81%A8)  
