@@ -1,5 +1,5 @@
 # Purpose
-Take note of WSL from VSCode.
+Take note of WSL and WSL2.
 
 # Table of Contents  
 [Managing VMs stuck in the ‘Starting’ or ‘Stopping’ state in Hyper-V](#managing-vms-stuck-in-the-starting-or-stopping-state-in-hyper-v)  
@@ -15,6 +15,17 @@ Take note of WSL from VSCode.
 
 
 [03. WSL2 Installation on Win 10](#03-wsl2-installation-on-Win-10)  
+[1. Afert Windows 10 Build 18917](#1-afert-windows-10-build-18917)  
+[2. Windows Insider Program Installation](#2-windows-insider-program-installation)  
+[3. WSL2 Installation](#3-wsl2-installation)  
+[01. Both Machine Platform and WSL Availability](#01-both-machine-platform-and-wsl-availability)  
+[02. Linux Distribution Selection](#02-linux-distribution-selection)  
+[03. Distribution Version Changes to WSL2](#03-distribution-version-changes-to-wsl2)  
+[04. WSL2 Sets to Defalut Version](#04-wsl2-sets-to-defalut-version)  
+[05. WSL Version Confirmation](#05-wsl-version-confirmation)  
+[4. Docker Installation and Launch](#4-docker-installation-and-launch)  
+[5. Docker Desktop v2.2.1.0 Installation](#5-docker-desktop-v2210-installation)  
+[6. WSL and Windows](#6-wsl-and-windows)  
 
 
 [04. WSL2](#04-wsl2)  
@@ -242,7 +253,8 @@ which should install Python 3.5.
 
 # 03. WSL2 Installation on Win 10  
 [やさしいWSL2のインストール手順とエラー Apr 12, 2020](https://qiita.com/kekenonono/items/14b725ce3d00cd5281ec)  
-## 1. Windows 10 ビルド 18917 以降であること  
+
+## 1. Afert Windows 10 Build 18917  
 [1. Windows 10 ビルド 18917 以降であること](https://qiita.com/kekenonono/items/14b725ce3d00cd5281ec#1-windows-10-%E3%83%93%E3%83%AB%E3%83%89-18917-%E4%BB%A5%E9%99%8D%E3%81%A7%E3%81%82%E3%82%8B%E3%81%93%E3%81%A8)  
 ```
 コマンドプロンプトから確認
@@ -266,7 +278,7 @@ Select Fast then download Build 19608 then Upgrade it.
 
 ![alt tag](https://i.imgur.com/FUWKePH.jpg)  
 
-## 2. Windows Insider Programに入っていること  
+## 2. Windows Insider Program Installation  
 [2. Windows Insider Programに入っていること](https://qiita.com/kekenonono/items/14b725ce3d00cd5281ec#2-windows-insider-program%E3%81%AB%E5%85%A5%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%93%E3%81%A8)  
 ```
 このページを訪れる人はほとんど入っていなと考えられます
