@@ -292,9 +292,58 @@ for file in `\find /etc/rc3.d/* -maxdepth 1`; do $file start; done
 # 04. WSL2 Installation on Win 10  
 [在Windows 10 環境上安裝WSL 2 - Huan-Lin 學習筆記 Feb 27, 2020](https://www.huanlintalk.com/2020/02/wsl-2-installation.html)  
 
-## 1. 加入 Windows Insider Program（測試人員計畫）  
-
 [やさしいWSL2のインストール手順とエラー Apr 12, 2020](https://qiita.com/kekenonono/items/14b725ce3d00cd5281ec)  
+## 1. Windows 10 ビルド 18917 以降であること  
+[1. Windows 10 ビルド 18917 以降であること](https://qiita.com/kekenonono/items/14b725ce3d00cd5281ec#1-windows-10-%E3%83%93%E3%83%AB%E3%83%89-18917-%E4%BB%A5%E9%99%8D%E3%81%A7%E3%81%82%E3%82%8B%E3%81%93%E3%81%A8)  
+```
+コマンドプロンプトから確認
+
+    コマンドプロンプトを開く
+    varコマンドを実行
+    出てきたバージョンが18917以上ならOK！
+```
+[最新のWindows 10 November 2019 Updateを手動でインストールする ](https://www.atmarkit.co.jp/ait/articles/1704/10/news023.html)  
+[Windows 10 20H1 版 5 月重大更新將導入 “自動更新驅動程式” 的新功能 Feb 25, 2020](https://www.kocpc.com.tw/archives/308300)  
+[Windows 10 20H1 (Vibranium) 公眾預覽版本Build 18912 ... Nov 20, 2019](https://isite.tw/2019/11/20/20297)  
+[Win10 20h1 下載](http://rile39ri.duckdns.org/page51) 
+
+
+## 2. Windows Insider Programに入っていること  
+[2. Windows Insider Programに入っていること](https://qiita.com/kekenonono/items/14b725ce3d00cd5281ec#2-windows-insider-program%E3%81%AB%E5%85%A5%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%93%E3%81%A8)  
+```
+このページを訪れる人はほとんど入っていなと考えられます
+以下の手順を行ってください
+
+    Windowsの設定⇒更新とセキュリティ⇒Windows Insider Programを開く
+    開始する（Get start）をクリック
+    出てくる文章に同意し、Windowsアカウントを紐づける
+    Insiderの設定でスロー（推奨）をクリック
+    再起動をクリック
+```
+
+[Windows10 HomeでLinuxに寄せた開発環境を整える Aug 11, 2019](https://qiita.com/v2okimochi/items/c9da7df8d4f03283121b)  
+```
+目次
+
+    Zipコマンドを使う
+    Gitを使う
+    まずWindows上のgitで改行コードが自動変換される罠を外す
+    Dockerを使う
+        Docker Toolbox
+        WSL2 + Ubuntu18.04LTS
+    Leiningenを入れてPowerShellからClojureを動かせるようにする
+    Spacemacsを入れてcider-jack-inからlein replを使えるようにする
+        環境変数を読み込めるようにする
+        cider-jack-inでreplを起動する
+        JVM文字化け問題を何とかする
+        TypeScript Layerで自動整形をかける
+        Scala Layerで定義ジャンプや補完機能を使う
+        その他いろいろ
+    PowerShellでSBTの文字コード問題を解決する
+    nvm経由でnpmを入れて複数のnodeを切り替えられるようにする
+    tfenv経由でterraformを入れて無双する
+```
+
 [WSL2 (Windows Subsystem for Linux) - Benjr.tw Sep 27, 2019](http://benjr.tw/102092)  
 
 
