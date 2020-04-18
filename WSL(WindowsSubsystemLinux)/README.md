@@ -25,7 +25,8 @@ Take note of WSL and WSL2.
 [05. WSL Version Confirmation](#05-wsl-version-confirmation)  
 [4. Docker Installation and Launch](#4-docker-installation-and-launch)  
 [5. Docker Desktop v2.2.1.0 Installation](#5-docker-desktop-v2210-installation)  
-[6. WSL and Windows](#6-wsl-and-windows)  
+[6. Excute VS Code on WSL](#6-excute-vs-code-on-wsl)  
+[7. WSL and Windows](#7-wsl-and-windows)  
 
 
 [04. WSL2](#04-wsl2)  
@@ -467,7 +468,10 @@ export DOCKER_HOST='tcp://0.0.0.0:2375'という記述を消さないと、
 永遠にそのポートが指定されるので気をつけましょう。
 ```
 
-## 6. WSL and Windows  
+## 6. Excute VS Code on WSL  
+[後記：在 Linux 環境下使用 Visual Studio Code](https://www.huanlintalk.com/2020/02/wsl-2-installation.html)  
+
+## 7. WSL and Windows  
 [WSLとWindows](https://qiita.com/kekenonono/items/1ddbb5a1125d496c0010#4-wsl%E3%81%A8windows)  
 ```
 WSLの中で動作しているのは、ほぼ普通のLinuxでコマンドのバイナリコードもそのままである。
