@@ -474,6 +474,19 @@ export DOCKER_HOST='tcp://0.0.0.0:2375'という記述を消さないと、
 
 ## 6. Excute VS Code on WSL  
 [後記：在 Linux 環境下使用 Visual Studio Code](https://www.huanlintalk.com/2020/02/wsl-2-installation.html)  
+```
+安裝好這個外掛之後，VS Code 視窗的左下角會有個「Open a remote window」按鈕，
+點此按鈕便會顯示 Remote-WSL 的功能選單，如下圖：
+```
+![alt tag](https://1.bp.blogspot.com/-1lt1sk0A8Jk/XltlCUsUyvI/AAAAAAAAp1U/tvzhcZup0Lc8wnWnmhsJWbJ3GN4ZmnOFACNcBGAsYHQ/s640/2020-03-01_15-22-35.png)  
+
+```
+
+此時點一下「Remote-WS: New Window」，便可開啟一個新的 VS Code 視窗，
+而且該視窗是以遠端連線的方式工作，亦即連線至 Linux 環境中的 VS Code Server。如下圖：
+```
+[VS Code Server](https://github.com/cdr/code-server)  
+![alt tag](https://1.bp.blogspot.com/-3DyFej4Rfjg/Xluq6wehPhI/AAAAAAAAp1s/3YARTCwjDm4b5EsXuX0fX1tz-TpDAar9QCNcBGAsYHQ/s640/2020-03-01_20-26-07.png)  
 
 ## 7. WSL and Windows  
 [WSLとWindows](https://qiita.com/kekenonono/items/1ddbb5a1125d496c0010#4-wsl%E3%81%A8windows)  
