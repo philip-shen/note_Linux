@@ -33,8 +33,12 @@ Take note of WSL and WSL2.
 [WSL2がWindowsからlocalhostで接続できるようになる](#wsl2%E3%81%8Cwindows%E3%81%8B%E3%82%89localhost%E3%81%A7%E6%8E%A5%E7%B6%9A%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%AA%E3%82%8B)  
 [WSL2のコロコロ変わるIPをMyDNSで何とかする](#wsl2%E3%81%AE%E3%82%B3%E3%83%AD%E3%82%B3%E3%83%AD%E5%A4%89%E3%82%8F%E3%82%8Bip%E3%82%92mydns%E3%81%A7%E4%BD%95%E3%81%A8%E3%81%8B%E3%81%99%E3%82%8B)  
 
+[05. WSL2 vs Hpyer-V](#05-wsl2-vs-hpyer-v)  
+[Illustration](#illustration)  
 
-[05. CredSSP authentication is currently disabled on the local client](#05-credssp-authentication-is-currently-disabled-on-the-local-client)  
+
+
+[06. CredSSP authentication is currently disabled on the local client](#06-credssp-authentication-is-currently-disabled-on-the-local-client)  
 
 
 [Reference](#reference)
@@ -571,7 +575,15 @@ for file in `\find /etc/rc3.d/* -maxdepth 1`; do $file start; done
 [WSL2のコロコロ変わるIPをMyDNSで何とかする Jul 4, 2019](https://qiita.com/SoraKumo/items/388a1315a6bdc16b4d2e)  
 
 
-# 05. CredSSP authentication is currently disabled on the local client  
+# 05. WSL2 vs Hpyer-V  
+[WSL2とHyper-Vの関係 updated at 2020-02-28](https://qiita.com/matarillo/items/ca1eecf8f9a3cd76f9ce)  
+
+## Illustration  
+[図解](https://qiita.com/matarillo/items/ca1eecf8f9a3cd76f9ce#%E5%9B%B3%E8%A7%A3)  
+![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F2079%2Fe1b82763-f67d-f30a-2a02-b5ec0199b732.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&w=1400&fit=max&s=1911e2fbd8a3f37bac7b0c2d120eb787)  
+
+
+# 06. CredSSP authentication is currently disabled on the local client  
 [Connecting to Hyper-V from a non-domain joined Windows 10 workstation. Feb 14, 2019](https://www.digitaldarragh.com/2019/02/14/connecting-to-hyper-v-from-a-non-domain-joined-windows-10-workstation/)  
 
 [[SOLVED] Hyper V Remote Management From Windows 10 Pro Oct 14, 2016](https://community.spiceworks.com/topic/1874773-hyper-v-remote-management-from-windows-10-pro)  
