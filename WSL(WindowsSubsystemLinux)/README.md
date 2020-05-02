@@ -46,13 +46,13 @@ Table of Contents
    * [04. WSL2](#04-wsl2)
       * [[WSL 2] NIC Bridge mode (Has TCP Workaround )](#wsl-2-nic-bridge-mode-has-tcp-workaround-)
       * [WSL2 Set static ip?](#wsl2-set-static-ip)
-         * [1. Launch Event Viewer](#1-launch-event-viewer)
-         * [2. Select System](#2-select-system)
-         * [3. find events which source is Hyper-V-VmSwith](#3-find-events-which-source-is-hyper-v-vmswith)
-         * [4. find the event which is "create switch"](#4-find-the-event-which-is-create-switch)
-         * [5. right click the entry and then click the "Attach Task To This Event..."](#5-right-click-the-entry-and-then-click-the-attach-task-to-this-event)
-         * [6. click next, in the action tab, select Start a program, input the program: powershell, the argument is the wsl2.ps1, and select next, finish.](#6-click-next-in-the-action-tab-select-start-a-program-input-the-program-powershell-the-argument-is-the-wsl2ps1-and-select-next-finish)
-         * [7. Go to search, search for task scheduler. Select the Event Viewer Tasks, and right click your task just created, select properties, In the "General" tab, Select "Run with highest privileges".](#7-go-to-search-search-for-task-scheduler-select-the-event-viewer-tasks-and-right-click-your-task-just-created-select-properties-in-the-general-tab-select-run-with-highest-privileges)
+         * [01. Launch Event Viewer](#01-launch-event-viewer)
+         * [02. Select System](#02-select-system)
+         * [03. find events which source is Hyper-V-VmSwith](#03-find-events-which-source-is-hyper-v-vmswith)
+         * [04. find the event which is "create switch"](#04-find-the-event-which-is-create-switch)
+         * [05. right click the entry and then click the "Attach Task To This Event..."](#05-right-click-the-entry-and-then-click-the-attach-task-to-this-event)
+         * [06. click next, in the action tab, select Start a program, input the program: powershell, the argument is the wsl2.ps1, and select next, finish.](#06-click-next-in-the-action-tab-select-start-a-program-input-the-program-powershell-the-argument-is-the-wsl2ps1-and-select-next-finish)
+         * [07. Go to search, search for task scheduler. Select the Event Viewer Tasks, and right click your task just created, select properties, In the "General" tab, Select "Run with highest privileges".](#07-go-to-search-search-for-task-scheduler-select-the-event-viewer-tasks-and-right-click-your-task-just-created-select-properties-in-the-general-tab-select-run-with-highest-privileges)
       * [wsl2でsshサーバを起動し、外部からそこに接続](#wsl2でsshサーバを起動し外部からそこに接続)
       * [WSL2がWindowsからlocalhostで接続できるようになる](#wsl2がwindowsからlocalhostで接続できるようになる)
          * [localhostの検証](#localhostの検証)
@@ -589,29 +589,29 @@ and create an task scheduler on Hyper-V create a WSL switch.
 ```
 How To:
 ```
-### 1. Launch Event Viewer  
+### 01. Launch Event Viewer  
 >    Hit Start, type “Event Viewer” into the search box, and then click the result. You can refer to this: http://techgenix.com/attaching-tasks-event-viewer-logs-events/
 
-### 2. Select System  
+### 02. Select System  
 > in the left panel, select Windows Logs -> System
 
-### 3. find events which source is Hyper-V-VmSwith  
+### 03. find events which source is Hyper-V-VmSwith  
 
-### 4. find the event which is "create switch"  
+### 04. find the event which is "create switch"  
 > click each entry of step 3, find the message is : Port xxxxx successfully created on switch xxxx (Friendly Name: WSL)  
 
 ![alt tag](https://i.imgur.com/08Dm0B5.jpg)  
 
-### 5. right click the entry and then click the "Attach Task To This Event..."  
+### 05. right click the entry and then click the "Attach Task To This Event..."  
 
-### 6. click next, in the action tab, select Start a program, input the program: powershell, the argument is the wsl2.ps1, and select next, finish.  
+### 06. click next, in the action tab, select Start a program, input the program: powershell, the argument is the wsl2.ps1, and select next, finish.  
 
 ![alt tag](https://i.imgur.com/iU5D32Y.jpg)  
 ![alt tag](https://i.imgur.com/3zw4aLp.jpg)  
 ![alt tag](https://i.imgur.com/gJRXTKE.jpg)  
 ![alt tag](https://i.imgur.com/pxG4fMy.jpg)  
 
-### 7. Go to search, search for task scheduler. Select the Event Viewer Tasks, and right click your task just created, select properties, In the "General" tab, Select "Run with highest privileges".  
+### 07. Go to search, search for task scheduler. Select the Event Viewer Tasks, and right click your task just created, select properties, In the "General" tab, Select "Run with highest privileges".  
 > You can refer to this: https://superuser.com/questions/770420/schedule-a-task-with-admin-privileges-without-a-user-prompt-in-windows-7  
 
 ![alt tag](https://i.imgur.com/gZZ0D0F.jpg)  
@@ -759,6 +759,3 @@ lxrun /setdefaultuser default_username
 - 1
 - 2
 - 3
-
-
-
