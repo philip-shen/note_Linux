@@ -1,47 +1,71 @@
+Table of Contents
+=================
+
+   * [Purpose](#purpose)
+   * [Managing VMs stuck in the ‘Starting’ or ‘Stopping’ state in Hyper-V](#managing-vms-stuck-in-the-starting-or-stopping-state-in-hyper-v)
+      * [1. First we need to open Task Manger and view the process tab](#1-first-we-need-to-open-task-manger-and-view-the-process-tab)
+      * [2. Then right click on the column titles and add in the Command Line column](#2-then-right-click-on-the-column-titles-and-add-in-the-command-line-column)
+      * [3. Expand the Command Line column to view the full command, including the machine GUIDs at the end of each line](#3-expand-the-command-line-column-to-view-the-full-command-including-the-machine-guids-at-the-end-of-each-line)
+      * [4. we can find the machine configuration file and make note of the GUID for that machine](#4-we-can-find-the-machine-configuration-file-and-make-note-of-the-guid-for-that-machine)
+      * [5. Now we know which GUID.  Jump back to Task Manger, right click on the correct process and End Process](#5-now-we-know-which-guid--jump-back-to-task-manger-right-click-on-the-correct-process-and-end-process)
+      * [Another way to locate the GUID of the machines running on the server is to use PowerShell to output it](#another-way-to-locate-the-guid-of-the-machines-running-on-the-server-is-to-use-powershell-to-output-it)
+   * [Fixing a Virtual Machine that's Stuck in a Saved State](#fixing-a-virtual-machine-thats-stuck-in-a-saved-state)
+      * [1. Status Check](#1-status-check)
+      * [2. Reduce Each CheckPoint](#2-reduce-each-checkpoint)
+      * [3. Restart WSL](#3-restart-wsl)
+   * [Shared Folders over Hyper-V Ubuntu Guest](#shared-folders-over-hyper-v-ubuntu-guest)
+      * [Starting a file share](#starting-a-file-share)
+      * [Guest to Host Networking](#guest-to-host-networking)
+      * [Mounting the Shared Folder on Guest](#mounting-the-shared-folder-on-guest)
+   * [Setup NAT and Port Mapping at Hyper-V](#setup-nat-and-port-mapping-at-hyper-v)
+   * [Linux GUI on WSL](#linux-gui-on-wsl)
+   * [How to mount USB disk on WSL](#how-to-mount-usb-disk-on-wsl)
+   * [Windows 10 - Bash (Ubuntu) SU (Root Password)](#windows-10---bash-ubuntu-su-root-password)
+   * [Reset Password for WSL Linux Distro in Windows 10](#reset-password-for-wsl-linux-distro-in-windows-10)
+      * [Change the default user name for your WSL distro to root. Use the following command: ubuntu config --default-user root. For other distros, see Note below.](#change-the-default-user-name-for-your-wsl-distro-to-root-use-the-following-command-ubuntu-config---default-user-root-for-other-distros-see-note-below)
+      * [Launch your Linux distribution, e.g. type ubuntu, or wsl if you are working with your default WSL distro.](#launch-your-linux-distribution-eg-type-ubuntu-or-wsl-if-you-are-working-with-your-default-wsl-distro)
+      * [Reset your password using the passwd command: passwd . Substitute the  portion with the actual user name you want to reset the password for, e.g. #passwd winaero.](#reset-your-password-using-the-passwd-command-passwd--substitute-the--portion-with-the-actual-user-name-you-want-to-reset-the-password-for-eg-passwd-winaero)
+      * [Leave your WSL session and set the default user of the WSL distro back to your user account, e.g. ubuntu config --default-user winaero.](#leave-your-wsl-session-and-set-the-default-user-of-the-wsl-distro-back-to-your-user-account-eg-ubuntu-config---default-user-winaero)
+   * [How can I install Python on Bash on Ubuntu on Windows?](#how-can-i-install-python-on-bash-on-ubuntu-on-windows)
+   * [03. WSL2 Installation on Win 10](#03-wsl2-installation-on-win-10)
+      * [1. Afert Windows 10 Build 18917](#1-afert-windows-10-build-18917)
+      * [2. Windows Insider Program Installation](#2-windows-insider-program-installation)
+      * [3. WSL2 Installation](#3-wsl2-installation)
+         * [01. Both Machine Platform and WSL Availability](#01-both-machine-platform-and-wsl-availability)
+         * [02. Linux Distribution Selection](#02-linux-distribution-selection)
+         * [03. Distribution Version Changes to WSL2](#03-distribution-version-changes-to-wsl2)
+            * [wsl_update_x64.msi Installation Error Troublshooting](#wsl_update_x64msi-installation-error-troublshooting)
+         * [04. WSL2 Sets to Defalut Version](#04-wsl2-sets-to-defalut-version)
+         * [05. WSL Version Confirmation](#05-wsl-version-confirmation)
+         * [05. WSL Version Backward to 1](#05-wsl-version-backward-to-1)
+      * [4. Docker Installation and Launch](#4-docker-installation-and-launch)
+      * [5. Docker Desktop v2.2.1.0 Installation](#5-docker-desktop-v2210-installation)
+      * [6. Excute VS Code on WSL](#6-excute-vs-code-on-wsl)
+      * [7. WSL and Windows](#7-wsl-and-windows)
+   * [04. WSL2](#04-wsl2)
+      * [[WSL 2] NIC Bridge mode (Has TCP Workaround )](#wsl-2-nic-bridge-mode-has-tcp-workaround-)
+      * [WSL2 Set static ip?](#wsl2-set-static-ip)
+      * [wsl2でsshサーバを起動し、外部からそこに接続](#wsl2でsshサーバを起動し外部からそこに接続)
+      * [WSL2がWindowsからlocalhostで接続できるようになる](#wsl2がwindowsからlocalhostで接続できるようになる)
+         * [localhostの検証](#localhostの検証)
+         * [WSL2を使うときに便利なbat](#wsl2を使うときに便利なbat)
+      * [WSL2のコロコロ変わるIPをMyDNSで何とかする](#wsl2のコロコロ変わるipをmydnsで何とかする)
+   * [05. WSL2 vs Hpyer-V](#05-wsl2-vs-hpyer-v)
+      * [Illustration](#illustration)
+   * [06. CredSSP authentication is currently disabled on the local client](#06-credssp-authentication-is-currently-disabled-on-the-local-client)
+   * [Reference](#reference)
+   * [h1 size](#h1-size)
+      * [h2 size](#h2-size)
+         * [h3 size](#h3-size)
+            * [h4 size](#h4-size)
+               * [h5 size](#h5-size)
+   * [Table of Contents](#table-of-contents-1)
+
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+
 # Purpose
 Take note of WSL and WSL2.
 
-# Table of Contents  
-[Managing VMs stuck in the ‘Starting’ or ‘Stopping’ state in Hyper-V](#managing-vms-stuck-in-the-starting-or-stopping-state-in-hyper-v)  
-[Fixing a Virtual Machine that's Stuck in a Saved State](#fixing-a-virtual-machine-thats-stuck-in-a-saved-state)  
-
-[Shared Folders over Hyper-V Ubuntu Guest](#shared-folders-over-hyper-v-ubuntu-guest)  
-[Setup NAT and Port Mapping at Hyper-V](#setup-nat-and-port-mapping-at-hyper-v)
-[Linux GUI on WSL](#linux-gui-on-wsl)  
-[How to mount USB disk on WSL](#how-to-mount-usb-disk-on-wsl)  
-[Windows 10 - Bash (Ubuntu) SU (Root Password)](#windows-10---bash-ubuntu-su-root-password)  
-[Reset Password for WSL Linux Distro in Windows 10](#reset-password-for-wsl-linux-distro-in-windows-10)  
-[How can I install Python on Bash on Ubuntu on Windows?](#how-can-i-install-python-on-bash-on-ubuntu-on-windows?)  
-
-
-[03. WSL2 Installation on Win 10](#03-wsl2-installation-on-Win-10)  
-[1. Afert Windows 10 Build 18917](#1-afert-windows-10-build-18917)  
-[2. Windows Insider Program Installation](#2-windows-insider-program-installation)  
-[3. WSL2 Installation](#3-wsl2-installation)  
-[01. Both Machine Platform and WSL Availability](#01-both-machine-platform-and-wsl-availability)  
-[02. Linux Distribution Selection](#02-linux-distribution-selection)  
-[03. Distribution Version Changes to WSL2](#03-distribution-version-changes-to-wsl2)  
-[04. WSL2 Sets to Defalut Version](#04-wsl2-sets-to-defalut-version)  
-[05. WSL Version Confirmation](#05-wsl-version-confirmation)  
-[4. Docker Installation and Launch](#4-docker-installation-and-launch)  
-[5. Docker Desktop v2.2.1.0 Installation](#5-docker-desktop-v2210-installation)  
-[6. Excute VS Code on WSL](#6-excute-vs-code-on-wsl)  
-[7. WSL and Windows](#7-wsl-and-windows)  
-
-
-[04. WSL2](#04-wsl2)  
-[WSL2がWindowsからlocalhostで接続できるようになる](#wsl2%E3%81%8Cwindows%E3%81%8B%E3%82%89localhost%E3%81%A7%E6%8E%A5%E7%B6%9A%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%AA%E3%82%8B)  
-[WSL2のコロコロ変わるIPをMyDNSで何とかする](#wsl2%E3%81%AE%E3%82%B3%E3%83%AD%E3%82%B3%E3%83%AD%E5%A4%89%E3%82%8F%E3%82%8Bip%E3%82%92mydns%E3%81%A7%E4%BD%95%E3%81%A8%E3%81%8B%E3%81%99%E3%82%8B)  
-
-[05. WSL2 vs Hpyer-V](#05-wsl2-vs-hpyer-v)  
-[Illustration](#illustration)  
-
-
-
-[06. CredSSP authentication is currently disabled on the local client](#06-credssp-authentication-is-currently-disabled-on-the-local-client)  
-
-
-[Reference](#reference)
 
 # Managing VMs stuck in the ‘Starting’ or ‘Stopping’ state in Hyper-V  
 [Managing VMs stuck in the ‘Starting’ or ‘Stopping’ state in Hyper-V Apr 10, 2015](http://www.techkb.onl/managing-vms-stuck-in-the-starting-or-stopping-state-in-hyper-v/)  
@@ -540,7 +564,56 @@ Windows OS側の普通のファイルシステム（Cドライブなど）は、
 [WSL + Docker + Jenkins + Proxyの地雷を解決する Nov 18, 2019](https://qiita.com/dongsu-iis/items/3a44a38a48b9a1533628)  
 [WSL2 で Docker Desktop for Windows (Edge) を利用する Nov 05, 2019](https://qiita.com/SakaiYuki/items/e5ab0061ff3273c0e80f)  
 
+## [WSL 2] NIC Bridge mode (Has TCP Workaround )  
+[[WSL 2] NIC Bridge mode 🖧 (Has TCP Workaround🔨)#4150 Jun, 16 2019](https://github.com/microsoft/WSL/issues/4150)  
 
+## WSL2 Set static ip?   
+[WSL2 Set static ip? Jun 21, 2019](https://github.com/microsoft/WSL/issues/4210)
+[lengthmin commented on 31 Mar](https://github.com/microsoft/WSL/issues/4210#issuecomment-606381534)  
+```
+I mod the #4150 (comment) script to update my hosts:
+https://github.com/lengthmin/dotfiles/blob/master/windows/wsl2.ps1
+save as wsl2.ps1 on your computer.
+
+the line2 and line3 is the domain you wanted.
+and create an task scheduler on Hyper-V create a WSL switch.
+```
+```
+How To:
+```
+> 1. Launch Event Viewer
+>    Hit Start, type “Event Viewer” into the search box, and then click the result. You can refer to this: http://techgenix.com/attaching-tasks-event-viewer-logs-events/
+
+> 2. Select System
+> in the left panel, select Windows Logs -> System
+
+> 3. find events which source is Hyper-V-VmSwith
+
+> 4. find the event which is "create switch"
+> click each entry of step 3, find the message is : Port xxxxx successfully created on switch xxxx (Friendly Name: WSL)
+![alt tag](https://i.imgur.com/08Dm0B5.jpg)  
+
+> 5. right click the entry and then click the "Attach Task To This Event..."
+
+> 6. click next, in the action tab, select Start a program, input the program: powershell, the argument is the wsl2.ps1, and select next, finish.
+![alt tag](https://i.imgur.com/iU5D32Y.jpg)  
+![alt tag](https://i.imgur.com/3zw4aLp.jpg)  
+![alt tag](https://i.imgur.com/gJRXTKE.jpg)  
+![alt tag](https://i.imgur.com/pxG4fMy.jpg)  
+
+> 7. Go to search, search for task scheduler. Select the Event Viewer Tasks, and right click your task just created, select properties, In the "General" tab, Select "Run with highest privileges".
+> You can refer to this: https://superuser.com/questions/770420/schedule-a-task-with-admin-privileges-without-a-user-prompt-in-windows-7
+![alt tag](https://i.imgur.com/gZZ0D0F.jpg)  
+
+[WSL2 的一些网络访问问题 Updated 2020-04-27](https://lengthmin.me/posts/wsl2-network-tricks/#more)  
+
+> Start http server on WSL：
+![alt tag](https://i.imgur.com/5hafwZt.png)  
+
+> HTTP Request on win 10：
+![alt tag](https://i.imgur.com/YqTQMnx.png)  
+
+## wsl2でsshサーバを起動し、外部からそこに接続  
 [wsl2でsshサーバを起動し、外部からそこに接続  Jul 03, 2019](https://qiita.com/yabeenico/items/15532c703974dc40a7f5)  
 
 やりたいこと  
@@ -553,10 +626,10 @@ wsl2の場合、LinuxはWindowsと仮想ネットワークで接続された別�
 ![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F101023%2F0a886cb7-32e0-6c51-c9ad-a71db1f6aad8.png?ixlib=rb-1.2.2&auto=compress%2Cformat&gif-q=60&w=1400&fit=max&s=1faea3623a80009547dcaa4596ac4170)  
 
 
-# WSL2がWindowsからlocalhostで接続できるようになる   
+## WSL2がWindowsからlocalhostで接続できるようになる   
 [WSL2がWindowsからlocalhostで接続できるようになる Jul 29, 2019](https://qiita.com/SoraKumo/items/c91b0fd7d434be8f8919)  
 
-## localhostの検証  
+### localhostの検証  
 [localhostの検証](https://qiita.com/SoraKumo/items/c91b0fd7d434be8f8919#localhost%E3%81%AE%E6%A4%9C%E8%A8%BC)  
 ```
     WindowsのWSL2仮想NICを無効化してみた結果
@@ -571,7 +644,7 @@ wsl2の場合、LinuxはWindowsと仮想ネットワークで接続された別�
     今後のバージョンで対応される可能性があります。
 ```
 
-## WSL2を使うときに便利なbat  
+### WSL2を使うときに便利なbat  
 [WSL2を使うときに便利なbat](https://qiita.com/SoraKumo/items/c91b0fd7d434be8f8919#wsl2%E3%82%92%E4%BD%BF%E3%81%86%E3%81%A8%E3%81%8D%E3%81%AB%E4%BE%BF%E5%88%A9%E3%81%AAbat)  
 ```
 全然話は変わりますがWSLの再起動ごとに、sshやWebサーバの起動が面倒だという人のためのおすすめbatファイルがこれです。
@@ -584,7 +657,7 @@ start /b wsl -u root ^
 for file in `\find /etc/rc3.d/* -maxdepth 1`; do $file start; done 
 ```
 
-# WSL2のコロコロ変わるIPをMyDNSで何とかする
+## WSL2のコロコロ変わるIPをMyDNSで何とかする
 [WSL2のコロコロ変わるIPをMyDNSで何とかする Jul 4, 2019](https://qiita.com/SoraKumo/items/388a1315a6bdc16b4d2e)  
 
 
@@ -673,3 +746,4 @@ lxrun /setdefaultuser default_username
 - 1
 - 2
 - 3
+
