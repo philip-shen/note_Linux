@@ -591,11 +591,13 @@ How To:
 
 > 4. find the event which is "create switch"
 > click each entry of step 3, find the message is : Port xxxxx successfully created on switch xxxx (Friendly Name: WSL)  
+
 ![alt tag](https://i.imgur.com/08Dm0B5.jpg)  
 
 > 5. right click the entry and then click the "Attach Task To This Event..."
 
 > 6. click next, in the action tab, select Start a program, input the program: powershell, the argument is the wsl2.ps1, and select next, finish.  
+
 ![alt tag](https://i.imgur.com/iU5D32Y.jpg)  
 ![alt tag](https://i.imgur.com/3zw4aLp.jpg)  
 ![alt tag](https://i.imgur.com/gJRXTKE.jpg)  
@@ -603,14 +605,17 @@ How To:
 
 > 7. Go to search, search for task scheduler. Select the Event Viewer Tasks, and right click your task just created, select properties, In the "General" tab, Select "Run with highest privileges".
 > You can refer to this: https://superuser.com/questions/770420/schedule-a-task-with-admin-privileges-without-a-user-prompt-in-windows-7  
+
 ![alt tag](https://i.imgur.com/gZZ0D0F.jpg)  
 
 [WSL2 的一些网络访问问题 Updated 2020-04-27](https://lengthmin.me/posts/wsl2-network-tricks/#more)  
 
 > Start http server on WSL： 
+
 ![alt tag](https://i.imgur.com/5hafwZt.png)  
 
 > HTTP Request on win 10：  
+
 ![alt tag](https://i.imgur.com/YqTQMnx.png)  
 
 ## wsl2でsshサーバを起動し、外部からそこに接続  
