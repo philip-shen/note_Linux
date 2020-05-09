@@ -1,19 +1,44 @@
-# Purpose
-Take note of Linux CLI
 
-# Table of Content
-[ps command](#ps-command)  
-[top command](#top-command)  
-[du df command](#what-is-the-difference-between-du-and-df-in-linux)  
-[IP/default gateway/DNS Setting](#ipdefault-gatewaydns-setting)  
-[Ubunut 如何使用 tracert ?](#ubunut-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-tracert-)  
-[WIFI 固定IP 參數設定](#wifi-%E5%9B%BA%E5%AE%9Aip-%E5%8F%83%E6%95%B8%E8%A8%AD%E5%AE%9A)  
-[How to Use "Script" Command To Record Linux Terminal Session](#how-to-use-script-command-to-record-linux-terminal-session)  
-[cannot create temp file for here-document: No space left on device](#cannot-create-temp-file-for-here-document-no-space-left-on-device)  
-[make, make clean and make V=s](#make-make-clean-and-make-vs)  
-[Bash script and /bin/bash^M: bad interpreter: No such file or directory](#bash-script-and-binbashm-bad-interpreter-no-such-file-or-directory)
+Table of Contents
+=================
 
-[Reference](#reference)  
+   * [Purpose](#purpose)
+   * [Table of Content](#table-of-content)
+   * [List CPU and MEM resouce occupation rate ranking](#list-cpu-and-mem-resouce-occupation-rate-ranking)
+      * [ps command](#ps-command)
+      * [top command](#top-command)
+   * [What is the difference between DU and DF in Linux?](#what-is-the-difference-between-du-and-df-in-linux)
+   * [IP/default gateway/DNS Setting](#ipdefault-gatewaydns-setting)
+   * [Ubunut 如何使用 tracert ?](#ubunut-如何使用-tracert-)
+   * [WIFI 固定IP 參數設定](#wifi-固定ip-參數設定)
+   * [How to Use "Script" Command To Record Linux Terminal Session](#how-to-use-script-command-to-record-linux-terminal-session)
+      * [1. Record your terminal session](#1-record-your-terminal-session)
+      * [2. Check the content of a recorded terminal session](#2-check-the-content-of-a-recorded-terminal-session)
+      * [3. Record several terminal session](#3-record-several-terminal-session)
+      * [4. Replay a linux terminal session](#4-replay-a-linux-terminal-session)
+   * [cannot create temp file for here-document: No space left on device](#cannot-create-temp-file-for-here-document-no-space-left-on-device)
+   * [make, make clean and make V=s](#make-make-clean-and-make-vs)
+   * [How to Kill a Process from the Command Line](#how-to-kill-a-process-from-the-command-line)
+      * [Locating the process](#locating-the-process)
+      * [Killing the process](#killing-the-process)
+      * [How to kill a daemon process in linux?](#how-to-kill-a-daemon-process-in-linux)
+   * [Bash script and /bin/bash^M: bad interpreter: No such file or directory](#bash-script-and-binbashm-bad-interpreter-no-such-file-or-directory)
+   * [Commands for Log Analysis- grep, awk, sort, uniq, wc, sed](#commands-for-log-analysis--grep-awk-sort-uniq-wc-sed)
+      * [コマンド6選](#コマンド6選)
+   * [Reference](#reference)
+   * [h1 size](#h1-size)
+      * [h2 size](#h2-size)
+         * [h3 size](#h3-size)
+            * [h4 size](#h4-size)
+               * [h5 size](#h5-size)
+   * [Table of Contents](#table-of-contents)
+
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+
+
+# Purpose  
+Take note of Linux CLI  
+
 
 # List CPU and MEM resouce occupation rate ranking
 * [Linux 用 ps 與 top 指令找出最耗費 CPU 與記憶體資源的程式 2016/12/22](https://blog.gtwang.org/linux/ps-top-find-processes-by-cpu-memory-usage/)
@@ -45,6 +70,7 @@ top -b -o +%MEM | head -n 17
 如果程式當掉無法關閉的話，就可以使用 kill 或 killall 這類的指令，中止不正常程式的執行，由於上面的報表中都有每個程式的 PID，
 所以使用 PID 來中止特定的程式是最直接的方式。
 
+
 # What is the difference between DU and DF in Linux?
 * [What is the difference between DU and DF in Linux?](https://www.quora.com/What-is-the-difference-between-DU-and-DF-in-Linux)
 > Disk Usage. It walks through directory tree and counts the sum size of all files therein. It may not output exact information due to the possibility of unreadable files, hard links in directory tree, etc. It will show information about the specific directory requested. Think, 
@@ -54,6 +80,7 @@ top -b -o +%MEM | head -n 17
 *"How much free disk space do I have?"*
 
 ![alt tag](https://i.imgur.com/Sd3Icdm.jpg)
+
 
 # IP/default gateway/DNS Setting
 * 1 修改 IP address
@@ -95,6 +122,8 @@ nameserver 168.95.1.1
 ```
 # /etc/init.d/network restart
 ```
+
+
 # Ubunut 如何使用 tracert ?   
 [Ubunut 如何使用 tracert ? 2009-11-01](https://www.arthurtoday.com/2009/11/tracert-in-linux.html)  
 ```
@@ -102,6 +131,8 @@ nameserver 168.95.1.1
 
 sudo apt-get install traceroute 
 ```
+
+
 # WIFI 固定IP 參數設定  
 [[linux] WIFI 固定IP 參數設定 9月 15, 2013](http://timfan1121.blogspot.com/2013/09/linux-wifi-ip.html)  
 ```
@@ -192,6 +223,7 @@ Let's see check the content of file_time
 0.033997 1
 ```
 
+
 # cannot create temp file for here-document: No space left on device
 ![alt tag](https://i.imgur.com/r6RNU8g.jpg)
 
@@ -241,6 +273,7 @@ OR
 umount overflow
 ```
 
+
 # make, make clean and make V=s  
 [make 及 make clean 的作用 Jun 12, 2018](https://www.opencli.com/linux/make-make-clean)  
 
@@ -265,6 +298,7 @@ Troubleshooting
 
 First get more information on the problem using the make option "make V=s".
 ```
+
 
 # How to Kill a Process from the Command Line  
 [How to Kill a Process from the Command Line May 15, 2018](https://www.linux.com/tutorials/how-kill-process-command-line/)  
@@ -322,6 +356,8 @@ ps -ef | grep a.out
 
 After this I used kill -9 pid to kill those processes.
 ```
+
+
 # Bash script and /bin/bash^M: bad interpreter: No such file or directory  
 [Not able to execute a .sh file: /bin/bash^M: bad interpreter Jun 7, 2013](https://askubuntu.com/questions/304999/not-able-to-execute-a-sh-file-bin-bashm-bad-interpreter)  
 ```
@@ -359,6 +395,20 @@ By default, it will say Dos\Windows. To change it go to
     create a new document
 ```
 
+
+# Commands for Log Analysis- grep, awk, sort, uniq, wc, sed     
+[ログ分析に使えるLinuxコマンド6選 posted at 2020-05-06](https://qiita.com/moneymog/items/16d2f843c344a5ace51a)  
+
+## コマンド6選  
+コマンド | 用途
+------------------------------------ | --------------------------------------------- 
+grep | 指定した文字列を含む行を検索
+awk | 列の分解や条件付き行の検索
+sort | 行の並び替え
+uniq | 重複行の除去や数のカウント
+wc | 文字数、行数のカウント
+sed | 指定した条件の置換
+
 # Reference
 * [ROS 軟路由PPPOE設置 2018-11-17](https://kknews.cc/other/p9pyov8.html)
 
@@ -392,3 +442,4 @@ By default, it will say Dos\Windows. To change it go to
 - 1
 - 2
 - 3
+
