@@ -1,5 +1,24 @@
-Table of Contents  
+Table of Contents
 =================
+
+   * [Table of Contents](#table-of-contents)
+   * [Purpose](#purpose)
+   * [Local mDNS not DNS Service](#local-mdns-not-dns-service)
+      * [Windows 10](#windows-10)
+      * [Linux](#linux)
+   * [mDNS and avahi](#mdns-and-avahi)
+   * [mDNS on WSL1](#mdns-on-wsl1)
+   * [mDNS solution](#mdns-solution)
+   * [Troubleshooting](#troubleshooting)
+   * [Reference](#reference)
+   * [h1 size](#h1-size)
+      * [h2 size](#h2-size)
+         * [h3 size](#h3-size)
+            * [h4 size](#h4-size)
+               * [h5 size](#h5-size)
+   * [Table of Contents](#table-of-contents-1)
+
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
 
 # Purpose
@@ -67,6 +86,8 @@ $ avahi-resolve -a 192.168.1.10
 # mDNS on WSL1  
 [WSL1 (Windows Subsystem for Linux) で mDNS な `.local` アドレスを解決する posted at 2020-01-07](https://qiita.com/ma2shita/items/422c904f39953e75a17f)  
 
+# mDNS solution  
+[名前解決サービスを自作する posted at 2019-10-31](https://qiita.com/soramimi_jp/items/9282a83664355c563c37)   
 
 # Troubleshooting
 
@@ -103,3 +124,5 @@ $ avahi-resolve -a 192.168.1.10
 - 1
 - 2
 - 3
+
+
