@@ -1,87 +1,142 @@
+Table of Contents
+=================
+
+   * [Table of Contents](#table-of-contents)
+   * [Purpose](#purpose)
+   * [ubuntu 16.04 Networking Setting](#ubuntu-1604-networking-setting)
+   * [網卡改名為 eth0](#網卡改名為-eth0)
+   * [Ubuntu IPv6網路設定](#ubuntu-ipv6網路設定)
+      * [IPv6 Setting SLAAC DHCPv6](#ipv6-setting-slaac-dhcpv6)
+      * [IPv6 - Set Up An IPv6 LAN with Linux](#ipv6---set-up-an-ipv6-lan-with-linux)
+   * [VMware Workstation 12.x   ubuntu 16.04   NAT 不 work](#vmware-workstation-12x--ubuntu-1604--nat-不-work)
+   * [Ubuntu 16.04開機直接進入文字模式](#ubuntu-1604開機直接進入文字模式)
+   * [Ubuntu關閉自動更新和GUI圖形界面](#ubuntu關閉自動更新和gui圖形界面)
+   * [How to Enable SSH on Ubuntu 16.04 LTS (Install openssh-server)](#how-to-enable-ssh-on-ubuntu-1604-lts-install-openssh-server)
+      * [Step 1. Open terminal (Ctrl Alt T) and run following command:](#step-1-open-terminal-ctrlaltt-and-run-following-command)
+      * [Step 2. The above command will enable SSH service  in your system, you may check openssh service status by running command:](#step-2-the-above-command-will-enable-ssh-service--in-your-system-you-may-check-openssh-service-status-by-running-command)
+      * [Step 3 .  Now sometime we may want to change some settings (for example, the port, and root login permission) . This can be done by editing the configuration file via command:](#step-3---now-sometime-we-may-want-to-change-some-settings-for-example-the-port-and-root-login-permission--this-can-be-done-by-editing-the-configuration-file-via-command)
+      * [Step 4. Lastly to apply the changes just restart  SSH server using following command:](#step-4-lastly-to-apply-the-changes-just-restart--ssh-server-using-following-command)
+   * [Get current DNS server on 16.04-server](#get-current-dns-server-on-1604-server)
+   * [How to create a user account on Ubuntu Linux](#how-to-create-a-user-account-on-ubuntu-linux)
+      * [Ubuntu create user account commands](#ubuntu-create-user-account-commands)
+      * [Verification](#verification)
+      * [How do I log in using ssh?](#how-do-i-log-in-using-ssh)
+      * [Creating a user account using useradd command on Ubuntu](#creating-a-user-account-using-useradd-command-on-ubuntu)
+   * [Chrome Browser Installation](#chrome-browser-installation)
+   * [How To Fix USER is not in the sudoers file. This incident will be reported.](#how-to-fix-user-is-not-in-the-sudoers-file-this-incident-will-be-reported)
+      * [Step 1: Login as root](#step-1-login-as-root)
+      * [Step 2: Edit the visudo file](#step-2-edit-the-visudo-file)
+      * [Step 3: Add your username to the sudoers file](#step-3-add-your-username-to-the-sudoers-file)
+      * [Step 4: Save and exit the file and try to switch as root](#step-4-save-and-exit-the-file-and-try-to-switch-as-root)
+   * [How To Install and Use Linux Minicom Command](#how-to-install-and-use-linux-minicom-command)
+      * [Install For Debian, Ubuntu, Kali, Mint](#install-for-debian-ubuntu-kali-mint)
+      * [Start Minicom](#start-minicom)
+      * [Exit Minicom](#exit-minicom)
+      * [Change Serial Line Parameters](#change-serial-line-parameters)
+      * [Setup Mode](#setup-mode)
+   * [Create your own video streaming server with Linux](#create-your-own-video-streaming-server-with-linux)
+      * [Setting up a Linux server](#setting-up-a-linux-server)
+      * [Set up your streaming software---Broadcasting with OBS](#set-up-your-streaming-software---broadcasting-with-obs)
+      * [Viewing your stream](#viewing-your-stream)
+      * [Ubuntu16.04にOBS-Studioをインストール](#ubuntu1604にobs-studioをインストール)
+         * [Issue](#issue)
+         * [Solution](#solution)
+      * [Nginxで簡単にライブストリーミングサーバ構築(ubuntu)](#nginxで簡単にライブストリーミングサーバ構築ubuntu)
+         * [環境](#環境)
+         * [必要な物をインストール](#必要な物をインストール)
+         * [スクリプトをダウンロード](#スクリプトをダウンロード)
+      * [nginxで動画配信(RTMP)サーバーを構築して、OBSの映像ソースとして取り込む](#nginxで動画配信rtmpサーバーを構築してobsの映像ソースとして取り込む)
+   * [How to Install VLC 3.0 Nightly On Ubuntu 16.04 LTS](#how-to-install-vlc-30-nightly-on-ubuntu-1604-lts)
+      * [1. Add the VLC Master Daily PPA](#1-add-the-vlc-master-daily-ppa)
+      * [2. Install (or upgrade) VLC](#2-install-or-upgrade-vlc)
+      * [3. Use it](#3-use-it)
+      * [VLC from Snappy Playpen initiative](#vlc-from-snappy-playpen-initiative)
+      * [Installation the Command line way](#installation-the-command-line-way)
+      * [Installation the Graphical way](#installation-the-graphical-way)
+   * [Can't install any snaps: too early for operation, device not yet seeded or device model not acknowledged](#cant-install-any-snaps-too-early-for-operation-device-not-yet-seeded-or-device-model-not-acknowledged)
+      * [1. Change your /var/lib/snapd/seed/seed.yaml file to look like this:](#1-change-your-varlibsnapdseedseedyaml-file-to-look-like-this)
+      * [2. Abort the currently running snap tasks and restart the service:](#2-abort-the-currently-running-snap-tasks-and-restart-the-service)
+      * [3. Manually install any apps that you removed from /var/lib/snapd/seed/seed.yaml, they might include:](#3-manually-install-any-apps-that-you-removed-from-varlibsnapdseedseedyaml-they-might-include)
+   * [網路媒體播放器 VLC ：循序漸進的命令列教學](#網路媒體播放器-vlc-循序漸進的命令列教學)
+      * [六、 網路放送](#六-網路放送)
+   * [[vlc] 網路串流設定-RTP](#vlc-網路串流設定-rtp)
+      * [VLC Server](#vlc-server)
+      * [VLC Client](#vlc-client)
+   * [Final Test Results-Multicast Streaming](#final-test-results-multicast-streaming)
+      * [IPv4-RTP](#ipv4-rtp)
+      * [IPv4-UDP](#ipv4-udp)
+      * [IPv6-RTP](#ipv6-rtp)
+   * [WiFi Connection Command](#wifi-connection-command)
+      * [nmcli dev wifi](#nmcli-dev-wifi)
+      * [iwpriv](#iwpriv)
+   * [Upgrade Ubuntu 18.04 from 16.04](#upgrade-ubuntu-1804-from-1604)
+      * [Procedures](#procedures)
+      * [TroubleShooting](#troubleshooting)
+   * [ubuntu18.04のネットワーク周り設定](#ubuntu1804のネットワーク周り設定)
+      * [DNSサーバー](#dnsサーバー)
+      * [固定IPにしたいとき](#固定ipにしたいとき)
+   * [How to Establish Remote Desktop Access to Ubuntu From Windows](#how-to-establish-remote-desktop-access-to-ubuntu-from-windows)
+      * [1. Remote Access Using SSH](#1-remote-access-using-ssh)
+      * [2. Remote Access Using Remote Desktop Protocol](#2-remote-access-using-remote-desktop-protocol)
+      * [3. Remote Access Using Virtual Network Computing](#3-remote-access-using-virtual-network-computing)
+   * [Authentication error prevents log-in to 18.04 after upgrade from 16.04](#authentication-error-prevents-log-in-to-1804-after-upgrade-from-1604)
+   * [Add and Manage User Accounts in Ubuntu 18.04 LTS](#add-and-manage-user-accounts-in-ubuntu-1804-lts)
+      * [Adding a User through the GUI](#adding-a-user-through-the-gui)
+      * [Adding A User Through the Command Line](#adding-a-user-through-the-command-line)
+         * [Listing All Users](#listing-all-users)
+         * [Locking/Unlocking User Accounts](#lockingunlocking-user-accounts)
+         * [Giving Root Privilege to a User](#giving-root-privilege-to-a-user)
+         * [Deleting a User Through the Command Line](#deleting-a-user-through-the-command-line)
+   * [Wifi is not working on my Dell E6400](#wifi-is-not-working-on-my-dell-e6400)
+   * [Killer AX1650 in Debian/Ubuntu 16.04 ](#killer-ax1650-in-debianubuntu-1604)
+   * [Lenovo Thinkpad X201i A22安裝Ubuntu Studio](#lenovo-thinkpad-x201i-a22安裝ubuntu-studio)
+   * [linux ubuntu 18.04安裝心得](#linux-ubuntu-1804安裝心得)
+      * [1．Win10 and Ubuntu 雙系統安裝筆記](#1win10-and-ubuntu-雙系統安裝筆記)
+      * [2. acpi_osi=linux、 nomodeset是什麼意思? 功能?](#2-acpi_osilinux-nomodeset是什麼意思-功能)
+      * [3. ubuntu 18.04實際安裝 簡略步驟](#3-ubuntu-1804實際安裝-簡略步驟)
+   * [How to Upgrade To Ubuntu 18.04 From Ubuntu 16.04/Ubuntu 17.10](#how-to-upgrade-to-ubuntu-1804-from-ubuntu-1604ubuntu-1710)
+   * [Ubuntu 18.04 remote desktop with xrdp TroubleShooting](#ubuntu-1804-remote-desktop-with-xrdp-troubleshooting)
+      * [1.パッケージのインストール](#1パッケージのインストール)
+   * [2.新カーソルの無効化](#2新カーソルの無効化)
+   * [3.~/.xsessionrcの作成](#3xsessionrcの作成)
+   * [4.「カラープロファイルを作成するには認証が必要です」の回避](#4カラープロファイルを作成するには認証が必要ですの回避)
+   * [5. Enjoy](#5-enjoy)
+   * [参考サイト](#参考サイト)
+   * [Ubuntu 18.04 XRDP Remote Desktop Config &amp; Problem](#ubuntu-1804-xrdp-remote-desktop-config--problem)
+      * [無法轉入登入畫面的問題 ( Xwrapper Problem )](#無法轉入登入畫面的問題--xwrapper-problem-)
+      * [沒有Gnome桌面圖示的排除方法 ( No Gnome Icon or Env Problem )](#沒有gnome桌面圖示的排除方法--no-gnome-icon-or-env-problem-)
+      * [跳出授權警告視窗 ( Authentication Required to Create Managed Color Device Problem )](#跳出授權警告視窗--authentication-required-to-create-managed-color-device-problem-)
+   * [Ubuntu 18.04 remote desktop with xrdp](#ubuntu-1804-remote-desktop-with-xrdp)
+   * [Fix ‘E: Could not get lock /var/lib/dpkg/lock’ Error in Ubuntu [Quick Tip]](#fix-e-could-not-get-lock-varlibdpkglock-error-in-ubuntu-quick-tip)
+   * [新酷音輸入法](#新酷音輸入法)
+   * [Array-30(行列30) Input Method Installation](#array-30行列30-input-method-installation)
+   * [DNS on Ubuntu 18.04](#dns-on-ubuntu-1804)
+      * [How to Set DNS Nameservers on Ubuntu 18.04](#how-to-set-dns-nameservers-on-ubuntu-1804)
+         * [Setting DNS Nameservers on Ubuntu Desktop](#setting-dns-nameservers-on-ubuntu-desktop)
+         * [Setting DNS Nameservers on Ubuntu Server](#setting-dns-nameservers-on-ubuntu-server)
+      * [How to Clear the DNS Cache](#how-to-clear-the-dns-cache)
+         * [Clear/Flush DNS Cache on Linux](#clearflush-dns-cache-on-linux)
+            * [Systemd Resolved](#systemd-resolved)
+            * [DNSMasq](#dnsmasq)
+            * [Nscd](#nscd)
+      * [DNS on Ubuntu 18.04](#dns-on-ubuntu-1804-1)
+   * [Photo Editor: Shutter](#photo-editor-shutter)
+      * [Ubuntu 20.04](#ubuntu-2004)
+      * [Trouble shooting： photo can't edit](#trouble-shooting-photo-cant-edit)
+   * [Reference](#reference)
+      * [【8.10之前的版本】](#810之前的版本)
+      * [【8.10之後的版本】](#810之後的版本)
+   * [h1 size](#h1-size)
+      * [h2 size](#h2-size)
+         * [h3 size](#h3-size)
+            * [h4 size](#h4-size)
+               * [h5 size](#h5-size)
+
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+
 # Purpose
 Take note of Ubuntu stuffs
 
-# Table of Content
-[ubuntu 16.04 Networking Setting](#ubuntu-1604-networking-setting)  
-[網卡改名為 eth0](#%E7%B6%B2%E5%8D%A1%E6%94%B9%E5%90%8D%E7%82%BA-eth0)  
-[Ubuntu IPv6網路設定](#ubuntu-ipv6%E7%B6%B2%E8%B7%AF%E8%A8%AD%E5%AE%9A)  
-[IPv6 Setting SLAAC DHCPv6](#ipv6-setting-slaac-dhcpv6)  
-[IPv6 - Set Up An IPv6 LAN with Linux](#ipv6---set-up-an-ipv6-lan-with-linux)
-
-[VMware Workstation 12.x + ubuntu 16.04 + NAT 不 work](#vmware-workstation-12x--ubuntu-1604--nat-%E4%B8%8D-work)  
-[Ubuntu 16.04開機直接進入文字模式 ](#ubuntu-1604%E9%96%8B%E6%A9%9F%E7%9B%B4%E6%8E%A5%E9%80%B2%E5%85%A5%E6%96%87%E5%AD%97%E6%A8%A1%E5%BC%8F)  
-[Ubuntu關閉自動更新和GUI圖形界面](#ubuntu%E9%97%9C%E9%96%89%E8%87%AA%E5%8B%95%E6%9B%B4%E6%96%B0%E5%92%8Cgui%E5%9C%96%E5%BD%A2%E7%95%8C%E9%9D%A2)  
-[How to Enable SSH on Ubuntu 16.04 LTS (Install openssh-server)](#how-to-enable-ssh-on-ubuntu-1604-lts-install-openssh-server)  
-[Get current DNS server on 16.04-server](#get-current-dns-server-on-1604-server)  
-[How to create a user account on Ubuntu Linux](#how-to-create-a-user-account-on-ubuntu-linux)  
-[Chrome Browser Installation](#chrome-browser-installation)  
-[How To Fix USER is not in the sudoers file. This incident will be reported.](#how-to-fix-user-is-not-in-the-sudoers-file-this-incident-will-be-reported)  
-
-[How To Install and Use Linux Minicom Command](#how-to-install-and-use-linux-minicom-command)  
-
-[Create your own video streaming server with Linux](#create-your-own-video-streaming-server-with-linux)  
-[Ubuntu16.04にOBS-Studioをインストール](#ubuntu1604%E3%81%ABobs-studio%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)  
-[Nginxで簡単にライブストリーミングサーバ構築(ubuntu)](#nginx%E3%81%A7%E7%B0%A1%E5%8D%98%E3%81%AB%E3%83%A9%E3%82%A4%E3%83%96%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0%E3%82%B5%E3%83%BC%E3%83%90%E6%A7%8B%E7%AF%89ubuntu)  
-[nginxで動画配信(RTMP)サーバーを構築して、OBSの映像ソースとして取り込む](#nginx%E3%81%A7%E5%8B%95%E7%94%BB%E9%85%8D%E4%BF%A1rtmp%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%82%92%E6%A7%8B%E7%AF%89%E3%81%97%E3%81%A6obs%E3%81%AE%E6%98%A0%E5%83%8F%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%A8%E3%81%97%E3%81%A6%E5%8F%96%E3%82%8A%E8%BE%BC%E3%82%80)  
-
-[How to Install VLC 3.0 Nightly On Ubuntu 16.04 LTS](#how-to-install-vlc-30-nightly-on-ubuntu-1604-lts)  
-[Can't install any snaps: too early for operation, device not yet seeded or device model not acknowledged](#cant-install-any-snaps-too-early-for-operation-device-not-yet-seeded-or-device-model-not-acknowledged)  
-[網路媒體播放器 VLC ：循序漸進的命令列教學](#%E7%B6%B2%E8%B7%AF%E5%AA%92%E9%AB%94%E6%92%AD%E6%94%BE%E5%99%A8-vlc-%E5%BE%AA%E5%BA%8F%E6%BC%B8%E9%80%B2%E7%9A%84%E5%91%BD%E4%BB%A4%E5%88%97%E6%95%99%E5%AD%B8)  
-[[vlc] 網路串流設定 RTP](#vlc-%E7%B6%B2%E8%B7%AF%E4%B8%B2%E6%B5%81%E8%A8%AD%E5%AE%9A-rtp)  
-
-[Final Test Results-Multicast Streaming](#final-test-results-multicast-streaming)  
-[IPv4-RTP](#ipv4-rtp)  
-[IPv4-UDP](#ipv4-udp)  
-[IPv6-RTP](#ipv6-rtp)  
-
-[WiFi Connection Command](#wifi-connection-command)  
-[nmcli dev wifi](#nmcli-dev-wifi)  
-[iwpriv](#iwpriv)  
-
-
-[Upgrade Ubuntu 18.04 from 16.04](#upgrade-ubuntu-1804-from-1604)  
-[ubuntu18.04のネットワーク周り設定](#ubuntu1804%E3%81%AE%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E5%91%A8%E3%82%8A%E8%A8%AD%E5%AE%9A)  
-
-[How to Establish Remote Desktop Access to Ubuntu From Windows](#how-to-establish-remote-desktop-access-to-ubuntu-from-windows)  
-[Authentication error prevents log-in to 18.04 after upgrade from 16.04](#authentication-error-prevents-log-in-to-1804-after-upgrade-from-1604)  
-
-
-[Add and Manage User Accounts in Ubuntu 18.04 LTS](#add-and-manage-user-accounts-in-ubuntu-1804-lts)
-
-[Wifi is not working on my Dell E6400](#Wifi-is-not-working-on-my-dell-e6400)  
-[Killer AX1650 in Debian/Ubuntu 16.04+](#killer-ax1650-in-debianubuntu-1604+)  
-
-[Lenovo Thinkpad X201i A22安裝Ubuntu Studio](#lenovo-thinkpad-x201i-a22%E5%AE%89%E8%A3%9Dubuntu-studio)
-
-[linux ubuntu 18.04安裝心得](#linux-ubuntu-1804%E5%AE%89%E8%A3%9D%E5%BF%83%E5%BE%97)  
-[1. Win10 and Ubuntu 雙系統安裝筆記](#1win10-and-ubuntu-%E9%9B%99%E7%B3%BB%E7%B5%B1%E5%AE%89%E8%A3%9D%E7%AD%86%E8%A8%98)  
-[2. acpi_osi=linux、 nomodeset是什麼意思? 功能?](#2-acpi_osilinux-nomodeset%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D-%E5%8A%9F%E8%83%BD)  
-[3. ubuntu 18.04實際安裝 簡略步驟](#3-ubuntu-1804%E5%AF%A6%E9%9A%9B%E5%AE%89%E8%A3%9D-%E7%B0%A1%E7%95%A5%E6%AD%A5%E9%A9%9F)  
-
-[How to Upgrade To Ubuntu 18.04 From Ubuntu 16.04/Ubuntu 17.10](#how-to-upgrade-to-ubuntu-1804-from-ubuntu-1604ubuntu-1710)   
-
-[Ubuntu 18.04 remote desktop with xrdp TroubleShooting](#ubuntu-1804-remote-desktop-with-xrdp-troubleshooting)  
-[1.パッケージのインストール](#1%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)  
-[2.新カーソルの無効化](#2%E6%96%B0%E3%82%AB%E3%83%BC%E3%82%BD%E3%83%AB%E3%81%AE%E7%84%A1%E5%8A%B9%E5%8C%96)  
-[3.~/.xsessionrcの作成](#3xsessionrc%E3%81%AE%E4%BD%9C%E6%88%90)  
-[4.「カラープロファイルを作成するには認証が必要です」の回避](#4%E3%82%AB%E3%83%A9%E3%83%BC%E3%83%97%E3%83%AD%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF%E8%AA%8D%E8%A8%BC%E3%81%8C%E5%BF%85%E8%A6%81%E3%81%A7%E3%81%99%E3%81%AE%E5%9B%9E%E9%81%BF)  
-[5. Enjoy](#5-enjoy)  
-[参考サイト](#%E5%8F%82%E8%80%83%E3%82%B5%E3%82%A4%E3%83%88)  
-
-
-[Ubuntu 18.04 XRDP Remote Desktop Config & Problem](#ubuntu-1804-xrdp-remote-desktop-config-&-problem)  
-[Ubuntu 18.04 remote desktop with xrdp](#ubuntu-1804-remote-desktop-with-xrdp)  
-
-[Fix ‘E: Could not get lock /var/lib/dpkg/lock’ Error in Ubuntu [Quick Tip]](#fix-e-could-not-get-lock-varlibdpkglock-error-in-ubuntu-quick-tip)
-
-[Array-30(行列30) Input Method Installation](sd#array-30%E8%A1%8C%E5%88%9730-input-method-installation)  
-
-[DNS on Ubuntu 18.04](#dns-on-ubuntu-1804)  
-[How to Set DNS Nameservers on Ubuntu 18.04](#how-to-set-dns-nameservers-on-ubuntu-1804)  
-[How to Clear the DNS Cache](#how-to-clear-the-dns-cache)  
-[DNS on Ubuntu 18.04](#dns-on-ubuntu-1804)  
-
-[Reference](#reference)
 
 # ubuntu 16.04 Networking Setting  
 [ubuntu 12.04 LTS desktop 64位元版本 – 網路設定  一月 9, 2014](https://andersonwang.wordpress.com/2014/01/09/ubuntu-12-04-lts-desktop-64%E4%BD%8D%E5%85%83%E7%89%88%E6%9C%AC-%E7%B6%B2%E8%B7%AF%E8%A8%AD%E5%AE%9A/)  
@@ -2004,6 +2059,15 @@ server版本是可以連拉，只是中文都亂碼...
 [Fix ‘E: Could not get lock /var/lib/dpkg/lock’ Error in Ubuntu [Quick Tip] Dec 20, 2019](https://itsfoss.com/could-not-get-lock-error/)  
 
 
+
+# 新酷音輸入法 
+[[Ubuntu] 在 Ubuntu 18.04 中新增新酷音輸入法 Jun 2, 2019](https://medium.com/@racktar7743/ubuntu-%E5%9C%A8-ubuntu-18-04-%E4%B8%AD%E6%96%B0%E5%A2%9E%E6%96%B0%E9%85%B7%E9%9F%B3%E8%BC%B8%E5%85%A5%E6%B3%95-4aa85782f656)
+
+```
+sudo apt install ibus-chewing
+```
+
+
 # Array-30(行列30) Input Method Installation  
 [Ubuntu 12.04 安裝行列30輸入法 7th July 2012](http://dodgelin.blogspot.com/2012/07/ubuntu-1204-30.html)  
 ```
@@ -2174,6 +2238,42 @@ nameserver 8.8.8.8
 3. Restart the resolvconf service.  
 ```
 sudo service resolvconf restart
+```
+
+
+# Photo Editor: Shutter 
+[Ubuntu 上的螢幕截圖編輯軟體 - Shutter 2021-09-14](https://cynthiachuang.github.io/Shutter-A-Screenshot-Editor-on-Ubuntu/)
+
+## Ubuntu 20.04
+```
+$ sudo add-apt-repository ppa:shutter/ppa
+```
+
+```
+$ sudo apt-get update
+$ sudo apt-get install shutter
+```
+
+## Trouble shooting： photo can't edit
+
+```
+$ wget https://launchpad.net/ubuntu/+archive/primary/+files/libgoocanvas-common_1.0.0-1_all.deb
+$ wget https://launchpad.net/ubuntu/+archive/primary/+files/libgoocanvas3_1.0.0-1_amd64.deb
+$ wget https://launchpad.net/ubuntu/+archive/primary/+files/libgoo-canvas-perl_0.06-2ubuntu3_amd64.deb
+
+```
+
+```
+$ sudo dpkg -i libgoocanvas-common_1.0.0-1_all.deb
+$ sudo dpkg -i libgoocanvas3_1.0.0-1_amd64.deb
+$ sudo dpkg -i libgoo-canvas-perl_0.06-2ubuntu3_amd64.deb
+$ sudo apt -f install
+```
+
+```
+$ sudo rm libgoocanvas-common_1.0.0-1_all.deb
+$ sudo rm libgoocanvas3_1.0.0-1_amd64.deb
+$ sudo rm libgoo-canvas-perl_0.06-2ubuntu3_amd64.deb
 ```
 
 # Reference
