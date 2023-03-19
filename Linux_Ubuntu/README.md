@@ -123,6 +123,7 @@ Table of Contents
    * [Photo Editor: Shutter](#photo-editor-shutter)
       * [Ubuntu 20.04](#ubuntu-2004)
       * [Trouble shooting： photo can't edit](#trouble-shooting-photo-cant-edit)
+   * [Firefox browser can't play video](#firefox-browser-cant-play-video)
    * [Reference](#reference)
       * [【8.10之前的版本】](#810之前的版本)
       * [【8.10之後的版本】](#810之後的版本)
@@ -2274,6 +2275,17 @@ $ sudo apt -f install
 $ sudo rm libgoocanvas-common_1.0.0-1_all.deb
 $ sudo rm libgoocanvas3_1.0.0-1_amd64.deb
 $ sudo rm libgoo-canvas-perl_0.06-2ubuntu3_amd64.deb
+```
+
+
+# Firefox browser can't play video 
+[解决ubuntu20.04火狐浏览器不能播放视频](https://blog.csdn.net/Joker_mw/article/details/115426829)
+
+```
+sudo add-apt-repository multiverse
+sudo apt install ubuntu-restricted-extras
+sudo apt-get update
+sudo apt-get install flashplugin-nonfree
 ```
 
 # Reference
