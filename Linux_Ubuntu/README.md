@@ -124,6 +124,7 @@ Table of Contents
       * [Ubuntu 20.04](#ubuntu-2004)
       * [Trouble shooting： photo can't edit](#trouble-shooting-photo-cant-edit)
    * [Firefox browser can't play video](#firefox-browser-cant-play-video)
+   * [Mount WebDAV](#mount-webdav)
    * [Reference](#reference)
       * [【8.10之前的版本】](#810之前的版本)
       * [【8.10之後的版本】](#810之後的版本)
@@ -2287,6 +2288,35 @@ sudo apt install ubuntu-restricted-extras
 sudo apt-get update
 sudo apt-get install flashplugin-nonfree
 ```
+
+
+# Mount WebDAV 
+
+[免费获取 45GB 网络空间！支持 WebDav 协议，直接挂载到本地电脑进行扩容！ | 零度解说](https://www.youtube.com/watch?v=RpTozaS03us)
+
+[Creating WebDAV mounts on the Linux command line](https://www.youtube.com/watch?v=uvdSExZLjcg)
+```
+sudo apt-get install davfs2
+sudo usermod -aG davfs2 <ubuntu_username>
+mkdir ~/infinicloud
+mkdir ~/.davfs2
+sudo cp /etc/davfs2/secrets ~/.davfs2/secrets
+sudo chown <ubuntu_username>:<ubuntu_username> ~/.davfs2/secrets
+sudo chmod 600 ~/.davfs2/secrets
+sudo nano ~/.davfs2/secrets
+
+sudo nano /etc/fstab
+```
+
+[davfs2 unable to create files, no problem creating directoies](https://askubuntu.com/questions/1286523/davfs2-unable-to-create-files-no-problem-creating-directoies)
+
+```
+I have forgotten to add the following two lines in /etc/davfs2/davfs2.conf:
+
+dav_group users
+use_locks 0
+```
+
 
 # Reference
 * [[ubuntu]關閉ipv6，增進網路效能 Sep 16 Wed 2009](https://liuchiu.pixnet.net/blog/post/25080360-%5Bubuntu%5D%E9%97%9C%E9%96%89ipv6%EF%BC%8C%E5%A2%9E%E9%80%B2%E7%B6%B2%E8%B7%AF%E6%95%88%E8%83%BD)  
