@@ -2292,6 +2292,14 @@ sudo apt-get install flashplugin-nonfree
 
 # Mount WebDAV 
 
+[buntu 22.04 开机自动挂载webdav - 设置开机自启脚本 - 解决坚果云webdav无写入权限](https://blog.csdn.net/qq285744011/article/details/137750762)  
+
+<img src="webdav_client_01.jpg" width="600" height="700">  
+
+<img src="webdav_client_02.jpg" width="600" height="800">  
+
+<img src="webdav_client_03.jpg" width="600" height="400">  
+
 [免费获取 45GB 网络空间！支持 WebDav 协议，直接挂载到本地电脑进行扩容！ | 零度解说](https://www.youtube.com/watch?v=RpTozaS03us)
 
 [Creating WebDAV mounts on the Linux command line](https://www.youtube.com/watch?v=uvdSExZLjcg)
