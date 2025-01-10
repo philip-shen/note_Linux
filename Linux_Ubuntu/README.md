@@ -125,6 +125,7 @@ Table of Contents
       * [Trouble shooting： photo can't edit](#trouble-shooting-photo-cant-edit)
    * [Firefox browser can't play video](#firefox-browser-cant-play-video)
    * [Mount WebDAV](#mount-webdav)
+   * [WebDAV Server by Nginx](#webdav-server-by-nginx)
    * [Reference](#reference)
       * [【8.10之前的版本】](#810之前的版本)
       * [【8.10之後的版本】](#810之後的版本)
@@ -2324,6 +2325,42 @@ I have forgotten to add the following two lines in /etc/davfs2/davfs2.conf:
 dav_group users
 use_locks 0
 ```
+
+# WebDAV Server by Nginx 
+[NGINX 設定 WebDAV (HTTPS + Authentication) 2021-02-10](https://blog.louie.lu/2021/02/10/nginx-webdav-https-authentication/)  
+A. 安裝與設定 NGINX  
+B. 測試 NGINX WebDAV (w/o HTTPS/Authentication)  
+C. 設定 NGINX Authentication  
+
+D. 設定 WebDAV HTTPS  
+
+   安裝 certbot
+```
+$ apt install certbot
+```
+   
+   設定 certbot
+```
+$ certbot --nginx your-webdav-domain.com
+```
+   
+   透過 cadaver 測試 WebDAV 是否有啟動成功 (https://your-webdav-domain.com)
+```
+$ cadaver https://your-webdav-domain.com
+Authentication required for Restricted webdav on server `your–webdav–domain.com‘:
+Username: user1
+Password: 
+dav:/> ls
+Listing collection `/’: succeeded.
+dav:/> 
+```
+
+[用 NGINX 配置一個 WebDAV Server Nov 16, 2019](https://medium.com/learn-or-die/%E7%94%A8-nginx-%E9%85%8D%E7%BD%AE%E4%B8%80%E5%80%8B-webdav-server-95665d029042)  
+[使用Nginx搭建WebDav作为简易共享空间](https://imateor.com/archives/342.html)  
+
+[Nginx で WebDAV 環境構築、PROPFIND 405 が使えなかったのでソースからコンパイルしてみた 2021/04/10](https://zenn.dev/murachi/articles/a67ae7b617d459e04615)  
+[WebDAVをnginxだけで作る備忘録 2020-01-25](https://qiita.com/YuzuRyo61/items/176ed017cefbaa872a63)  
+[Ubuntu (Debian) で nginx に WebDAV拡張モジュール(ngx-dav-ext-module)を組み込むで使ってみる 2012年11月1日](https://server-setting.info/ubuntu/ubuntu-nginx-webdav-module.html)    
 
 
 # Reference
