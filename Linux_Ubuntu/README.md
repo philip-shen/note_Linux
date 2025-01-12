@@ -2365,6 +2365,29 @@ dav:/>
 
 
 # 設定系統時區和時間 使用 crontab 排程  
+[如何在 Ubuntu Server 20.04 使用指令設定系統時區 2022-03-20]()  
+*查看機器目前時區*
+```
+$ timedatectl
+      Local time: Fri 2022-02-11 02:37:02 UTC
+  Universal time: Fri 2022-02-11 02:37:02 UTC
+        RTC time: Fri 2022-02-11 02:36:58
+       Time zone: Etc/UTC (UTC, +0000)
+ Network time on: yes
+NTP synchronized: yes
+ RTC in local TZ: no
+```
+
+*列出所有支援的時區資料*
+```
+$ timedatectl list-timezones | grep Taipei
+Asia/Taipei
+```
+
+*設定時區*
+```
+$ sudo timedatectl set-timezone Asia/Taipei
+```
 
 [[Linux] 設定系統時區和時間 2018-10-12](https://wshs0713.github.io/posts/7c844aef/)  
 *設定時區*
