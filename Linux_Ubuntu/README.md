@@ -126,6 +126,7 @@ Table of Contents
    * [Firefox browser can't play video](#firefox-browser-cant-play-video)
    * [Mount WebDAV](#mount-webdav)
    * [WebDAV Server by Nginx](#webdav-server-by-nginx)
+   * [設定系統時區和時間 使用 crontab 排程](#設定系統時區和時間-使用-crontab-排程)
    * [Reference](#reference)
       * [【8.10之前的版本】](#810之前的版本)
       * [【8.10之後的版本】](#810之後的版本)
@@ -2361,6 +2362,42 @@ dav:/>
 [Nginx で WebDAV 環境構築、PROPFIND 405 が使えなかったのでソースからコンパイルしてみた 2021/04/10](https://zenn.dev/murachi/articles/a67ae7b617d459e04615)  
 [WebDAVをnginxだけで作る備忘録 2020-01-25](https://qiita.com/YuzuRyo61/items/176ed017cefbaa872a63)  
 [Ubuntu (Debian) で nginx に WebDAV拡張モジュール(ngx-dav-ext-module)を組み込むで使ってみる 2012年11月1日](https://server-setting.info/ubuntu/ubuntu-nginx-webdav-module.html)    
+
+
+# 設定系統時區和時間 使用 crontab 排程  
+
+[[Linux] 設定系統時區和時間 2018-10-12](https://wshs0713.github.io/posts/7c844aef/)  
+*設定時區*
+```
+$ sudo cp /usr/share/zoneinfo/Asia/Taipei /etc/localtime
+```
+*設定時間*
+```
+# 格式: MMDDhhmmYYYY
+$ sudo date "101213002018"
+```
+
+[[Linux] 使用 crontab 排程 2018-03-14](https://wshs0713.github.io/posts/d661a182/)  
+```
+$ crontab <crontab_file>
+```
+
+*crontab 相關指令*
+```
+    $ crontab -l: 列出使用者的 crontab 內容。
+    $ crontab -e: 編輯使用者的 crontab 內容。
+    $ crontab -r: 完全清除使用者的 crontab. (要小心使用!)
+```
+
+*crontab 範例*
+```
+SHELL=/bin/sh
+PATH=/bin:/sbin:/usr/bin:/usr/sbin
+MAILTO="your_email"
+
+# 分 時 日 月 星期 指令
+0 1 * * * sh /home/user/crontab/report.sh
+```
 
 
 # Reference
